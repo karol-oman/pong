@@ -6,4 +6,11 @@
     <dimen name="button_height">70dp</dimen>
     <dimen name="title_size">70sp</dimen>
 
+
+    <dimen name="image_ball_width">150dp</dimen>
+    <dimen name="image_ball_height">150dp</dimen>
+
+
+
+
 </resources>

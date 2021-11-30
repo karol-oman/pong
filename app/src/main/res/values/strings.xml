@@ -3,5 +3,8 @@
     <string name="settings">SETTINGS</string>
     <string name="high_score">HIGH SCORE</string>
     <string name="play">PLAY</string>
+    <string name="save">SAVE</string>
+    <string name="back">BACK</string>
+    <string name="sound">SOUND</string>
 
 </resources>
