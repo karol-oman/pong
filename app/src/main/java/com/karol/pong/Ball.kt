@@ -18,7 +18,7 @@ class Ball(context: Context) {
 
     //var ballImg: Bitmap = BitmapFactory.decodeResource()
 
-    var ball1: Bitmap = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_baseline_sports_baseball_24)
+    //var ball1: Bitmap = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_baseline_sports_baseball_24)
 
 
 
@@ -29,11 +29,6 @@ class Ball(context: Context) {
     fun draw (canvas: Canvas?){
 
         canvas?.drawCircle(posX,posY,size,paint)
-
-
-
-
-
     }
 
     private fun setup(){

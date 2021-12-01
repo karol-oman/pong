@@ -5,7 +5,6 @@ import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import androidx.annotation.ColorRes
 
 class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
@@ -14,6 +13,9 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     lateinit var canvas: Canvas
     private lateinit var ball1: Ball
     private lateinit var ball2: Ball
+
+    private lateinit var paddle: Paddle
+
     var mHolder: SurfaceHolder? = holder
 
     var background: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.treeboardbetter_jpg)
@@ -28,13 +30,21 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private fun setup() {
         ball1 = Ball(this.context)
         ball2 = Ball(this.context)
+
+        paddle = Paddle(this.context)
+
         ball1.posX = 100f
         ball2.posY = 100f
-        ball1.posY = 100f
-        ball2.posX = 400f
+        ball1.posY = 2500f
+        ball2.posX = 100f
         ball1.speed = 0f
+
         ball1.paint.color = Color.MAGENTA
         ball2.paint.color = Color.CYAN
+
+        paddle.paint.color = Color.WHITE
+        //paddle.posX = 100f
+        //paddle.posY = 100f
 
 
     }
@@ -57,6 +67,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     fun update() {
         ball1.update()
         ball2.update()
+        paddle.update()
     }
 
     fun draw() {
@@ -65,6 +76,8 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
         //Drawing background to canvas.
         canvas.drawBitmap(background, matrix, null)
+
+        paddle.draw(canvas)
 
         ball1.draw(canvas)
         ball2.draw(canvas)
@@ -96,8 +109,13 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        ball2.posX = event!!.x
-        ball2.posY = event!!.y
+        //ball2.posX = event!!.x
+
+        //ball2.posY = event!!.y
+
+        paddle.posX = event!!.x
+        paddle.posY = event.y
+
         return true
     }
 

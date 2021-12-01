@@ -1,15 +1,24 @@
 package com.karol.pong
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View.inflate
+import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.commit
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.navigation.NavigationView
+
 import com.karol.pong.databinding.ActivityMainBinding
+import com.karol.pong.databinding.ActivityMainBinding.inflate
 
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
 
         binding.buttonPlay.setOnClickListener(){
             val intent = Intent(this,PlayActivity::class.java)
@@ -36,7 +42,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonScores.setOnClickListener(){
-            //TODO FRAGMENT HERE
+
+            //TODO THIS AINT WORKING BRAH
+
+            val window = PopupWindow(this)
+
+            val view = layoutInflater.inflate(R.layout.highscore_popup,null)
+
+            window.contentView = view
+
+            val textView = view.findViewById<TextView>(R.id.text_view_pong)
+            textView.setOnClickListener{
+                window.dismiss()
+            }
+            window.update()
+
+
+
+
+
+
+
+            //window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+
+
+
+
+
+
         }
 
     }

@@ -29,6 +29,7 @@ class SettingsActivity : AppCompatActivity() {
             println("current ID:")
             println(binding.viewPager.currentItem)
             finish()
+
         }
 
     }
