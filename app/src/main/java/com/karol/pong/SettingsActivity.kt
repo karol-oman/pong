@@ -25,42 +25,27 @@ class SettingsActivity : AppCompatActivity() {
         binding.viewPager.adapter = pagerAdapter
 
         button_save.setOnClickListener(){
-            println(ballSelected)
+
+            println("current ID:")
+            println(binding.viewPager.currentItem)
             finish()
         }
 
     }
-
-
-
-
     private inner class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa){
         override fun getItemCount(): Int = 2
 
 
-        var currentPage: Int = 0
-
         //TODO FIX POSITION!!!
-        fun onPageSelected(position: Int) {
-            currentPage = position
-            println(currentPage)
-        }
 
         override fun createFragment(position: Int): Fragment {
             return when(position){
                 0  -> {
-                    ballSelected = 0
-                    onPageSelected(ballSelected)
                     BallOneFragment()
-
                 }
                 1 -> {
-                    ballSelected = 1
-                    onPageSelected(ballSelected)
                     BallTwoFragment()
-
                 }else-> {
-                    ballSelected = 0
                     BallOneFragment()
                 }
 
