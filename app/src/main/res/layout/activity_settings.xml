@@ -19,10 +19,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+        android:id="@+id/view_pager_ball"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_ball_height"
         app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_ball_height"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager_ball"
         tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial

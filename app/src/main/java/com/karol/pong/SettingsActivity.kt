@@ -22,31 +22,35 @@ class SettingsActivity : AppCompatActivity() {
 
 
         val pagerAdapter = ViewPagerAdapter(this)
-        binding.viewPager.adapter = pagerAdapter
+        val pagerAdapterTwo =ViewPagerAdapterTwo(this)
+        binding.viewPagerBall.adapter = pagerAdapter
+        binding.viewPagerBackground.adapter = pagerAdapterTwo
 
-        button_save.setOnClickListener(){
+        button_save.setOnClickListener() {
 
-            println("current ID:")
-            println(binding.viewPager.currentItem)
+            println("current ID:" + binding.viewPagerBall.currentItem)
+            println("Current BG:" + binding.viewPagerBackground.currentItem)
             finish()
 
         }
 
     }
-    private inner class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa){
+
+    private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
 
         //TODO FIX POSITION!!!
 
         override fun createFragment(position: Int): Fragment {
-            return when(position){
-                0  -> {
+            return when (position) {
+                0 -> {
                     BallOneFragment()
                 }
                 1 -> {
                     BallTwoFragment()
-                }else-> {
+                }
+                else -> {
                     BallOneFragment()
                 }
 
@@ -54,10 +58,25 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
+        override fun getItemCount(): Int = 2
 
+        //TODO Går det att lägga dom i samma Adapter
 
-
-
-
+        override fun createFragment(position: Int): Fragment {
+            return when (position) {
+                0 -> {
+                    BackgroundOneFragment()
+                }
+                1 -> {
+                    BackgroundTwoFragment()
+                }
+                else -> {
+                    BackgroundOneFragment()
+                }
+            }
+        }
+    }
 
 }
+

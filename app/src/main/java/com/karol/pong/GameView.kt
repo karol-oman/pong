@@ -11,8 +11,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     private var thread: Thread? = null
     private var running = false
     lateinit var canvas: Canvas
-    private lateinit var ball1: Ball
-    private lateinit var ball2: Ball
+    private lateinit var ball: Ball
 
     private lateinit var paddle: Paddle
 
@@ -28,23 +27,18 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     private fun setup() {
-        ball1 = Ball(this.context)
-        ball2 = Ball(this.context)
+        ball = Ball(this.context)
 
         paddle = Paddle(this.context)
 
-        ball1.posX = 100f
-        ball2.posY = 100f
-        ball1.posY = 2500f
-        ball2.posX = 100f
-        ball1.speed = 0f
+        ball.posY = 100f
+        ball.posX = 100f
 
-        ball1.paint.color = Color.MAGENTA
-        ball2.paint.color = Color.CYAN
+        ball.paint.color = Color.CYAN
 
         paddle.paint.color = Color.WHITE
-        //paddle.posX = 100f
-        //paddle.posY = 100f
+        paddle.posX = 750f
+        paddle.posY = 2200f
 
 
     }
@@ -65,9 +59,8 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     fun update() {
-        ball1.update()
-        ball2.update()
-        paddle.update()
+        ball.update()
+        //paddle.update()
     }
 
     fun draw() {
@@ -79,8 +72,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
         paddle.draw(canvas)
 
-        ball1.draw(canvas)
-        ball2.draw(canvas)
+        ball.draw(canvas)
         mHolder!!.unlockCanvasAndPost(canvas)
 
 
@@ -114,7 +106,6 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         //ball2.posY = event!!.y
 
         paddle.posX = event!!.x
-        paddle.posY = event.y
 
         return true
     }
