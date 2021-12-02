@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonSettings.setOnClickListener(){
-            //TODO INTENT HERE
+            //TODO INTENT HERE asd
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
