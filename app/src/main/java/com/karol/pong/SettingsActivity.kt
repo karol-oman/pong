@@ -32,6 +32,7 @@ class SettingsActivity : AppCompatActivity() {
             println("Current BG:" + binding.viewPagerBackground.currentItem)
             finish()
 
+
         }
 
     }
