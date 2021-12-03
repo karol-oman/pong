@@ -25,7 +25,7 @@ class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchLi
 
         binding.surfaceView.holder.addCallback(this)
 
-        binding.surfaceView.setOnTouchListener(this)
+        //binding.surfaceView.setOnTouchListener(this)
 
 
 

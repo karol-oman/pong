@@ -43,19 +43,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonScores.setOnClickListener(){
 
-            //TODO THIS AINT WORKING BRAH
 
-            val window = PopupWindow(this)
 
-            val view = layoutInflater.inflate(R.layout.highscore_popup,null)
-
-            window.contentView = view
-
-            val textView = view.findViewById<TextView>(R.id.text_view_pong)
-            textView.setOnClickListener{
-                window.dismiss()
-            }
-            window.update()
+            val intent = Intent(this, HighScoreActivity::class.java)
+            startActivity(intent)
 
 
 
