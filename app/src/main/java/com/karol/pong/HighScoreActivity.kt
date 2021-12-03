@@ -15,6 +15,8 @@ class HighScoreActivity : AppCompatActivity() {
         binding = ActivityHighscoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         val pagerAdapter = ViewPagerAdapter(this)
 
         binding.pageViewerHighScore.adapter = pagerAdapter
@@ -24,7 +26,7 @@ class HighScoreActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa){
-        override fun getItemCount(): Int = 1
+        override fun getItemCount(): Int = 2
 
 
         override fun createFragment(position: Int): Fragment {
@@ -33,7 +35,7 @@ class HighScoreActivity : AppCompatActivity() {
                     HighScorePongFragment()
                 }
                 1 -> {
-                    HighScorePongFragment()
+                    HighScoreShurikenFragment()
                 }
                 else -> {
                     HighScorePongFragment()
