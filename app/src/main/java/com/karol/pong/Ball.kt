@@ -32,7 +32,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
         hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
 
-        canvas?.drawRect(hitbox, paint2)
+        //canvas?.drawRect(hitbox, paint2)
 
         canvas?.drawCircle(posX,posY,size,paint)
 
@@ -47,13 +47,15 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
         if(posX + size > bounds.right){
             speedX *= -1
         }
+        //top
         if(posY - size < 0){
             speedY *= -1
+            println("hit top")
         }
-        if (posY + size > bounds.bottom - 50f){
-            speedY *= -1
+        if (posY + size > bounds.bottom){
+            //speedY *= -1
 
-            println(bounds.bottom)
+            println("u suck")
         }
     }
 
