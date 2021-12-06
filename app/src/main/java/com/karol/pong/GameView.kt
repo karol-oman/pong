@@ -107,7 +107,6 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
             println("u suck")
             running = false
-
         }
 
 
