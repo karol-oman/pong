@@ -13,7 +13,10 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     lateinit var canvas: Canvas
     private lateinit var ball: Ball
 
+    private lateinit var ball2: Ball
+
     private lateinit var paddle: Paddle
+    private var bounds = Rect()
 
     var mHolder: SurfaceHolder? = holder
 
@@ -27,7 +30,12 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
     private fun setup() {
-        ball = Ball(this.context)
+
+        //Random xPOS
+        val random = (-5..5).random()
+
+        ball = Ball(this.context, 50f, 100f, 50f, 20f, 20f)
+        //ball2 = Ball(this.context, 100f, 100f, 50f, random.toFloat(), 10f)
 
         paddle = Paddle(this.context)
 
@@ -35,10 +43,10 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         ball.posX = 100f
 
         ball.paint.color = Color.CYAN
-
         paddle.paint.color = Color.WHITE
-        paddle.posX = 750f
-        paddle.posY = 2200f
+
+        paddle.posX = 500f
+
 
 
     }
@@ -79,11 +87,40 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     }
 
 
+    fun checkPaddleHit(){
+        if (ball.posY + ball.size > paddle.paddle.top){
+            ball.speedY *= -1
+        }
+    }
+
+    private fun intersects(){
+
+        if(RectF.intersects(paddle.paddle ,ball.hitbox)){
+
+            println("HIT POWEPOW")
+            ball.speedY *= -1
+            ball.speedX *= -1
+
+        }
+        //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
+    }
+
+    fun bounceBall(b1: Ball, b2: Ball){
+        b1.speedY *= -1
+        b2.speedX = 0f
+
+    }
+
+
     override fun surfaceCreated(p0: SurfaceHolder) {
 
     }
 
     override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+
+        bounds = Rect(0, 0, p2, p3)
+
+        paddle.posY = bounds.bottom.toFloat() -100f
         start()
     }
 
@@ -95,15 +132,17 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         while (running) {
             update()
             draw()
+
+            checkPaddleHit()
+            intersects()
+
+            ball.checkBounds(bounds)
+
         }
 
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-
-        //ball2.posX = event!!.x
-
-        //ball2.posY = event!!.y
 
         paddle.posX = event!!.x
 

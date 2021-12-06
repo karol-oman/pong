@@ -2,34 +2,61 @@ package com.karol.pong
 
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Paint
+import android.graphics.*
+import androidx.core.graphics.red
 
 
-class Ball(context: Context) {
+class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float) {
 
-    var posX  = 0f
-    var posY = 0f
+
     var paint = Paint()
-    var size = 50f
-    var speed = 5f
+    var paint2 = Paint()
+    var width = 300f
+    var height = 50f
 
-    //var ballImg: Bitmap = BitmapFactory.decodeResource()
-
-    //var ball1: Bitmap = BitmapFactory.decodeResource(Resources.getSystem(), R.drawable.ic_baseline_sports_baseball_24)
-
-
+    lateinit var hitbox: RectF
 
     fun update(){
-        posY +=  speed
+        posY += speedY
+        posX += speedX
 
     }
+
+
     fun draw (canvas: Canvas?){
 
+
+
+        //canvas?.drawCircle(hitbox.centerX(),hitbox.centerY(),size,paint)
+
+
+        hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
+
+        canvas?.drawRect(hitbox, paint2)
+
         canvas?.drawCircle(posX,posY,size,paint)
+
     }
+
+
+    fun checkBounds(bounds: Rect){
+        if(posX - size < 0){
+            speedX *= -1
+
+        }
+        if(posX + size > bounds.right){
+            speedX *= -1
+        }
+        if(posY - size < 0){
+            speedY *= -1
+        }
+        if (posY + size > bounds.bottom - 50f){
+            speedY *= -1
+
+            println(bounds.bottom)
+        }
+    }
+
 
     private fun setup(){
 
