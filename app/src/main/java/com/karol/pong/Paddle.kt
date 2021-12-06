@@ -23,12 +23,6 @@ class Paddle(context: Context) {
 
     lateinit var paddle: RectF
 
-
-    fun update(){
-        posX +=  posX
-
-    }
-
     fun draw(canvas: Canvas?){
 
         //canvas?.drawCircle(posX,posY,size,paint)
@@ -36,8 +30,6 @@ class Paddle(context: Context) {
         paddle = RectF(posX, posY, posX + width, posY + height)
 
         canvas?.drawRect(paddle, paint)
-
-
     }
 
 

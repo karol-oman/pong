@@ -10,7 +10,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
 
     var paint = Paint()
-    var paint2 = Paint()
+
     var width = 300f
     var height = 50f
 
@@ -24,15 +24,9 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
 
     fun draw (canvas: Canvas?){
-
-
-
         //canvas?.drawCircle(hitbox.centerX(),hitbox.centerY(),size,paint)
 
-
         hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
-
-        //canvas?.drawRect(hitbox, paint2)
 
         canvas?.drawCircle(posX,posY,size,paint)
 
@@ -42,24 +36,23 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
     fun checkBounds(bounds: Rect){
         if(posX - size < 0){
             speedX *= -1
-
         }
         if(posX + size > bounds.right){
             speedX *= -1
         }
-        //top
         if(posY - size < 0){
             speedY *= -1
-            println("hit top")
         }
-        if (posY + size > bounds.bottom){
-            //speedY *= -1
-
-            println("u suck")
-        }
+        //TODO I MOVED THIS TO GAME VIEW TO BE ABLE TO STOP GAME LOOP
+//        if (posY + size > bounds.bottom){
+//            //speedY *= -1
+//
+//            println("u suck")
+//
+//        }
     }
 
-
+    //Todo we are not using this.
     private fun setup(){
 
     }

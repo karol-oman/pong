@@ -20,7 +20,8 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
     var mHolder: SurfaceHolder? = holder
 
-    var background: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.treeboardbetter_jpg)
+    //var background: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.treeboardbetter_jpg)
+    var background: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.bg5)
 
 
     init {
@@ -34,30 +35,27 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         //Random xPOS
         val random = (-5..5).random()
 
+        //Creates ball and paddle objects
         ball = Ball(this.context, 50f, 100f, 50f, 50f, 50f)
-        //ball2 = Ball(this.context, 100f, 100f, 50f, random.toFloat(), 10f)
-
         paddle = Paddle(this.context)
 
+        //Starting position for ball and paddle
         ball.posY = 100f
-        ball.posX = 100f
-
-        ball.paint.color = Color.CYAN
-        paddle.paint.color = Color.WHITE
-
+        ball.posX = 500f
         paddle.posX = 500f
 
-
-
+        //Sets the color to ball and paddle.
+        ball.paint.color = Color.YELLOW
+        paddle.paint.color = Color.GREEN
     }
 
-    fun start() {
+    private fun start() {
         running = true
         thread = Thread(this)
         thread?.start()
     }
 
-    fun stop() {
+    private fun stop() {
         running = false
         try {
             thread?.join()
@@ -66,12 +64,12 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         }
     }
 
-    fun update() {
+    private fun update() {
         ball.update()
-        //paddle.update()
+
     }
 
-    fun draw() {
+    private fun draw() {
 
         canvas = mHolder!!.lockCanvas()
 
@@ -93,20 +91,31 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 //        }
 //    }
 
+
     private fun intersects(){
 
         if(RectF.intersects(paddle.paddle ,ball.hitbox)){
 
-            println("HIT POWEPOW")
+            println("HIT POW POW")
             ball.speedY *= -1
             score++
             println("Total score: $score")
             //ball.speedX *= -1
+        }
+        if (ball.posY + ball.size > bounds.bottom){
+            //speedY *= -1
+
+            println("u suck")
+            running = false
 
         }
+
+
         //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
     }
 
+
+    //TODO we're not using this.
     fun bounceBall(b1: Ball, b2: Ball){
         b1.speedY *= -1
         b2.speedX = 0f
