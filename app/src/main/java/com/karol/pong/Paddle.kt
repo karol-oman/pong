@@ -8,6 +8,7 @@ import android.R.attr.y
 
 import android.R.attr.x
 import android.graphics.Rect
+import android.graphics.RectF
 
 
 class Paddle(context: Context) {
@@ -16,18 +17,26 @@ class Paddle(context: Context) {
     var posX = 0f
     var posY = 0f
     var paint = Paint()
-    var size = 50f
-    var speed = 5f
+
+    var width = 300f
+    var height = 50f
+
+    lateinit var paddle: RectF
 
 
     fun update(){
-        posY +=  posY
+        posX +=  posX
 
     }
 
     fun draw(canvas: Canvas?){
 
-        canvas?.drawCircle(posX,posY,size,paint)
+        //canvas?.drawCircle(posX,posY,size,paint)
+
+        paddle = RectF(posX, posY, posX + width, posY + height)
+
+        canvas?.drawRect(paddle, paint)
+
 
     }
 
