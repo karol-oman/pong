@@ -13,7 +13,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     lateinit var canvas: Canvas
     private lateinit var ball: Ball
 
-    private lateinit var ball2: Ball
+    private var score: Int = 0
 
     private lateinit var paddle: Paddle
     private var bounds = Rect()
@@ -34,7 +34,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         //Random xPOS
         val random = (-5..5).random()
 
-        ball = Ball(this.context, 50f, 100f, 50f, 20f, 20f)
+        ball = Ball(this.context, 50f, 100f, 50f, 50f, 50f)
         //ball2 = Ball(this.context, 100f, 100f, 50f, random.toFloat(), 10f)
 
         paddle = Paddle(this.context)
@@ -86,12 +86,12 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
     }
 
-
-    fun checkPaddleHit(){
-        if (ball.posY + ball.size > paddle.paddle.top){
-            ball.speedY *= -1
-        }
-    }
+//TODO SHOW THIS TMRW
+//    fun checkPaddleHit(){
+//        if (ball.posY + ball.size > paddle.paddle.top){
+//            ball.speedY *= -1
+//        }
+//    }
 
     private fun intersects(){
 
@@ -99,7 +99,9 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
             println("HIT POWEPOW")
             ball.speedY *= -1
-            ball.speedX *= -1
+            score++
+            println("Total score: $score")
+            //ball.speedX *= -1
 
         }
         //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
@@ -133,7 +135,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
             update()
             draw()
 
-            checkPaddleHit()
+            //checkPaddleHit()
             intersects()
 
             ball.checkBounds(bounds)
