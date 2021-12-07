@@ -32,24 +32,26 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
     }
 
-
     fun checkBounds(bounds: Rect){
         if(posX - size < 0){
             speedX *= -1
+
         }
         if(posX + size > bounds.right){
             speedX *= -1
+
         }
         if(posY - size < 0){
             speedY *= -1
+
         }
         //TODO I MOVED THIS TO GAME VIEW TO BE ABLE TO STOP GAME LOOP
-//        if (posY + size > bounds.bottom){
-//            //speedY *= -1
-//
-//            println("u suck")
-//
-//        }
+        if (posY + size > bounds.bottom){
+            //speedY *= -1
+
+            println("u suck")
+
+        }
     }
 
     //Todo we are not using this.

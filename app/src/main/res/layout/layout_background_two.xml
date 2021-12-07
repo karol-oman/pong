@@ -15,15 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="background 2"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_view_background_two"
-        app:layout_constraintEnd_toEndOf="@+id/image_view_background_two"
-        app:layout_constraintStart_toStartOf="@+id/image_view_background_two"
-        app:layout_constraintTop_toTopOf="@+id/image_view_background_two" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
