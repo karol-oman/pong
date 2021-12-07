@@ -2,6 +2,7 @@ package com.karol.pong
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.karol.pong.databinding.ActivityMainBinding
 
@@ -15,12 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val random = (0..1).random()
-
-        val imgId = arrayOf(R.drawable.backgroundoneblur, R.drawable.treeboardbetter_jpg)
-
-        binding.layoutMain.setBackgroundResource(imgId[random])
-
+        rotateStar()
+        generateBackground()
 
         binding.buttonPlay.setOnClickListener() {
             val intent = Intent(this, PlayActivity::class.java)
@@ -42,6 +39,23 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    private fun rotateStar(){
+        val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
 
+        val rotImage = binding.rotatingShuriken
+
+        rotImage.animation = rotate
+    }
+    private fun generateBackground(){
+
+        val random = (0..6).random()
+
+        val imgId = arrayOf(R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
+            R.drawable.bg5, R.drawable.bg6, R.drawable.bg7)
+
+
+        binding.layoutMain.setBackgroundResource(imgId[random])
+
+    }
 
 }
