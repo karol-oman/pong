@@ -7,16 +7,11 @@
     tools:context=".PlayActivity"
     >
 
-    <SurfaceView
-        android:id="@+id/surface_view"
+    <FrameLayout
+        android:id="@+id/frame_play"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
 
     <LinearLayout
@@ -27,8 +22,6 @@
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
-
-
         <TextView
             android:id="@+id/text_view_current_score"
             android:layout_width="wrap_content"
@@ -37,7 +30,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Current score: 1337" />
+            android:text="highscore: 2133" />
 
         <TextView
             android:id="@+id/text_view_high_score"
@@ -48,4 +41,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="High score: 1337"/>
+
     </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

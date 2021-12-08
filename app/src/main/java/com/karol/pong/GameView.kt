@@ -8,7 +8,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
 
-class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
+class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
     private var running = false

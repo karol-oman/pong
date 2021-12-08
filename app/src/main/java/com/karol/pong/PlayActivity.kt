@@ -8,9 +8,10 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.View
+import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
 
-class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchListener {
+class PlayActivity : AppCompatActivity() {
 
 
 
@@ -26,23 +27,9 @@ class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchLi
         //binding.surfaceView.setOnTouchListener(this)
 
 
-
-    }
-
-    override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean{
-
-        return true
-    }
-
-    override fun surfaceCreated(holder: SurfaceHolder) {
-
-    }
-
-    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-
-    }
-
-    override fun surfaceDestroyed(holder: SurfaceHolder) {
+       supportFragmentManager.commit {
+           add(R.id.frame_play, GameFragment())
+       }
 
     }
 
