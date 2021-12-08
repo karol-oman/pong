@@ -21,8 +21,6 @@ class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchLi
         binding = ActivityPlayBinding.inflate(layoutInflater)
         setContentView(GameView(this))
 
-
-
         binding.surfaceView.holder.addCallback(this)
 
         //binding.surfaceView.setOnTouchListener(this)

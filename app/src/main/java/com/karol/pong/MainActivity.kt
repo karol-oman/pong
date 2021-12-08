@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
         val imgId = arrayOf(R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
             R.drawable.bg5, R.drawable.bg6, R.drawable.bg7)
 
-
         binding.layoutMain.setBackgroundResource(imgId[random])
 
     }
