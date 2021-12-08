@@ -125,7 +125,6 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
                 20 -> ball.speedY = -110f
                 40 -> ball.speedY = -150f
                 80 -> ball.speedY = -200f
-
             }
 
             score++
