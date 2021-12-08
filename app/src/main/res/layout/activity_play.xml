@@ -47,9 +47,5 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="High score: 1337" />
+            android:text="High score: 1337"/>
     </LinearLayout>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>

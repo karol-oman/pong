@@ -19,7 +19,7 @@ class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchLi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayBinding.inflate(layoutInflater)
-        setContentView(GameView(this))
+        setContentView(binding.root)
 
         //binding.surfaceView.holder.addCallback(this)
 

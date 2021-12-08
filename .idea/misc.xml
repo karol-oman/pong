@@ -7,14 +7,14 @@
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/drawable/my_button_frame.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/activity_highscore.xml" value="0.33" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/activity_play.xml" value="0.25" />
+        <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/activity_play.xml" value="0.33" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/activity_settings.xml" value="0.2810810810810811" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/fragment_first.xml" value="0.29324324324324325" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/fragment_score.xml" value="0.21822916666666667" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/fragment_settings.xml" value="0.3546875" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/highscore_popup.xml" value="0.29324324324324325" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/image_slider_item.xml" value="0.29324324324324325" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_background_one.xml" value="0.1" />
+        <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_background_one.xml" value="0.2927927927927928" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_background_two.xml" value="0.2927927927927928" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_ball_one.xml" value="0.29324324324324325" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_ball_two.xml" value="0.29324324324324325" />
@@ -24,6 +24,8 @@
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_background_one.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_background_two.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_ball_one.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/activity_play.xml" value="0.1796875" />
       </map>
     </option>
   </component>
