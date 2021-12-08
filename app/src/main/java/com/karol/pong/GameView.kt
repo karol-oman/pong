@@ -1,14 +1,12 @@
 package com.karol.pong
 
 import android.content.Context
-import android.content.Intent
+import android.content.res.Resources
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.graphics.rotationMatrix
-import androidx.core.graphics.scaleMatrix
+import androidx.core.graphics.scale
 
 class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
@@ -24,31 +22,34 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
     private var mHolder: SurfaceHolder? = holder
 
-
     private val random = (0..6).random()
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
-
-
-    //binding.layoutMain.setBackgroundResource(imgId[random])
-
-    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random])
-    //var background: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.treeboardbetter_jpg)
-
+    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random]).scale(getScreenWidth(), getScreenHeight())
 
     init {
+
         if (mHolder != null)
             mHolder?.addCallback(this)
+
         setup()
     }
+
+    private fun getScreenWidth(): Int {
+        return Resources.getSystem().displayMetrics.widthPixels
+    }
+    private fun getScreenHeight(): Int {
+        return Resources.getSystem().displayMetrics.heightPixels
+    }
+
 
     private fun setup() {
 
         //Random xPOS
-        val random = (-5..5).random()
+        //val random = (-5..5).random()
 
         //Creates ball and paddle objects
         ball = Ball(this.context, 50f, 100f, 50f, 30f, 40f)
@@ -95,8 +96,6 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
 
         canvas.drawBitmap(background, matrix, null)
 
-
-
         paddle.draw(canvas)
 
         ball.draw(canvas)
@@ -126,20 +125,13 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
                 40 -> ball.speedY = -150f
                 80 -> ball.speedY = -200f
             }
-
             score++
-
             println("Total score: $score")
-
-
-
         }
         if (ball.posY + ball.size > bounds.bottom) {
 
-
             println("u suck")
             running = false
-
         }
 
 
@@ -155,6 +147,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
         bounds = Rect(0, 0, p2, p3)
 
         paddle.posY = bounds.bottom.toFloat() - 100f
+
         start()
     }
 
@@ -176,6 +169,12 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback,
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         paddle.posX = event!!.x
+
+        //Sets the position of paddle to right of screen if paddle goes "outside" screen
+        if (paddle.posX + paddle.width > bounds.right){
+            paddle.posX = bounds.right.toFloat() -paddle.width
+            println("right hit")
+        }
 
         return true
     }
