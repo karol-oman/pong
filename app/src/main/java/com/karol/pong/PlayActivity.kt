@@ -33,5 +33,11 @@ class PlayActivity : AppCompatActivity() {
 
     }
 
+    fun updateScore(str: String){
+        runOnUiThread(Runnable {
+            binding.textViewCurrentScore.text = str
+        })
+    }
+
 
 }

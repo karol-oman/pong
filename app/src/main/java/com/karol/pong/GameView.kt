@@ -1,5 +1,6 @@
 package com.karol.pong
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -17,12 +18,16 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var score: Int = 0
 
+
+    var playActivity = context as PlayActivity
+
     private lateinit var paddle: Paddle
     private var bounds = Rect()
 
     private var mHolder: SurfaceHolder? = holder
 
     private val random = (0..6).random()
+
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -32,8 +37,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     init {
 
+
         if (mHolder != null)
             mHolder?.addCallback(this)
+
 
         setup()
     }
@@ -44,6 +51,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private fun getScreenHeight(): Int {
         return Resources.getSystem().displayMetrics.heightPixels
     }
+
 
 
     private fun setup() {
@@ -82,6 +90,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun update() {
         ball.update()
+
 
     }
 
@@ -126,7 +135,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 80 -> ball.speedY = -200f
             }
             score++
+
+
+
             println("Total score: $score")
+            playActivity.updateScore("Total score: $score")
         }
         if (ball.posY + ball.size > bounds.bottom) {
 
@@ -135,7 +148,17 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
 
 
+
         //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
+    }
+
+    fun updateUI(){
+        this.playActivity.runOnUiThread(Runnable {
+
+            //Example
+            //myTextView.text = "HEJ!"
+
+        })
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {
@@ -158,6 +181,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     override fun run() {
         while (running) {
             update()
+
             draw()
             intersects()
             ball.checkBounds(bounds)

@@ -30,7 +30,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="highscore: 2133" />
+            />
 
         <TextView
             android:id="@+id/text_view_high_score"
