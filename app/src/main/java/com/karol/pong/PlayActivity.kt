@@ -1,20 +1,13 @@
 package com.karol.pong
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.SurfaceHolder
 import android.view.View
 import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
 
 class PlayActivity : AppCompatActivity() {
-
-
-
 
     private lateinit var binding: ActivityPlayBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,16 +19,32 @@ class PlayActivity : AppCompatActivity() {
 
         //binding.surfaceView.setOnTouchListener(this)
 
-
-       supportFragmentManager.commit {
-           add(R.id.frame_play, GameFragment())
-       }
+        supportFragmentManager.commit {
+            add(R.id.frame_play, GameFragment())
+        }
 
     }
 
-    fun updateScore(str: String){
+    fun showGameOver() {
+
+        runOnUiThread(Runnable {
+            supportFragmentManager.commit {
+                add(R.id.test, GameOverFragment())
+            }
+        })
+    }
+
+    fun updateScore(str: String) {
         runOnUiThread(Runnable {
             binding.textViewCurrentScore.text = str
+
+        })
+    }
+
+    fun updateLevel(str: String) {
+        runOnUiThread(Runnable {
+            binding.textViewLvl.text = str
+
         })
     }
 
