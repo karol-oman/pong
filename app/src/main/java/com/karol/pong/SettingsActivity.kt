@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.karol.pong.databinding.ActivityMainBinding
 import com.karol.pong.databinding.ActivitySettingsBinding
 import kotlinx.android.synthetic.main.activity_settings.*
 
