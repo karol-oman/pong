@@ -57,7 +57,7 @@ object DataController {
 
     /**
      * When the player do get a top 10 score, the Score is added to the scoreboard and sorted ascending via the Score.score integers
-     * If the scoreboard is equal or higher to 11 spots, we remove the last spot to maintain the scoreboard at 10 spots
+     * If the scoreboard has more than 10 spots, we remove the last spot to maintain the scoreboard at 10 spots
      */
 
     private fun setScore(newScore : Score) {
@@ -66,7 +66,7 @@ object DataController {
         scoreboard.add(newScore)
         scoreboard.sortBy { Score -> Score.score }
 
-        if (scoreboard.size >= 10){
+        if (scoreboard.size > 10){
             scoreboard.removeAt(10)
         }
     }
