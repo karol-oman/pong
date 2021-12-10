@@ -1,6 +1,5 @@
 package com.karol.pong
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -33,7 +32,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
-    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random]).scale(getScreenWidth(), getScreenHeight())
+    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random])
+        .scale(getScreenWidth(), getScreenHeight())
 
     init {
 
@@ -48,10 +48,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private fun getScreenWidth(): Int {
         return Resources.getSystem().displayMetrics.widthPixels
     }
+
     private fun getScreenHeight(): Int {
         return Resources.getSystem().displayMetrics.heightPixels
     }
-
 
 
     private fun setup() {
@@ -129,13 +129,26 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             ball.speedY *= -1f
 
             //Increase difficulty based on score.
-            when (score) {
-                10 -> ball.speedY = -80f
-                20 -> ball.speedY = -110f
-                40 -> ball.speedY = -150f
-                80 -> ball.speedY = -200f
+            when (score + 1) {
+                10 -> {
+                    ball.speedY = -80f
+                    playActivity.updateLevel("Level: 2")
+                }
+                20 -> {
+                    ball.speedY = -110f
+                    playActivity.updateLevel("Level: 3")
+                }
+                40 -> {
+                    ball.speedY = -150f
+                    playActivity.updateLevel("Level: 4")
+                }
+                80 -> {
+                    ball.speedY = -200f
+                    playActivity.updateLevel("Level: 5")
+                }
             }
             score++
+
 
 
 
@@ -143,23 +156,13 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             playActivity.updateScore("Total score: $score")
         }
         if (ball.posY + ball.size > bounds.bottom) {
-
+            playActivity.showGameOver()
             println("u suck")
             running = false
         }
 
 
-
         //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
-    }
-
-    fun updateUI(){
-        this.playActivity.runOnUiThread(Runnable {
-
-            //Example
-            //myTextView.text = "HEJ!"
-
-        })
     }
 
     override fun surfaceCreated(p0: SurfaceHolder) {
@@ -196,8 +199,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.posX = event!!.x
 
         //Sets the position of paddle to right of screen if paddle goes "outside" screen
-        if (paddle.posX + paddle.width > bounds.right){
-            paddle.posX = bounds.right.toFloat() -paddle.width
+        if (paddle.posX + paddle.width > bounds.right) {
+            paddle.posX = bounds.right.toFloat() - paddle.width
             println("right hit")
         }
 

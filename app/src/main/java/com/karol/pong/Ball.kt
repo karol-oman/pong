@@ -1,9 +1,7 @@
 package com.karol.pong
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
-import androidx.core.graphics.red
 
 
 class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float) {
@@ -24,7 +22,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
     }
 
 
-    fun draw (canvas: Canvas?){
+    fun draw (canvas: Canvas){
         //canvas?.drawCircle(hitbox.centerX(),hitbox.centerY(),size,paint)
 
         hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
