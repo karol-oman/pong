@@ -14,9 +14,6 @@ object DataManager {
 
         //TODO: Code for Saving scoreList to file or shared Preferences
 
-
-        
-
         scoreboard = scoreList
 
     }
