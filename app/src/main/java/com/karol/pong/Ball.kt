@@ -14,6 +14,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
     lateinit var hitbox: RectF
 
+
     fun update(){
         posY += speedY
         posX += speedX

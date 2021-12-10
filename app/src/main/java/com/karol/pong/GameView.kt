@@ -93,6 +93,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
 
     }
+    fun restartGame(){
+        running = true
+    }
 
     private fun draw() {
 
@@ -108,6 +111,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.draw(canvas)
 
         ball.draw(canvas)
+
         mHolder!!.unlockCanvasAndPost(canvas)
 
 
@@ -129,23 +133,32 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             //Increase difficulty based on score.
             when (score + 1) {
+                1 -> playActivity.updateLevel("")
                 10 -> {
                     ball.speedY = -80f
                     playActivity.updateLevel("Level: 2")
                 }
+                11 -> playActivity.updateLevel("")
+
                 20 -> {
                     ball.speedY = -110f
                     playActivity.updateLevel("Level: 3")
                 }
+                21 -> playActivity.updateLevel("")
                 40 -> {
                     ball.speedY = -150f
                     playActivity.updateLevel("Level: 4")
                 }
+                41 -> playActivity.updateLevel("")
                 80 -> {
                     ball.speedY = -200f
                     playActivity.updateLevel("Level: 5")
                 }
+                81 -> playActivity.updateLevel("")
+
+
             }
+
             score++
 
 
@@ -156,6 +169,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver()
+            playActivity.updateLevel("")
             println("u suck")
             running = false
         }
