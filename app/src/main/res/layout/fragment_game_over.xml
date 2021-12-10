@@ -14,31 +14,42 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="GAME OVER"
-            android:textSize="50sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@color/purple_200">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GAME OVER"
+                android:textSize="50sp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_restart"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:icon="@drawable/ic_baseline_restart_alt_24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="Restart" />
+                android:text="RESTART" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_main_menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:icon="@drawable/ic_baseline_home_24"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Main Menu" />
+                android:text="HOME" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
 
