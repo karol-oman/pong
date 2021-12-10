@@ -108,6 +108,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.draw(canvas)
 
         ball.draw(canvas)
+
         mHolder!!.unlockCanvasAndPost(canvas)
 
 
