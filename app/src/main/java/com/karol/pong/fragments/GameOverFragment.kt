@@ -1,12 +1,14 @@
-package com.karol.pong
+package com.karol.pong.fragments
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.karol.pong.MainActivity
+import com.karol.pong.PlayActivity
+import com.karol.pong.R
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
 class GameOverFragment: Fragment() {

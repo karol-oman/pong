@@ -4,9 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.commit
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivityHighscoreBinding
+import com.karol.pong.fragments.HighScorePongFragment
+import com.karol.pong.fragments.HighScoreShurikenFragment
 
 class HighScoreActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHighscoreBinding

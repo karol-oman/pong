@@ -19,10 +19,19 @@ class MainActivity : AppCompatActivity() {
         rotateStar()
         generateBackground()
 
+
+
         binding.buttonPlay.setOnClickListener() {
             val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra("gamemode", 0)
             startActivity(intent)
         }
+        binding.buttonPlay2.setOnClickListener(){
+            val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra("gamemode", 1)
+            startActivity(intent)
+        }
+
 
         binding.buttonSettings.setOnClickListener() {
 

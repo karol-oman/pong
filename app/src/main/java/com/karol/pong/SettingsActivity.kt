@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivitySettingsBinding
+import com.karol.pong.fragments.BackgroundOneFragment
+import com.karol.pong.fragments.BackgroundTwoFragment
+import com.karol.pong.fragments.BallOneFragment
+import com.karol.pong.fragments.BallTwoFragment
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {

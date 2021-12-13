@@ -8,15 +8,15 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
 
-class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
+class GameView(context: Context?, gameMode: Int) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
     private var running = false
     lateinit var canvas: Canvas
     private lateinit var ball: Ball
-
+    private lateinit var bricks: Bricks
+    private val gameMode: Int = gameMode
     private var score: Int = 0
-
 
     var playActivity = context as PlayActivity
 
@@ -27,7 +27,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val random = (0..6).random()
 
-
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
@@ -35,8 +34,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random])
         .scale(getScreenWidth(), getScreenHeight())
 
+    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.shuri).scale(100, 100, true)
+
     init {
 
+        println(gameMode)
 
         if (mHolder != null)
             mHolder?.addCallback(this)
@@ -62,6 +64,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         //Creates ball and paddle objects
         ball = Ball(this.context, 50f, 100f, 50f, 30f, 40f)
         paddle = Paddle(this.context)
+        bricks = Bricks(this.context)
 
         //Starting position for ball and paddle
         ball.posY = 100f
@@ -69,7 +72,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.posX = 500f
 
         //Sets the color to ball and paddle.
-        ball.paint.color = Color.YELLOW
+        ball.paint.color = Color.TRANSPARENT
         paddle.paint.color = Color.GREEN
     }
 
@@ -101,7 +104,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         canvas = mHolder!!.lockCanvas()
 
-
         //Matrix(R.drawable.bg2)
         //Drawing background to canvas
         //.
@@ -111,21 +113,30 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.draw(canvas)
 
         ball.draw(canvas)
+        canvas.drawBitmap(paintedBall, ball.posX - ball.size, ball.posY - ball.size, null)
+
+        if(gameMode == 1){
+
+            bricks.draw(canvas)
+        }
 
         mHolder!!.unlockCanvasAndPost(canvas)
 
 
     }
 
-//TODO SHOW THIS TMRW
-//    fun checkPaddleHit(){
-//        if (ball.posY + ball.size > paddle.paddle.top){
-//            ball.speedY *= -1
-//        }
-//    }
-
-
     private fun intersects() {
+
+        if(gameMode == 1){
+            if(RectF.intersects(ball.hitbox, bricks.bricks)){
+                println("Träffade bricken, wohoooo")
+                ball.speedY *= -1f
+                //bricks.destroyBrick(canvas)
+                bricks.width = 0f
+                bricks.height = 0f
+            }
+        }
+
 
         if (RectF.intersects(paddle.paddle, ball.hitbox)) {
 
@@ -155,14 +166,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     playActivity.updateLevel("Level: 5")
                 }
                 81 -> playActivity.updateLevel("")
-
-
             }
 
             score++
-
-
-
 
             println("Total score: $score")
             playActivity.updateScore("Total score: $score")
@@ -181,7 +187,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     override fun surfaceCreated(p0: SurfaceHolder) {
 
     }
-
     override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
 
         bounds = Rect(0, 0, p2, p3)
@@ -190,11 +195,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         start()
     }
-
     override fun surfaceDestroyed(p0: SurfaceHolder) {
         stop()
     }
-
     override fun run() {
         while (running) {
             update()
@@ -206,7 +209,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
 
     }
-
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         paddle.posX = event!!.x
@@ -214,7 +216,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         //Sets the position of paddle to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
-            println("right hit")
+
         }
 
         return true
