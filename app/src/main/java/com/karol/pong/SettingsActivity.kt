@@ -1,11 +1,16 @@
 package com.karol.pong
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivitySettingsBinding
+import com.karol.pong.fragments.BackgroundOneFragment
+import com.karol.pong.fragments.BackgroundTwoFragment
+import com.karol.pong.fragments.BallOneFragment
+import com.karol.pong.fragments.BallTwoFragment
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -26,9 +31,15 @@ class SettingsActivity : AppCompatActivity() {
 
         button_save.setOnClickListener() {
 
-            println("current ID:" + binding.viewPagerBall.currentItem)
+            //println("current ID:" + binding.viewPagerBall.currentItem)
             println("Current BG:" + binding.viewPagerBackground.currentItem)
-            finish()
+
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("ballID", binding.viewPagerBall.currentItem )
+            println("BALLID IN SETTINGS ${binding.viewPagerBall.currentItem}")
+            //intent.putExtra("ballID", )
+            startActivity(intent)
 
 
         }
@@ -60,7 +71,7 @@ class SettingsActivity : AppCompatActivity() {
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
-        //TODO Går det att lägga dom i samma Adapter
+        //TODO Går det att lägga dom i samma Adapter?
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {

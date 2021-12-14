@@ -1,10 +1,11 @@
-package com.karol.pong
+package com.karol.pong.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.karol.pong.R
 
 class HighScorePongFragment: Fragment() {
     override fun onCreateView(

@@ -1,18 +1,18 @@
-package com.karol.pong
+package com.karol.pong.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.karol.pong.R
 
-class BackgroundOneFragment: Fragment() {
+class BackgroundTwoFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_background_one, container, false)
+        return inflater.inflate(R.layout.layout_background_two, container, false)
     }
-
 }

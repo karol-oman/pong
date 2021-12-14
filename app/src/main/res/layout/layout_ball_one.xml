@@ -9,7 +9,8 @@
         android:id="@+id/image_view_base_ball"
         android:layout_width="@dimen/image_ball_width"
         android:layout_height="@dimen/image_ball_height"
-        android:src="@drawable/ic_baseline_sports_baseball_24"
+        android:src="@drawable/shuri"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

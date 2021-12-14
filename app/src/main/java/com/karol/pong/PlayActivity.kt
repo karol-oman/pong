@@ -3,9 +3,10 @@ package com.karol.pong
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
+import com.karol.pong.fragments.GameFragment
+import com.karol.pong.fragments.GameOverFragment
 
 class PlayActivity : AppCompatActivity() {
 
@@ -18,9 +19,17 @@ class PlayActivity : AppCompatActivity() {
         //binding.surfaceView.holder.addCallback(this)
 
         //binding.surfaceView.setOnTouchListener(this)
+        val gameMode = intent.getIntExtra("gamemode", 0)
+        val ballId = intent.getIntExtra("ballID", 0)
+        println("BallID: $ballId")
+
+        println("GameMode: $gameMode")
+
+
+
 
         supportFragmentManager.commit {
-            add(R.id.frame_play, GameFragment())
+            add(R.id.frame_play, GameFragment(gameMode, ballId))
         }
 
     }

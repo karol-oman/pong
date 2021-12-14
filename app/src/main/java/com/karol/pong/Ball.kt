@@ -27,7 +27,11 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
 
         hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
 
+        //convert png to bitmap ex.
+        
+
         canvas?.drawCircle(posX,posY,size,paint)
+
 
     }
 

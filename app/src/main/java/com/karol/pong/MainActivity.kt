@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.karol.pong.databinding.ActivityMainBinding
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,12 +16,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         rotateStar()
         generateBackground()
 
+
+        val ballId = intent.getIntExtra("ballID", 0)
+
+        val intent = Intent(this, PlayActivity::class.java)
+
         binding.buttonPlay.setOnClickListener() {
-            val intent = Intent(this, PlayActivity::class.java)
+            //val intent = Intent(this, PlayActivity::class.java)
+
+            intent.putExtra("gamemode", 0)
+            intent.putExtra("ballID", ballId)
+
+            startActivity(intent)
+        }
+        binding.buttonPlay2.setOnClickListener(){
+            //val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra("gamemode", 1)
+            intent.putExtra("ballID", ballId)
             startActivity(intent)
         }
 
