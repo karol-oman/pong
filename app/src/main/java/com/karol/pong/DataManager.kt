@@ -3,37 +3,59 @@ package com.karol.pong
 import android.content.Context
 import android.content.SharedPreferences
 import android.provider.Settings.Global.getString
+import java.io.File
 
 
 object DataManager {
 
-    private var scoreboard = ArrayList<Score>() //Temporary
+    private
+    var path = "highscores.txt"
+    private var file = File(path)
 
 
-    fun save(scoreList : ArrayList<Score>){
 
-        //TODO: Code for Saving scoreList to file or shared Preferences
+    fun save(scoreList : ArrayList<Score>) {
 
-        scoreboard = scoreList
 
+        if (!file.exists()){
+            file.createNewFile()
+        }
+        File(path).bufferedWriter().use { out ->
+            for (score: Score in scoreList) {
+                out.write(score.name + "|" + score.score.toString())
+                out.write("\n")
+            }
+
+            out.close()
+        }
     }
 
 
     fun load() : ArrayList<Score>{
 
-        //TODO: Code for Loading scores from file or shared Preferences
+        var scoreboard = ArrayList<Score>()
 
-        scoreboard.clear()
-        for (score : Int in 1..10){
+        //Temporary for comparison
+        scoreboard.add(Score("Person1", 10))
+        scoreboard.add(Score("Person2", 50))
+        scoreboard.add(Score("Person3", 100))
+        scoreboard.add(Score("Person4", 150))
 
-            var tempPerson = "Person$score"
-            var tempScore = score
 
-            scoreboard.add(Score(tempPerson, tempScore))
+
+        if (!file.exists()){
+            file.createNewFile()
+        }
+        val bufferedReader = File(path).bufferedReader()
+        bufferedReader.useLines { lines -> lines.forEach {
+
+            var scoreData = it.split("|")
+            scoreboard.add(Score(scoreData[0], scoreData[1].toInt()))
+
+        }
         }
 
+        bufferedReader.close()
         return scoreboard
-
     }
-
 }
