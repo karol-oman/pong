@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, PlayActivity::class.java)
 
-        binding.buttonPlay.setOnClickListener() {
+        binding.buttonPlay.setOnClickListener {
             //val intent = Intent(this, PlayActivity::class.java)
 
             intent.putExtra("gamemode", 0)
@@ -32,20 +32,20 @@ class MainActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
-        binding.buttonPlay2.setOnClickListener(){
+        binding.buttonPlay2.setOnClickListener {
             //val intent = Intent(this, PlayActivity::class.java)
             intent.putExtra("gamemode", 1)
             intent.putExtra("ballID", ballId)
             startActivity(intent)
         }
 
-        binding.buttonSettings.setOnClickListener() {
+        binding.buttonSettings.setOnClickListener {
 
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
-        binding.buttonScores.setOnClickListener() {
+        binding.buttonScores.setOnClickListener {
 
 
             val intent = Intent(this, HighScoreActivity::class.java)

@@ -29,13 +29,13 @@ class GameOverFragment: Fragment() {
             println("Main menu")
             val intent = Intent(activity, MainActivity::class.java)
 
-                //Intent(this, PlayActivity::class.java)
+
             startActivity(intent)
         }
         view.button_restart.setOnClickListener{
             println("Restart")
             val intent = Intent(activity, PlayActivity::class.java)
-
+            //TODO FIX GAME MODE HERE
             startActivity(intent)
         }
 

@@ -37,9 +37,10 @@ class SettingsActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("ballID", binding.viewPagerBall.currentItem )
-            println("BALLID IN SETTINGS ${binding.viewPagerBall.currentItem}")
+            println("BALL ID IN SETTINGS ${binding.viewPagerBall.currentItem}")
             //intent.putExtra("ballID", )
             startActivity(intent)
+
 
 
         }

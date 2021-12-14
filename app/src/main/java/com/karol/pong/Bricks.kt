@@ -6,18 +6,18 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class Bricks(context: Context) {
+class Bricks(var posX: Float, var posY: Float) {
 
-    var posX = 200f
-    var posY = 200f
     var paint = Paint()
 
-    var width = 300f
-    var height = 50f
+    var width = 200f
+    var height = 100f
 
     lateinit var bricksList: ArrayList<RectF>
 
     lateinit var bricks: RectF
+
+
 
 
     fun draw(canvas: Canvas?){
