@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.karol.pong.GameView
 
-class GameFragment(gameMode: Int): Fragment() {
-    val game: Int = gameMode
+class GameFragment(private val gameMode: Int, private val ballId: Int): Fragment() {
+
 
     override fun onCreateView(
 
@@ -16,9 +16,9 @@ class GameFragment(gameMode: Int): Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
 
-    ): View? {
+    ): View {
 
-        return GameView(activity, game)
+        return GameView(activity, gameMode, ballId)
     }
     }
 

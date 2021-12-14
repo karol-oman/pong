@@ -8,33 +8,41 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
 
-class GameView(context: Context?, gameMode: Int) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
+class GameView(context: Context?, private val gameMode: Int, ballId: Int) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
     private var running = false
     lateinit var canvas: Canvas
     private lateinit var ball: Ball
     private lateinit var bricks: Bricks
-    private val gameMode: Int = gameMode
     private var score: Int = 0
 
-    var playActivity = context as PlayActivity
+    private var playActivity = context as PlayActivity
 
     private lateinit var paddle: Paddle
     private var bounds = Rect()
 
     private var mHolder: SurfaceHolder? = holder
 
-    private val random = (0..6).random()
+    private val randomBackground = (0..6).random()
+    //private val randomBall = (0..1).random()
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
-    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[random])
+
+    private val ballArray = arrayOf(R.drawable.shuri, R.drawable.g)
+
+
+
+
+
+    private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
         .scale(getScreenWidth(), getScreenHeight())
 
-    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.shuri).scale(100, 100, true)
+
+    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[ballId]).scale(100, 100, true)
 
     init {
 

@@ -71,7 +71,7 @@
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:text="play2"
+            android:text="PLAY2"
             app:icon="@drawable/ic_baseline_play_arrow_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

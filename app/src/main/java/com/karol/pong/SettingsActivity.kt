@@ -1,5 +1,6 @@
 package com.karol.pong
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -30,9 +31,15 @@ class SettingsActivity : AppCompatActivity() {
 
         button_save.setOnClickListener() {
 
-            println("current ID:" + binding.viewPagerBall.currentItem)
+            //println("current ID:" + binding.viewPagerBall.currentItem)
             println("Current BG:" + binding.viewPagerBackground.currentItem)
-            finish()
+
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("ballID", binding.viewPagerBall.currentItem )
+            println("BALLID IN SETTINGS ${binding.viewPagerBall.currentItem}")
+            //intent.putExtra("ballID", )
+            startActivity(intent)
 
 
         }
@@ -64,7 +71,7 @@ class SettingsActivity : AppCompatActivity() {
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
-        //TODO Går det att lägga dom i samma Adapter
+        //TODO Går det att lägga dom i samma Adapter?
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {

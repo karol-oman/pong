@@ -20,13 +20,16 @@ class PlayActivity : AppCompatActivity() {
 
         //binding.surfaceView.setOnTouchListener(this)
         val gameMode = intent.getIntExtra("gamemode", 0)
+        val ballId = intent.getIntExtra("ballID", 0)
+        println("BallID: $ballId")
 
-        println(gameMode)
+        println("GameMode: $gameMode")
+
 
 
 
         supportFragmentManager.commit {
-            add(R.id.frame_play, GameFragment(gameMode))
+            add(R.id.frame_play, GameFragment(gameMode, ballId))
         }
 
     }
