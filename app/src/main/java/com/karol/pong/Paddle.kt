@@ -25,11 +25,10 @@ class Paddle(context: Context) {
 
     fun draw(canvas: Canvas?){
 
-        //canvas?.drawCircle(posX,posY,size,paint)
-
         paddle = RectF(posX, posY, posX + width, posY + height)
 
         canvas?.drawRect(paddle, paint)
+
     }
 
 

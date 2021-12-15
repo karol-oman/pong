@@ -12,25 +12,20 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
     var width = 300f
     var height = 50f
 
-    lateinit var hitbox: RectF
+    var hitbox: RectF = RectF(posX - size, posY - size, posX + size , posY + size)
 
 
     fun update(){
         posY += speedY
         posX += speedX
+        hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
 
     }
 
 
     fun draw (canvas: Canvas){
-        //canvas?.drawCircle(hitbox.centerX(),hitbox.centerY(),size,paint)
 
-        hitbox = RectF(posX - size, posY - size, posX + size , posY + size)
-
-        //convert png to bitmap ex.
-        
-
-        canvas?.drawCircle(posX,posY,size,paint)
+        canvas.drawCircle(posX,posY,size,paint)
 
 
     }
@@ -57,8 +52,4 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
         }
     }
 
-    //Todo we are not using this.
-    private fun setup(){
-
-    }
 }
