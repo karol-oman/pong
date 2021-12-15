@@ -22,7 +22,8 @@ class Bricks(var posX: Float, var posY: Float) {
         bricks = RectF(posX, posY, posX + width, posY + height)
 
         canvas?.drawRect(bricks, paint)
-
+        println(posX)
+        println(posY)
 
     }
     fun destroyBrick(canvas: Canvas?){

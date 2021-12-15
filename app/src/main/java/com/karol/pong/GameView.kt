@@ -129,20 +129,26 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
             bricks.draw(canvas)
 
-//            val list: ArrayList<Bricks> = ArrayList()
-//            for (i in 0..10) {
-//
-//                var xpos = 0f
-//                xpos += 200f
-//                val brick = Bricks(xpos, 0f)
-//                list.add(brick)
-//
-//                println("LISTSIZE ${list.size}")
-//
-//
-//                brick.draw(canvas)
-//
-//            }
+            val list: ArrayList<Bricks> = ArrayList()
+
+            var xpos = 0f
+
+            for (i in 0..10) {
+
+
+                //TODO DISPLAY METRICS HERE
+
+
+                    val brick = Bricks(xpos, 100f)
+                list.add(brick)
+                xpos += 250f
+
+                //println("LISTSIZE ${list.size}")
+
+
+                brick.draw(canvas)
+
+            }
 
 
         }
