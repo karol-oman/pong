@@ -9,28 +9,47 @@
     android:background="@drawable/backgroundoneblur">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textSize="30dp"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:src="@drawable/ball"
+        android:id="@+id/imageView2"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_ball"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_ball_height"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:layout_editor_absoluteX="0dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:src="@drawable/paddle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager_ball" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager_background"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_ball_height"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager_ball"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:layout_editor_absoluteX="0dp" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
