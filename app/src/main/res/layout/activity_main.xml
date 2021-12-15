@@ -9,95 +9,104 @@
     tools:context=".MainActivity">
 
 
-    <FrameLayout
-        android:id="@+id/frame_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:gravity="center"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <ImageView
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/p" />
+                android:layout_width="60dp"
+                android:layout_height="100dp"
+                android:src="@drawable/p" />
 
-                <ImageView
-                    android:id="@+id/rotating_shuriken"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/shuri" />
+            <ImageView
+                android:id="@+id/rotating_shuriken"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/shuri" />
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/n" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="100dp"
+                android:src="@drawable/n" />
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/g" />
-
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/button_play"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="@string/play"
-                app:icon="@drawable/ic_baseline_play_arrow_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_app_name" />
-
-            <Button
-                android:id="@+id/button_settings"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:layout_gravity="center"
-                android:outlineSpotShadowColor="@color/black"
-                android:text="@string/settings"
-                app:icon="@drawable/ic_baseline_settings_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_play" />
-
-            <Button
-                android:id="@+id/button_scores"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/button_width"
-                android:layout_height="@dimen/button_height"
-                android:layout_gravity="center"
-                android:text="@string/high_score"
-                app:icon="@drawable/ic_baseline_sports_score_24"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_settings" />
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="100dp"
+                android:src="@drawable/g" />
 
         </LinearLayout>
 
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/button_play"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="@string/play"
+            app:icon="@drawable/ic_baseline_play_arrow_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_app_name" />
+
+        <Button
+            android:id="@+id/button_play2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="PLAY2"
+            app:icon="@drawable/ic_baseline_play_arrow_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_app_name" />
+
+
+        <Button
+            android:id="@+id/button_settings"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center"
+            android:outlineSpotShadowColor="@color/black"
+            android:text="@string/settings"
+            app:icon="@drawable/ic_baseline_settings_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_play" />
+
+        <Button
+            android:id="@+id/button_scores"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="center"
+            android:text="@string/high_score"
+            app:icon="@drawable/ic_baseline_sports_score_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_settings" />
+
+    </LinearLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

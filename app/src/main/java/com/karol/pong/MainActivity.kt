@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.karol.pong.databinding.ActivityMainBinding
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,18 +20,33 @@ class MainActivity : AppCompatActivity() {
         rotateStar()
         generateBackground()
 
-        binding.buttonPlay.setOnClickListener() {
-            val intent = Intent(this, PlayActivity::class.java)
+
+        val ballId = intent.getIntExtra("ballID", 0)
+
+        val intent = Intent(this, PlayActivity::class.java)
+
+        binding.buttonPlay.setOnClickListener {
+            //val intent = Intent(this, PlayActivity::class.java)
+
+            intent.putExtra("gamemode", 0)
+            intent.putExtra("ballID", ballId)
+
+            startActivity(intent)
+        }
+        binding.buttonPlay2.setOnClickListener {
+            //val intent = Intent(this, PlayActivity::class.java)
+            intent.putExtra("gamemode", 1)
+            intent.putExtra("ballID", ballId)
             startActivity(intent)
         }
 
-        binding.buttonSettings.setOnClickListener() {
+        binding.buttonSettings.setOnClickListener {
 
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
 
-        binding.buttonScores.setOnClickListener() {
+        binding.buttonScores.setOnClickListener {
 
 
             val intent = Intent(this, HighScoreActivity::class.java)
@@ -52,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         val imgId = arrayOf(R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
             R.drawable.bg5, R.drawable.bg6, R.drawable.bg7)
-
 
         binding.layoutMain.setBackgroundResource(imgId[random])
 

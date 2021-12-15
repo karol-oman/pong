@@ -4,39 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayActivity"
-    >
+    tools:context=".PlayActivity">
 
-
-    <SurfaceView
-        android:id="@+id/surface_view"
+    <FrameLayout
+        android:id="@+id/frame_play"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/test"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/text_view_current_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+
+        android:textColor="@color/white"
+        android:textSize="20sp"
+
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Current score: 1337" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_view_high_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+
+        android:text="High score: 1337"
+
+        android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="High score: 1337" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_lvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level: 1"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frame_play"
+        app:layout_constraintEnd_toEndOf="@+id/frame_play"
+        app:layout_constraintStart_toStartOf="@+id/frame_play"
+        app:layout_constraintTop_toTopOf="@+id/frame_play" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

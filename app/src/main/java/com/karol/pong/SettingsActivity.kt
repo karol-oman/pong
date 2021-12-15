@@ -1,13 +1,13 @@
 package com.karol.pong
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.karol.pong.databinding.ActivityMainBinding
 import com.karol.pong.databinding.ActivitySettingsBinding
+import com.karol.pong.fragments.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -28,9 +28,15 @@ class SettingsActivity : AppCompatActivity() {
 
         button_save.setOnClickListener() {
 
-            println("current ID:" + binding.viewPagerBall.currentItem)
+            //println("current ID:" + binding.viewPagerBall.currentItem)
             println("Current BG:" + binding.viewPagerBackground.currentItem)
-            finish()
+
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("ballID", binding.viewPagerBall.currentItem )
+            println("BALL ID IN SETTINGS ${binding.viewPagerBall.currentItem}")
+            //intent.putExtra("ballID", )
+            startActivity(intent)
 
 
         }
@@ -38,7 +44,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 4
 
 
         //TODO FIX POSITION!!!
@@ -51,6 +57,12 @@ class SettingsActivity : AppCompatActivity() {
                 1 -> {
                     BallTwoFragment()
                 }
+                2 -> {
+                    BallThreeFragment()
+                }
+                3 -> {
+                    BallFourFragment()
+                }
                 else -> {
                     BallOneFragment()
                 }
@@ -62,7 +74,7 @@ class SettingsActivity : AppCompatActivity() {
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
-        //TODO Går det att lägga dom i samma Adapter
+        //TODO Går det att lägga dom i samma Adapter?
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {

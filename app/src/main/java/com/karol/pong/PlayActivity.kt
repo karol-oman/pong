@@ -1,52 +1,63 @@
 package com.karol.pong
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MotionEvent
-import android.view.SurfaceHolder
-import android.view.View
+import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
+import com.karol.pong.fragments.GameFragment
+import com.karol.pong.fragments.GameOverFragment
 
-class PlayActivity : AppCompatActivity(), SurfaceHolder.Callback, View.OnTouchListener {
-
-
-
+class PlayActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlayBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayBinding.inflate(layoutInflater)
-        setContentView(GameView(this))
+        setContentView(binding.root)
 
-
-
-        binding.surfaceView.holder.addCallback(this)
+        //binding.surfaceView.holder.addCallback(this)
 
         //binding.surfaceView.setOnTouchListener(this)
+        val gameMode = intent.getIntExtra("gamemode", 0)
+        val ballId = intent.getIntExtra("ballID", 0)
+        println("BallID: $ballId")
+
+        println("GameMode: $gameMode")
+
+        val dataController = DataController(this);
+        var text = "Highscore: ${dataController.highestScore().score}"
+        binding.textViewHighScore.text = text
 
 
 
-    }
-
-    override fun onTouch(view: View?, motionEvent: MotionEvent?): Boolean{
-
-        return true
-    }
-
-    override fun surfaceCreated(holder: SurfaceHolder) {
-
-    }
-
-    override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-
-    }
-
-    override fun surfaceDestroyed(holder: SurfaceHolder) {
+        supportFragmentManager.commit {
+            add(R.id.frame_play, GameFragment(gameMode, ballId))
+        }
 
     }
 
+    fun showGameOver(score : Int, gameMode:Int) {
 
+        runOnUiThread(Runnable {
+            supportFragmentManager.commit {
+                //this was R.id.test
+                add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
+            }
+        })
+    }
+
+    fun updateScore(str: String) {
+        runOnUiThread(Runnable {
+            binding.textViewCurrentScore.text = str
+
+        })
+    }
+
+    fun updateLevel(str: String) {
+        runOnUiThread(Runnable {
+            binding.textViewLvl.text = str
+
+        })
+    }
 }

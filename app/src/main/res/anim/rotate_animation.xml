@@ -6,10 +6,9 @@
         android:pivotX="50%"
         android:fromDegrees="0"
         android:toDegrees="1440"
-        android:duration = "10000"
+        android:duration = "5000"
         android:startOffset = "0"
         android:repeatCount = "infinite"
-
         android:rotation = "90"/>
 
 </set>
