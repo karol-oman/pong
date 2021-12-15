@@ -15,6 +15,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
     lateinit var canvas: Canvas
     private lateinit var ball: Ball
     private lateinit var bricks: Bricks
+
     private var score: Int = 0
 
     private var playActivity = context as PlayActivity
@@ -32,10 +33,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
 
-    private val ballArray = arrayOf(R.drawable.shuri, R.drawable.g)
-
-
-
+    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4)
 
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
@@ -46,7 +44,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
     init {
 
-        println(gameMode)
+        println("GAMEMODE $gameMode")
 
         if (mHolder != null)
             mHolder?.addCallback(this)
@@ -72,7 +70,9 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         //Creates ball and paddle objects
         ball = Ball(this.context, 50f, 100f, 50f, 30f, 40f)
         paddle = Paddle(this.context)
-        bricks = Bricks(this.context)
+
+        bricks = Bricks(300f, 600f)
+
 
         //Starting position for ball and paddle
         ball.posY = 100f
@@ -112,10 +112,8 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
         canvas = mHolder!!.lockCanvas()
 
-        //Matrix(R.drawable.bg2)
-        //Drawing background to canvas
-        //.
 
+        //Drawing background to canvas
         canvas.drawBitmap(background, matrix, null)
 
         paddle.draw(canvas)
@@ -123,9 +121,27 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         ball.draw(canvas)
         canvas.drawBitmap(paintedBall, ball.posX - ball.size, ball.posY - ball.size, null)
 
+
         if(gameMode == 1){
 
             bricks.draw(canvas)
+
+//            val list: ArrayList<Bricks> = ArrayList()
+//            for (i in 0..10) {
+//
+//                var xpos = 0f
+//                xpos += 200f
+//                val brick = Bricks(xpos, 0f)
+//                list.add(brick)
+//
+//                println("LISTSIZE ${list.size}")
+//
+//
+//                brick.draw(canvas)
+//
+//            }
+
+
         }
 
         mHolder!!.unlockCanvasAndPost(canvas)
@@ -209,7 +225,6 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
     override fun run() {
         while (running) {
             update()
-
             draw()
             intersects()
             ball.checkBounds(bounds)

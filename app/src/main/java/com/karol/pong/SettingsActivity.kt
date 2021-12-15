@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivitySettingsBinding
-import com.karol.pong.fragments.BackgroundOneFragment
-import com.karol.pong.fragments.BackgroundTwoFragment
-import com.karol.pong.fragments.BallOneFragment
-import com.karol.pong.fragments.BallTwoFragment
+import com.karol.pong.fragments.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -37,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("ballID", binding.viewPagerBall.currentItem )
-            println("BALLID IN SETTINGS ${binding.viewPagerBall.currentItem}")
+            println("BALL ID IN SETTINGS ${binding.viewPagerBall.currentItem}")
             //intent.putExtra("ballID", )
             startActivity(intent)
 
@@ -47,7 +44,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 4
 
 
         //TODO FIX POSITION!!!
@@ -59,6 +56,12 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 1 -> {
                     BallTwoFragment()
+                }
+                2 -> {
+                    BallThreeFragment()
+                }
+                3 -> {
+                    BallFourFragment()
                 }
                 else -> {
                     BallOneFragment()

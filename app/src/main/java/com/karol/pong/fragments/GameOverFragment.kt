@@ -45,7 +45,7 @@ class GameOverFragment(context1: Context, score : Int): Fragment() {
             if (dataController.validateScore(score)) dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score))
             println("Restart with saved score")
             val intent = Intent(activity, PlayActivity::class.java)
-
+            //TODO FIX GAME MODE HERE
             startActivity(intent)
         }
 
