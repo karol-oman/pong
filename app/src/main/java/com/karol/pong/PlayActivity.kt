@@ -37,12 +37,12 @@ class PlayActivity : AppCompatActivity() {
 
     }
 
-    fun showGameOver(score : Int) {
+    fun showGameOver(score : Int, gameMode:Int) {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
                 //this was R.id.test
-                add(R.id.frame_play, GameOverFragment(applicationContext, score))
+                add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
             }
         })
     }

@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
-class GameOverFragment(context1: Context, score : Int): Fragment() {
+class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): Fragment() {
 
     private var dataController = DataController(context1)
-    val score = score;
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -35,21 +35,46 @@ class GameOverFragment(context1: Context, score : Int): Fragment() {
         else view.edit_text_if_highscore.visibility = View.INVISIBLE
 
         view.button_main_menu.setOnClickListener{
-            if (dataController.validateScore(score)) dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score))
-            println("Main menu with saved score")
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+            when(dataController.validateScore(score)){
+
+                true -> {
+                    if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score)); goHome() }
+                    else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
+                }
+
+                false -> {
+                    goHome()
+                }
+            }
         }
 
         view.button_restart.setOnClickListener{
-            if (dataController.validateScore(score)) dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score))
-            println("Restart with saved score")
-            val intent = Intent(activity, PlayActivity::class.java)
-            //TODO FIX GAME MODE HERE
-            startActivity(intent)
+            when(dataController.validateScore(score)){
+
+                true -> {
+                    if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score)); restart() }
+                    else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
+                }
+
+                false -> {
+                    restart()
+                }
+            }
         }
 
         return view
+    }
+
+    private fun restart(){
+        val intent = Intent(activity, PlayActivity::class.java)
+        //TODO FIX GAME MODE HERE
+        intent.putExtra("gamemode",gameMode)
+        startActivity(intent)
+    }
+
+    private fun goHome(){
+        val intent = Intent(activity, MainActivity::class.java)
+        startActivity(intent)
     }
 
 }
