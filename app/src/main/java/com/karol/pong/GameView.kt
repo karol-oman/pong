@@ -198,7 +198,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
             playActivity.updateScore("Total score: $score")
         }
         if (ball.posY + ball.size > bounds.bottom) {
-            playActivity.showGameOver(score)
+            playActivity.showGameOver(score, gameMode)
             playActivity.updateLevel("")
             println("u suck")
             running = false
