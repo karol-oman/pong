@@ -1,11 +1,14 @@
 package com.karol.pong
 
-/**
-* The DataController handles all the communication with the DataHandler
-* TODO: Add the ability to save and load settings via DataManager
-*/
+import android.content.Context
 
-object DataController {
+/**
+ * The DataController handles all the communication with the DataHandler
+ */
+
+class DataController(appContext : Context) {
+
+    val context = appContext
 
     /**
      * Getters and setters for the various functions
@@ -17,7 +20,6 @@ object DataController {
     }
 
     fun saveScore(score : Score){
-
         setScore(score)
     }
 
@@ -34,16 +36,22 @@ object DataController {
     /**
      * Loads the highscores from DataManager and checks if the user has a top 10 score.
      * Returns true if it is, otherwise false (We decided to keep our scoreboard at 10 spots)
+     * Also returns true if there's less than 10 spots filled in the scoreboard
      */
 
     private fun checkIfTopTen(scoreToCheck : Int) : Boolean{
 
-        var scoreboard = DataManager.load()
+        var scoreboard = DataManager.load(context)
 
-        for (score : Score in scoreboard){
-            if (score.score < scoreToCheck){
+        if (scoreboard.size < 10){
+            return true
+        }
+        else{
+            for (score : Score in scoreboard){
+                if (score.score < scoreToCheck){
 
-                return true
+                    return true
+                }
             }
         }
 
@@ -56,7 +64,8 @@ object DataController {
 
     private fun getHighestScore() : Score{
 
-        val scoreboard = DataManager.load()
+        val scoreboard = DataManager.load(context)
+        scoreboard.sortByDescending { Score -> Score.score }
         return scoreboard[0]
     }
 
@@ -66,7 +75,7 @@ object DataController {
 
     private fun getHighScores() : ArrayList<Score>{
 
-        return  DataManager.load()
+        return  DataManager.load(context)
     }
 
     /**
@@ -76,14 +85,14 @@ object DataController {
 
     private fun setScore(newScore : Score) {
 
-        var scoreboard = DataManager.load()
+        var scoreboard = DataManager.load(context)
         scoreboard.add(newScore)
-        scoreboard.sortBy { Score -> Score.score }
+        scoreboard.sortByDescending { Score -> Score.score }
 
         if (scoreboard.size > 10){
             scoreboard.removeAt(10)
         }
 
-        DataManager.save(scoreboard)
+        DataManager.save(scoreboard,context)
     }
 }

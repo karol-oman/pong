@@ -1,61 +1,88 @@
 package com.karol.pong
 
 import android.content.Context
-import android.content.SharedPreferences
-import android.provider.Settings.Global.getString
 import java.io.File
+import java.lang.Exception
 
+/**
+ * The DataManager is a static object responsible for all communication with the "highscores.txt" file
+ */
 
 object DataManager {
 
-    private
-    var path = "highscores.txt"
-    private var file = File(path)
 
+    /**
+     * The function "save" takes an ArrayList with Score-objects as an inparameter and writes them as raw String data to "highscores.txt"
+     * One Score-object per row, name and score separated with "|"
+     */
+    fun save(scoreList: ArrayList<Score>, context: Context) {
 
+        val file = File(context.filesDir,"highscores.txt")
 
-    fun save(scoreList : ArrayList<Score>) {
+        try {
 
-
-        if (!file.exists()){
-            file.createNewFile()
-        }
-        File(path).bufferedWriter().use { out ->
-            for (score: Score in scoreList) {
-                out.write(score.name + "|" + score.score.toString())
-                out.write("\n")
+            if (!file.exists()) {
+                file.createNewFile()
             }
+        } catch (e: Exception) {
 
-            out.close()
+            println(e)
         }
+
+        try {
+
+            File(file.path).bufferedWriter().use { out ->
+                for (score: Score in scoreList) {
+                    out.write(score.name + "|" + score.score.toString())
+                    out.write("\n")
+                }
+
+                out.close()
+            }
+        } catch (e: Exception) {
+
+            println(e)
+        }
+
     }
 
 
-    fun load() : ArrayList<Score>{
+    /**
+     * The function "load" retrieves the raw-data from "highscores.txt" line by line and splits them by the "|" character
+     * Makes an Score-object that gets added to the scoreboard ArrayList which is then returned
+     */
+    fun load(context: Context): ArrayList<Score> {
 
-        var scoreboard = ArrayList<Score>()
+        val file = File(context.filesDir,"highscores.txt")
 
-        //Temporary for comparison
-        scoreboard.add(Score("Person1", 10))
-        scoreboard.add(Score("Person2", 50))
-        scoreboard.add(Score("Person3", 100))
-        scoreboard.add(Score("Person4", 150))
+        val scoreboard = ArrayList<Score>()
+        try {
 
+            if (!file.exists()) {
+                file.createNewFile()
+            }
+        } catch (e: Exception) {
 
-
-        if (!file.exists()){
-            file.createNewFile()
-        }
-        val bufferedReader = File(path).bufferedReader()
-        bufferedReader.useLines { lines -> lines.forEach {
-
-            var scoreData = it.split("|")
-            scoreboard.add(Score(scoreData[0], scoreData[1].toInt()))
-
-        }
+            println(e)
         }
 
-        bufferedReader.close()
+        try {
+
+            val bufferedReader = File(file.path).bufferedReader()
+            bufferedReader.useLines { lines ->
+                lines.forEach {
+
+                    val scoreData = it.split("|")
+                    scoreboard.add(Score(scoreData[0], scoreData[1].toInt()))
+
+                }
+            }
+            bufferedReader.close()
+        } catch (e: Exception) {
+
+            println(e)
+        }
+
         return scoreboard
     }
 }
