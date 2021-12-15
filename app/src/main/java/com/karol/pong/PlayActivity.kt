@@ -7,6 +7,7 @@ import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
 import com.karol.pong.fragments.GameFragment
 import com.karol.pong.fragments.GameOverFragment
+import java.lang.Exception
 
 class PlayActivity : AppCompatActivity() {
 
@@ -26,7 +27,14 @@ class PlayActivity : AppCompatActivity() {
         println("GameMode: $gameMode")
 
         val dataController = DataController(this);
-        var text = "Highscore: ${dataController.highestScore().score}"
+        var text = "No highscore file"
+        try {
+            text = "Highscore: ${dataController.highestScore().score}"
+        }
+        catch (e: Exception){
+
+        }
+
         binding.textViewHighScore.text = text
 
 
