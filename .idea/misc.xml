@@ -43,6 +43,12 @@
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_background_one.xml" value="0.1796875" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_ball_one.xml" value="0.1796875" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_high_score_pong.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_play.xml" value="0.2734375" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1537037037037037" />
+        <entry key="app/src/main/res/layout/fragment_game_over.xml" value="0.2324074074074074" />
+        <entry key="app/src/main/res/layout/fragment_play.xml" value="0.2734375" />
+        <entry key="app/src/main/res/layout/layout_high_score_pong.xml" value="0.1537037037037037" />
+        <entry key="app/src/main/res/layout/layout_high_score_shuriken.xml" value="0.1537037037037037" />
       </map>
     </option>
   </component>
