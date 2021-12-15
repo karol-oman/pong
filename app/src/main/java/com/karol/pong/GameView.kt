@@ -33,10 +33,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
 
-    private val ballArray = arrayOf(R.drawable.shuri, R.drawable.g)
-
-
-
+    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.ball5)
 
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
@@ -207,7 +204,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
             playActivity.updateScore("Total score: $score")
         }
         if (ball.posY + ball.size > bounds.bottom) {
-            playActivity.showGameOver()
+            playActivity.showGameOver(score)
             playActivity.updateLevel("")
             println("u suck")
             running = false

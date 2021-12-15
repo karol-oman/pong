@@ -1,13 +1,8 @@
 package com.karol.pong
 
-class Score {
+class Score(inputName:String, inputScore:Int) {
 
-    val name : String
-    val score : Int
-
-    constructor(inputName:String, inputScore:Int){
-        this.name = inputName
-        this.score = inputScore
-    }
+    val name = inputName
+    val score = inputScore
 
 }
