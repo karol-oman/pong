@@ -135,7 +135,6 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
                 //TODO DISPLAY METRICS HERE
 
-
                     val brick = Bricks(xpos, 100f)
                 list.add(brick)
                 xpos += 250f
