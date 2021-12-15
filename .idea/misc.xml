@@ -19,46 +19,12 @@
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_ball_two.xml" value="0.29324324324324325" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_high_score_pong.xml" value="0.29324324324324325" />
         <entry key="..\:/Users/calle/AndroidStudioProjects/pong/app/src/main/res/layout/layout_high_score_shuriken.xml" value="0.2927927927927928" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong3/app/src/main/res/layout/activity_main.xml" value="0.1791044776119403" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong3/app/src/main/res/layout/activity_play.xml" value="0.33" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong3/app/src/main/res/layout/fragment_game_over.xml" value="0.24210526315789474" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong3/app/src/main/res/layout/fragment_play.xml" value="0.22327898550724637" />
-        <entry key="..\:/Users/calle/AndroidStudioProjects/pong3/app/src/main/res/layout/layout_background_one.xml" value="0.3546875" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/activity_settings.xml" value="0.23505434782608695" />
+        <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/fragment_game_over.xml" value="0.25" />
+        <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/fragment_play.xml" value="0.22418478260869565" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_background_one.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_background_two.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/kalle/Desktop/pong/app/src/main/res/layout/layout_ball_one.xml" value="0.23505434782608695" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/activity_highscore.xml" value="0.1" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/activity_play.xml" value="0.13333333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/fragment_play.xml" value="0.1" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/highscore_popup.xml" value="0.1" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_background_one.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_ball_one.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong1/app/src/main/res/layout/layout_high_score_pong.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_play.xml" value="0.2734375" />
-        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.1537037037037037" />
-        <entry key="app/src/main/res/layout/fragment_game_over.xml" value="0.2324074074074074" />
-        <entry key="app/src/main/res/layout/fragment_play.xml" value="0.2734375" />
-        <entry key="app/src/main/res/layout/layout_high_score_pong.xml" value="0.1537037037037037" />
-        <entry key="app/src/main/res/layout/layout_high_score_shuriken.xml" value="0.1537037037037037" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable/ic_baseline_minimize_24.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable/ic_baseline_restart_alt_24.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable/ic_baseline_sports_score_24.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/drawable/my_button_frame.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/activity_highscore.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/activity_play.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/fragment_game_over.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/fragment_play.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_five.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_four.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_one.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_three.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_two.xml" value="0.1796875" />
-        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_high_score_pong.xml" value="0.1796875" />
       </map>
     </option>
   </component>
