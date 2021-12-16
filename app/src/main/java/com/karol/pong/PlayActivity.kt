@@ -27,13 +27,7 @@ class PlayActivity : AppCompatActivity() {
         println("GameMode: $gameMode")
 
         val dataController = DataController(this);
-        var text = "No highscore file"
-        try {
-            text = "Highscore: ${dataController.highestScore().score}"
-        }
-        catch (e: Exception){
-
-        }
+        var text = "Highscore: ${dataController.highestScore().score}"
 
         binding.textViewHighScore.text = text
 
