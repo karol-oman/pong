@@ -59,14 +59,26 @@ class DataController(appContext : Context) {
     }
 
     /**
-     * Loads the highscores and returns the highest Score
+     * Loads the highscores and returns the highest Score if the highscores are not empty
+     * Otherwise returns a temporary score of 0
      */
 
     private fun getHighestScore() : Score{
 
+
         val scoreboard = DataManager.load(context)
-        scoreboard.sortByDescending { Score -> Score.score }
-        return scoreboard[0]
+
+        if (scoreboard.isNotEmpty()){
+            scoreboard.sortByDescending { Score -> Score.score }
+
+            return scoreboard[0]
+        }
+
+        else{
+
+            scoreboard.add(Score("It's empty in here", 0))
+            return scoreboard[0]
+        }
     }
 
     /**
