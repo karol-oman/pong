@@ -61,11 +61,14 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
     }
-    //TODO make button inactive after pressing once. Make user understand that save button is used
+
     private fun save(){
-        if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score));  }
+        if (edit_text_if_highscore.text.isNotBlank()) {
+            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score))
+            Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
+            view?.button_save?.isEnabled = false
+        }
 
-        else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
-
+        else if (edit_text_if_highscore.text.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
     }
 }
