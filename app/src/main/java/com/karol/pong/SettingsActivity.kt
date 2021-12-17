@@ -72,20 +72,22 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 3
 
         //TODO Går det att lägga dom i samma Adapter?
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    BackgroundOneFragment()
+                    PaddleOneFragment()
                 }
                 1 -> {
-                    BackgroundTwoFragment()
+                    PaddleTwoFragment()
                 }
-                else -> {
-                    BackgroundOneFragment()
+                2 -> {
+                    PaddleThreeFragment()
+                }else -> {
+                    PaddleOneFragment()
                 }
             }
         }
