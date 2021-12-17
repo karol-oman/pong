@@ -26,6 +26,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
     fun draw (canvas: Canvas){
 
         canvas.drawCircle(posX,posY,size,paint)
+        canvas.drawRect(hitbox, paint)
 
 
     }
@@ -43,7 +44,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
             speedY *= -1
 
         }
-        //TODO I MOVED THIS TO GAME VIEW TO BE ABLE TO STOP GAME LOOP
+
         if (posY + size > bounds.bottom){
             //speedY *= -1
 

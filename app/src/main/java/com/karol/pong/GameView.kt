@@ -42,15 +42,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         .scale(getScreenWidth(), getScreenHeight())
 
 
-    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(100, 100, true)
+    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
     init {
-
-
 
         if (mHolder != null)
             mHolder?.addCallback(this)
 
+        println("running $running")
 
         setup()
     }
@@ -94,24 +93,29 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 50f, 600f, 50f, 50f, 40f)
+        ball = Ball(this.context, 50f, 600f, 30f, 20f, 20f)
         paddle = Paddle(this.context)
 
         //Starting position for ball and paddle
-        if(gameMode == 1){
-            ball.posY = 900f
-        }
-        else ball.posY = 200f
+//        if(gameMode == 1){
+//            ball.posY = 900f
+//        }
+//        else ball.posY = 200f
 
-        ball.posX = 500f
+        ball.posX = 800f
         paddle.posX = 500f
 
         //Sets the color to ball and paddle.
-        ball.paint.color = Color.TRANSPARENT
-        paddle.paint.color = Color.GREEN
+        ball.paint.color = Color.LTGRAY
 
 
-
+        paddle.paint1.color = Color.WHITE
+        paddle.paint2.color = Color.GREEN
+        paddle.paint3.color = Color.BLUE
+        paddle.paint4.color = Color.YELLOW
+        paddle.paint5.color = Color.CYAN
+        paddle.paint6.color = Color.RED
+        paddle.paint7.color = Color.MAGENTA
     }
 
     private fun start() {
@@ -150,14 +154,15 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         canvas = mHolder!!.lockCanvas()
 
-
         //Drawing background to canvas
         canvas.drawBitmap(background, matrix, null)
 
         paddle.draw(canvas)
 
         ball.draw(canvas)
-        canvas.drawBitmap(paintedBall, ball.posX - ball.size, ball.posY - ball.size, null)
+
+//        canvas.drawBitmap(paintedBall, ball.posX - ball.size * 2f, ball.posY - ball.size * 2f, null)
+        canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
 
 
         if(gameMode == 1){
@@ -174,41 +179,71 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun intersects() {
 
-        if (RectF.intersects(paddle.paddle, ball.hitbox)) {
-
+        if(RectF.intersects(paddle.zone1, ball.hitbox)){
+            println("Hit zone 1")
             ball.speedY *= -1f
-
-            //Increase difficulty based on score.
-            when (score + 1) {
-                1 -> playActivity.updateLevel("")
-                10 -> {
-                    ball.speedY = -80f
-                    playActivity.updateLevel("Level: 2")
-                }
-                11 -> playActivity.updateLevel("")
-
-                20 -> {
-                    ball.speedY = -110f
-                    playActivity.updateLevel("Level: 3")
-                }
-                21 -> playActivity.updateLevel("")
-                40 -> {
-                    ball.speedY = -150f
-                    playActivity.updateLevel("Level: 4")
-                }
-                41 -> playActivity.updateLevel("")
-                80 -> {
-                    ball.speedY = -200f
-                    playActivity.updateLevel("Level: 5")
-                }
-                81 -> playActivity.updateLevel("")
-            }
-
-            score++
-
-            println("Total score: $score")
-            playActivity.updateScore("Total score: $score")
         }
+        if(RectF.intersects(paddle.zone2, ball.hitbox)){
+            println("Hit zone 2")
+            ball.speedY *= -1f
+        }
+        if(RectF.intersects(paddle.zone3, ball.hitbox)){
+            println("Hit zone 3")
+            ball.speedY *= -1f
+        }
+        if(RectF.intersects(paddle.zone4, ball.hitbox)){
+            println("Hit zone 4")
+            ball.speedY *= -1f
+        }
+        if(RectF.intersects(paddle.zone5, ball.hitbox)){
+            println("Hit zone 5")
+            ball.speedY *= -1f
+        }
+        if(RectF.intersects(paddle.zone6, ball.hitbox)){
+            println("Hit zone 6")
+            ball.speedY *= -1f
+        }
+        if(RectF.intersects(paddle.zone7, ball.hitbox)){
+            println("Hit zone 7")
+            ball.speedY *= -1f
+        }
+
+
+//        if (RectF.intersects(paddle.paddle, ball.hitbox)) {
+//
+//            ball.speedY *= -1f
+//
+//            //Increase difficulty based on score.
+//            when (score + 1) {
+//                1 -> playActivity.updateLevel("")
+//                10 -> {
+//                    ball.speedY = -80f
+//                    playActivity.updateLevel("Level: 2")
+//                }
+//                11 -> playActivity.updateLevel("")
+//
+//                20 -> {
+//                    ball.speedY = -110f
+//                    playActivity.updateLevel("Level: 3")
+//                }
+//                21 -> playActivity.updateLevel("")
+//                40 -> {
+//                    ball.speedY = -150f
+//                    playActivity.updateLevel("Level: 4")
+//                }
+//                41 -> playActivity.updateLevel("")
+//                80 -> {
+//                    ball.speedY = -200f
+//                    playActivity.updateLevel("Level: 5")
+//                }
+//                81 -> playActivity.updateLevel("")
+//            }
+//
+//            score++
+//
+//            println("Total score: $score")
+//            playActivity.updateScore("Total score: $score")
+//        }
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(score, gameMode)
             playActivity.updateLevel("")
@@ -244,7 +279,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
 
     }
-    @SuppressLint("ClickableViewAccessibility")
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         paddle.posX = event!!.x
