@@ -25,9 +25,6 @@ class PlayActivity : AppCompatActivity() {
 
         println("GameMode: $gameMode")
 
-
-
-
         supportFragmentManager.commit {
             add(R.id.frame_play, GameFragment(gameMode, ballId))
         }

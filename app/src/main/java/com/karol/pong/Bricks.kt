@@ -18,9 +18,7 @@ class Bricks(var posX: Float, var posY: Float) {
     lateinit var bricks: RectF
 
 
-
-
-    fun draw(canvas: Canvas?){
+   fun draw(canvas: Canvas?){
 
         bricks = RectF(posX, posY, posX + width, posY + height)
 
