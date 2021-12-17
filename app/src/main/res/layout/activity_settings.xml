@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view_pager_ball" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager_background"
+        android:id="@+id/view_pager_paddle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_ball_height"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
@@ -62,7 +62,7 @@
         android:text="@string/sound"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager_background" />
+        app:layout_constraintTop_toBottomOf="@+id/view_pager_paddle" />
 
     <Button
         android:id="@+id/button_save"

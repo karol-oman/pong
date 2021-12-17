@@ -24,13 +24,13 @@ class SettingsActivity : AppCompatActivity() {
         val pagerAdapterOne = ViewPagerAdapter(this)
         val pagerAdapterTwo =ViewPagerAdapterTwo(this)
         binding.viewPagerBall.adapter = pagerAdapterOne
-        binding.viewPagerBackground.adapter = pagerAdapterTwo
+        binding.viewPagerPaddle.adapter = pagerAdapterTwo
 
 
         button_save.setOnClickListener() {
 
             //println("current ID:" + binding.viewPagerBall.currentItem)
-            println("Current BG:" + binding.viewPagerBackground.currentItem)
+            println("Current BG:" + binding.viewPagerPaddle.currentItem)
 
             val intent = Intent(this, MainActivity::class.java)
 
