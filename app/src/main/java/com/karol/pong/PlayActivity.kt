@@ -18,19 +18,21 @@ class PlayActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
         println("GameMode: ${Setting.gameMode}")
 
-        val dataController = DataController(this)
+        //binding.surfaceView.setOnTouchListener(this)
+        val gameMode = intent.getIntExtra("gamemode", 0)
+        val ballId = intent.getIntExtra("ballID", 0)
+        println("BallID: $ballId")
 
-        try {
-            val text = "Highscore: ${dataController.highestScore().score}"
-            binding.textViewHighScore.text = text
-        }catch (e: Exception){
+        println("GameMode: $gameMode")
 
-        }
-        supportFragmentManager.commit {
-            add(R.id.frame_play, GameFragment())
-        }
+        val dataController = DataController(this);
+        var text = "Highscore: ${dataController.highestScore().score}"
+
+        binding.textViewHighScore.text = text
+
 
     }
 
