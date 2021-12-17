@@ -31,8 +31,14 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
          */
 
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
-        if (dataController.validateScore(score)) view.edit_text_if_highscore.visibility = View.VISIBLE
-        else view.edit_text_if_highscore.visibility = View.INVISIBLE
+        if (dataController.validateScore(score)){
+            view.button_save.visibility = View.VISIBLE
+            view.edit_text_if_highscore.visibility = View.VISIBLE
+        }
+        else {
+            view.edit_text_if_highscore.visibility = View.INVISIBLE
+            view.button_save.visibility = View.INVISIBLE
+        }
 
 
         //Make warning pop up if u save without saving with a blank name
