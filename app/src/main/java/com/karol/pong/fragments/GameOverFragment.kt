@@ -34,32 +34,17 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
         if (dataController.validateScore(score)) view.edit_text_if_highscore.visibility = View.VISIBLE
         else view.edit_text_if_highscore.visibility = View.INVISIBLE
 
+
+        //Make warning pop up if u save without saving with a blank name
         view.button_main_menu.setOnClickListener{
-            when(dataController.validateScore(score)){
-
-                true -> {
-                    if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score)); goHome() }
-                    else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
-                }
-
-                false -> {
-                    goHome()
-                }
-            }
+            goHome()
         }
 
         view.button_restart.setOnClickListener{
-            when(dataController.validateScore(score)){
-
-                true -> {
-                    if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score)); restart() }
-                    else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
-                }
-
-                false -> {
-                    restart()
-                }
-            }
+            restart()
+        }
+        view.button_save.setOnClickListener{
+            save()
         }
 
         return view
@@ -76,5 +61,11 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
         val intent = Intent(activity, MainActivity::class.java)
         startActivity(intent)
     }
+    //TODO make button inactive after pressing once. Make user understand that save button is used
+    private fun save(){
+        if (edit_text_if_highscore.text.isNotBlank()) { dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score));  }
 
+        else if (edit_text_if_highscore.text.isBlank()) {Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()}
+
+    }
 }
