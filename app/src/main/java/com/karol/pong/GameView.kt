@@ -37,6 +37,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.ball5)
 
+    private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
         .scale(getScreenWidth(), getScreenHeight())
@@ -44,6 +45,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
+    private var paintedPaddle: Bitmap = BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500,50, true)
     init {
 
         if (mHolder != null)
@@ -109,13 +111,21 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         ball.paint.color = Color.LTGRAY
 
 
-        paddle.paint1.color = Color.WHITE
+        paddle.paint1.color = Color.TRANSPARENT
+        paddle.paint2.color = Color.TRANSPARENT
+        paddle.paint3.color = Color.TRANSPARENT
+        paddle.paint4.color = Color.TRANSPARENT
+        paddle.paint5.color = Color.TRANSPARENT
+        paddle.paint6.color = Color.TRANSPARENT
+        paddle.paint7.color = Color.TRANSPARENT
+        //changes color on paddle
+        /*paddle.paint1.color = Color.WHITE
         paddle.paint2.color = Color.GREEN
         paddle.paint3.color = Color.BLUE
         paddle.paint4.color = Color.YELLOW
         paddle.paint5.color = Color.CYAN
         paddle.paint6.color = Color.RED
-        paddle.paint7.color = Color.MAGENTA
+        paddle.paint7.color = Color.MAGENTA */
     }
 
     private fun start() {
@@ -163,7 +173,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
 //        canvas.drawBitmap(paintedBall, ball.posX - ball.size * 2f, ball.posY - ball.size * 2f, null)
         canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
-
+        canvas.drawBitmap(paintedPaddle, paddle.zone1.left, paddle.zone7.top,null )
 
         if(gameMode == 1){
 
@@ -179,34 +189,42 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun intersects() {
 
-        if(RectF.intersects(paddle.zone1, ball.hitbox)){
+        if (RectF.intersects(paddle.zone1, ball.hitbox)) {
             println("Hit zone 1")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone2, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone2, ball.hitbox)) {
             println("Hit zone 2")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone3, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone3, ball.hitbox)) {
             println("Hit zone 3")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone4, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone4, ball.hitbox)) {
             println("Hit zone 4")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone5, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone5, ball.hitbox)) {
             println("Hit zone 5")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone6, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone6, ball.hitbox)) {
             println("Hit zone 6")
+            score++
             ball.speedY *= -1f
         }
-        if(RectF.intersects(paddle.zone7, ball.hitbox)){
+        else if (RectF.intersects(paddle.zone7, ball.hitbox)) {
             println("Hit zone 7")
+            score++
             ball.speedY *= -1f
         }
+
 
 
 //        if (RectF.intersects(paddle.paddle, ball.hitbox)) {
@@ -239,10 +257,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //                81 -> playActivity.updateLevel("")
 //            }
 //
-//            score++
-//
-//            println("Total score: $score")
-//            playActivity.updateScore("Total score: $score")
+
+
+          println("Total score: $score")
+          playActivity.updateScore("Total score: $score")
+
 //        }
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(score, gameMode)
@@ -254,6 +273,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
     }
+
 
     override fun surfaceCreated(p0: SurfaceHolder) {
 

@@ -39,23 +39,25 @@ class Paddle(context: Context) {
     lateinit var zone7: RectF
 
     var totZones = 7
-    var widthZone = width / totZones
+    var widthZone = Math.abs(width) / Math.abs(totZones)
+
+
 
     fun draw(canvas: Canvas?){
 
-        zone1 = RectF(posX , posY, posX + widthZone, posY + height)
+        zone1 = RectF(posX , posY, posX + Math.abs(widthZone), posY + height)
 
-        zone2 = RectF(posX + widthZone, posY, posX + (widthZone*2), posY + height)
+        zone2 = RectF(posX + Math.abs(widthZone), posY, posX + Math.abs(widthZone*2), posY + height)
 
-        zone3 = RectF(posX + widthZone*2, posY, posX + (widthZone*3), posY + height)
+        zone3 = RectF(posX + Math.abs(widthZone*2), posY, posX + Math.abs(widthZone*3), posY + height)
 
-        zone4 = RectF(posX + widthZone*3, posY, posX + (widthZone*4), posY + height)
+        zone4 = RectF(posX + Math.abs(widthZone*3), posY, posX + Math.abs(widthZone*4), posY + height)
 
-        zone5 = RectF(posX + widthZone*4, posY, posX + (widthZone*5), posY + height)
+        zone5 = RectF(posX + Math.abs(widthZone*4), posY, posX + Math.abs(widthZone*5), posY + height)
 
-        zone6 = RectF(posX + widthZone*5, posY, posX + (widthZone*6), posY + height)
+        zone6 = RectF(posX + Math.abs(widthZone*5), posY, posX + Math.abs(widthZone*6), posY + height)
 
-        zone7 = RectF(posX + widthZone*6, posY, posX + (widthZone*7), posY + height)
+        zone7 = RectF(posX + Math.abs(widthZone*6), posY, posX + Math.abs(widthZone*7), posY + height)
 
 
         canvas?.drawRect(zone1, paint1)
