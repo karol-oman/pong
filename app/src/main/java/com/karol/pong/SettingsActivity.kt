@@ -21,21 +21,21 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val pagerAdapter = ViewPagerAdapter(this)
+        val pagerAdapterOne = ViewPagerAdapter(this)
         val pagerAdapterTwo =ViewPagerAdapterTwo(this)
-        binding.viewPagerBall.adapter = pagerAdapter
-        binding.viewPagerBackground.adapter = pagerAdapterTwo
+        binding.viewPagerBall.adapter = pagerAdapterOne
+        binding.viewPagerPaddle.adapter = pagerAdapterTwo
+
 
         button_save.setOnClickListener() {
 
             //println("current ID:" + binding.viewPagerBall.currentItem)
-            println("Current BG:" + binding.viewPagerBackground.currentItem)
-
+            println("Current BG:" + binding.viewPagerPaddle.currentItem)
 
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("ballID", binding.viewPagerBall.currentItem )
-            println("BALL ID IN SETTINGS ${binding.viewPagerBall.currentItem}")
-            //intent.putExtra("ballID", )
+
+            Setting.ballID = binding.viewPagerBall.currentItem
+
             startActivity(intent)
 
 
@@ -72,20 +72,22 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 2
+        override fun getItemCount(): Int = 3
 
         //TODO Går det att lägga dom i samma Adapter?
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> {
-                    BackgroundOneFragment()
+                    PaddleOneFragment()
                 }
                 1 -> {
-                    BackgroundTwoFragment()
+                    PaddleTwoFragment()
                 }
-                else -> {
-                    BackgroundOneFragment()
+                2 -> {
+                    PaddleThreeFragment()
+                }else -> {
+                    PaddleOneFragment()
                 }
             }
         }

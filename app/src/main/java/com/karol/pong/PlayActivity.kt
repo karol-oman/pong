@@ -7,6 +7,7 @@ import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
 import com.karol.pong.fragments.GameFragment
 import com.karol.pong.fragments.GameOverFragment
+import java.lang.Exception
 
 class PlayActivity : AppCompatActivity() {
 
@@ -16,7 +17,9 @@ class PlayActivity : AppCompatActivity() {
         binding = ActivityPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.surfaceView.holder.addCallback(this)
+
+
+        println("GameMode: ${Setting.gameMode}")
 
         //binding.surfaceView.setOnTouchListener(this)
         val gameMode = intent.getIntExtra("gamemode", 0)
@@ -25,18 +28,22 @@ class PlayActivity : AppCompatActivity() {
 
         println("GameMode: $gameMode")
 
+        val dataController = DataController(this);
+        var text = "Highscore: ${dataController.highestScore().score}"
+
+        binding.textViewHighScore.text = text
+
         supportFragmentManager.commit {
-            add(R.id.frame_play, GameFragment(gameMode, ballId))
+            add(R.id.frame_play, GameFragment())
         }
 
     }
 
-    fun showGameOver() {
+    fun showGameOver(score : Int, gameMode:Int) {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
-                //this was R.id.test
-                add(R.id.frame_play, GameOverFragment())
+                add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
             }
         })
     }
@@ -47,13 +54,10 @@ class PlayActivity : AppCompatActivity() {
 
         })
     }
-
     fun updateLevel(str: String) {
         runOnUiThread(Runnable {
             binding.textViewLvl.text = str
 
         })
     }
-
-
 }

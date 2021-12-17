@@ -13,24 +13,34 @@ class Bricks(var posX: Float, var posY: Float) {
     var width = 200f
     var height = 100f
 
-    lateinit var bricksList: ArrayList<RectF>
-
-    lateinit var bricks: RectF
+    var destroy = false
 
 
-   fun draw(canvas: Canvas?){
+    var bricks: RectF = RectF(posX, posY, posX + width, posY + height)
 
-        bricks = RectF(posX, posY, posX + width, posY + height)
+
+    fun draw(canvas: Canvas?){
 
         canvas?.drawRect(bricks, paint)
 
 
     }
-    fun destroyBrick(canvas: Canvas?){
+    fun update(ball: Ball){
 
-        paint.color = Color.TRANSPARENT
 
-        canvas?.drawRect(bricks, paint)
 
+
+        if(RectF.intersects(ball.hitbox, bricks)){
+
+            ball.speedY *= -1f
+            destroy = true
+            println("Collision")
+
+
+
+
+
+        }
     }
+
 }
