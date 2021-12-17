@@ -46,11 +46,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     init {
 
-
-
         if (mHolder != null)
             mHolder?.addCallback(this)
 
+        println("running $running")
 
         setup()
     }

@@ -16,14 +16,9 @@ class HighScoreActivity : AppCompatActivity() {
         binding = ActivityHighscoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         val pagerAdapter = ViewPagerAdapter(this)
 
         binding.pageViewerHighScore.adapter = pagerAdapter
-
-
-
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa){

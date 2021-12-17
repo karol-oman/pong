@@ -33,6 +33,9 @@ class PlayActivity : AppCompatActivity() {
 
         binding.textViewHighScore.text = text
 
+        supportFragmentManager.commit {
+            add(R.id.frame_play, GameFragment())
+        }
 
     }
 
