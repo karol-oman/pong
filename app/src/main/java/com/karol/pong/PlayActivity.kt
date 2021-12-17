@@ -17,7 +17,9 @@ class PlayActivity : AppCompatActivity() {
         binding = ActivityPlayBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.surfaceView.holder.addCallback(this)
+
+
+        println("GameMode: ${Setting.gameMode}")
 
         //binding.surfaceView.setOnTouchListener(this)
         val gameMode = intent.getIntExtra("gamemode", 0)
@@ -32,18 +34,12 @@ class PlayActivity : AppCompatActivity() {
         binding.textViewHighScore.text = text
 
 
-
-        supportFragmentManager.commit {
-            add(R.id.frame_play, GameFragment(gameMode, ballId))
-        }
-
     }
 
     fun showGameOver(score : Int, gameMode:Int) {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
-                //this was R.id.test
                 add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
             }
         })
@@ -55,7 +51,6 @@ class PlayActivity : AppCompatActivity() {
 
         })
     }
-
     fun updateLevel(str: String) {
         runOnUiThread(Runnable {
             binding.textViewLvl.text = str

@@ -68,6 +68,7 @@ class DataController(appContext : Context) {
 
         val scoreboard = DataManager.load(context)
 
+
         if (scoreboard.isNotEmpty()){
             scoreboard.sortByDescending { Score -> Score.score }
 

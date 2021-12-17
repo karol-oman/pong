@@ -1,5 +1,6 @@
 package com.karol.pong
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -8,12 +9,12 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
 
-class GameView(context: Context?, private val gameMode: Int, ballId: Int) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
+class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
     private var running = false
     lateinit var canvas: Canvas
-    private lateinit var ball: Ball
+    lateinit var ball: Ball
     private lateinit var bricks: Bricks
 
     private var score: Int = 0
@@ -26,7 +27,8 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
     private var mHolder: SurfaceHolder? = holder
 
     private val randomBackground = (0..6).random()
-    //private val randomBall = (0..1).random()
+
+    private val gameMode = Setting.gameMode
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -40,17 +42,41 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         .scale(getScreenWidth(), getScreenHeight())
 
 
-    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[ballId]).scale(100, 100, true)
+    private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(100, 100, true)
 
     init {
 
-        println("GAMEMODE $gameMode")
+
 
         if (mHolder != null)
             mHolder?.addCallback(this)
 
 
         setup()
+    }
+    private fun generateBricks(){
+        var xpos = 0f
+
+        for (i in 0..6){
+
+            val brick = Bricks(0f,0f)
+
+            val brick1 = Bricks(xpos, brick.height )
+            GameHandler.allBricks.add(brick1)
+
+            val brick2 = Bricks(xpos, brick.height*2 + brick.height/2)
+            GameHandler.allBricks.add(brick2)
+
+            val brick3 = Bricks(xpos, brick.height*4)
+            GameHandler.allBricks.add(brick3)
+
+            val brick4 = Bricks(xpos, brick.height*5 + brick.height/2)
+            GameHandler.allBricks.add(brick4)
+
+            xpos += 250f
+
+        }
+
     }
 
     private fun getScreenWidth(): Int {
@@ -64,24 +90,28 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
     private fun setup() {
 
-        //Random xPOS
-        //val random = (-5..5).random()
+        //Generates bricks in game
+        generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 50f, 100f, 50f, 30f, 40f)
+        ball = Ball(this.context, 50f, 600f, 50f, 50f, 40f)
         paddle = Paddle(this.context)
 
-        bricks = Bricks(300f, 600f)
-
-
         //Starting position for ball and paddle
-        ball.posY = 100f
+        if(gameMode == 1){
+            ball.posY = 900f
+        }
+        else ball.posY = 200f
+
         ball.posX = 500f
         paddle.posX = 500f
 
         //Sets the color to ball and paddle.
         ball.paint.color = Color.TRANSPARENT
         paddle.paint.color = Color.GREEN
+
+
+
     }
 
     private fun start() {
@@ -100,12 +130,20 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
     }
 
     private fun update() {
+
+
         ball.update()
+        for(brick in GameHandler.allBricks){
+            brick.update(ball)
+        }
+        val x = GameHandler.allBricks.toMutableList()
 
+        for (brick in x){
+            if (brick.destroy){
+                GameHandler.allBricks.remove(brick)
+            }
+        }
 
-    }
-    fun restartGame(){
-        running = true
     }
 
     private fun draw() {
@@ -124,43 +162,17 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
 
         if(gameMode == 1){
 
-            bricks.draw(canvas)
+            //TODO DISPLAY METRICS HERE
 
-//            val list: ArrayList<Bricks> = ArrayList()
-//            for (i in 0..10) {
-//
-//                var xpos = 0f
-//                xpos += 200f
-//                val brick = Bricks(xpos, 0f)
-//                list.add(brick)
-//
-//                println("LISTSIZE ${list.size}")
-//
-//
-//                brick.draw(canvas)
-//
-//            }
-
+                for (brick in GameHandler.allBricks) {
+                brick.draw(canvas)
+            }
 
         }
 
         mHolder!!.unlockCanvasAndPost(canvas)
-
-
     }
-
     private fun intersects() {
-
-        if(gameMode == 1){
-            if(RectF.intersects(ball.hitbox, bricks.bricks)){
-                println("Träffade bricken, wohoooo")
-                ball.speedY *= -1f
-                //bricks.destroyBrick(canvas)
-                bricks.width = 0f
-                bricks.height = 0f
-            }
-        }
-
 
         if (RectF.intersects(paddle.paddle, ball.hitbox)) {
 
@@ -232,6 +244,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         }
 
     }
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         paddle.posX = event!!.x
@@ -239,9 +252,7 @@ class GameView(context: Context?, private val gameMode: Int, ballId: Int) : Surf
         //Sets the position of paddle to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
-
         }
-
         return true
     }
 

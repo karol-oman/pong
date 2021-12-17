@@ -21,21 +21,21 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val pagerAdapter = ViewPagerAdapter(this)
+        val pagerAdapterOne = ViewPagerAdapter(this)
         val pagerAdapterTwo =ViewPagerAdapterTwo(this)
-        binding.viewPagerBall.adapter = pagerAdapter
+        binding.viewPagerBall.adapter = pagerAdapterOne
         binding.viewPagerBackground.adapter = pagerAdapterTwo
+
 
         button_save.setOnClickListener() {
 
             //println("current ID:" + binding.viewPagerBall.currentItem)
             println("Current BG:" + binding.viewPagerBackground.currentItem)
 
-
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("ballID", binding.viewPagerBall.currentItem )
-            println("BALL ID IN SETTINGS ${binding.viewPagerBall.currentItem}")
-            //intent.putExtra("ballID", )
+
+            Setting.ballID = binding.viewPagerBall.currentItem
+
             startActivity(intent)
 
 

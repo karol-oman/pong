@@ -21,22 +21,17 @@ class MainActivity : AppCompatActivity() {
         generateBackground()
 
 
-        val ballId = intent.getIntExtra("ballID", 0)
-
         val intent = Intent(this, PlayActivity::class.java)
 
         binding.buttonPlay.setOnClickListener {
             //val intent = Intent(this, PlayActivity::class.java)
 
-            intent.putExtra("gamemode", 0)
-            intent.putExtra("ballID", ballId)
-
+            Setting.gameMode = 0
             startActivity(intent)
         }
         binding.buttonPlay2.setOnClickListener {
             //val intent = Intent(this, PlayActivity::class.java)
-            intent.putExtra("gamemode", 1)
-            intent.putExtra("ballID", ballId)
+            Setting.gameMode = 1
             startActivity(intent)
         }
 
