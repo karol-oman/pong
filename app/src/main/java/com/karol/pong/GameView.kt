@@ -94,7 +94,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 800f, 600f, 30f, 20f, 20f)
+        ball = Ball(this.context, 800f, 600f, 30f, 50f, 100f)
         paddle = Paddle(this.context)
 
         //Starting position for ball and paddle
@@ -225,30 +225,31 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             ball.speedY *= -1f
         }
 
-        when (Setting.score + 1) {
-            1 -> playActivity.updateLevel("")
-            10 -> {
-                ball.speedY = -80f
-                playActivity.updateLevel("Level: 2")
-            }
-            11 -> playActivity.updateLevel("")
-
-            20 -> {
-                ball.speedY = -110f
-                playActivity.updateLevel("Level: 3")
-            }
-            21 -> playActivity.updateLevel("")
-            40 -> {
-                ball.speedY = -150f
-                playActivity.updateLevel("Level: 4")
-            }
-            41 -> playActivity.updateLevel("")
-            80 -> {
-                ball.speedY = -200f
-                playActivity.updateLevel("Level: 5")
-            }
-            81 -> playActivity.updateLevel("")
-        }
+        //TODO CHECK IF "SETTINGS.SCORE" IS CAUSING STUCK BUG
+//        when (Setting.score + 1) {
+//            1 -> playActivity.updateLevel("")
+//            10 -> {
+//                ball.speedY = -110f
+//                playActivity.updateLevel("Level: 2")
+//            }
+//            11 -> playActivity.updateLevel("")
+//
+//            20 -> {
+//                ball.speedY = -110f
+//                playActivity.updateLevel("Level: 3")
+//            }
+//            21 -> playActivity.updateLevel("")
+//            40 -> {
+//                ball.speedY = -150f
+//                playActivity.updateLevel("Level: 4")
+//            }
+//            41 -> playActivity.updateLevel("")
+//            80 -> {
+//                ball.speedY = -200f
+//                playActivity.updateLevel("Level: 5")
+//            }
+//            81 -> playActivity.updateLevel("")
+//        }
 
 
 
