@@ -5,19 +5,26 @@ import java.io.File
 import java.lang.Exception
 
 /**
- * The DataManager is a static object responsible for all communication with the "highscores.txt" file
+ * The DataManager is a static object responsible for all communication with text files (one txt for each gamemode)
  */
 
 object DataManager {
 
-
     /**
-     * The function "save" takes an ArrayList with Score-objects as an inparameter and writes them as raw String data to "highscores.txt"
+     * The function "save" takes an ArrayList with Score-objects as an inparameter and writes them as raw String data to the corresponding highscore file
      * One Score-object per row, name and score separated with "|"
      */
-    fun save(scoreList: ArrayList<Score>, context: Context) {
+    fun save(scoreList: ArrayList<Score>, gameMode: Int, context: Context) {
 
-        val file = File(context.filesDir,"highscores.txt")
+        var path = ""
+
+        when(gameMode){
+            0 -> path = "highscores_gamemode_0.txt"
+            1 -> path = "highscores_gamemode_1.txt"
+        }
+
+        var file = File(context.filesDir,path)
+
 
         try {
 
@@ -48,12 +55,19 @@ object DataManager {
 
 
     /**
-     * The function "load" retrieves the raw-data from "highscores.txt" line by line and splits them by the "|" character
+     * The function "load" retrieves the raw-data from the corresponding highscore file and reads them line by line and splits them by the "|" character
      * Makes an Score-object that gets added to the scoreboard ArrayList which is then returned
      */
-    fun load(context: Context): ArrayList<Score> {
+    fun load(gameMode: Int, context: Context): ArrayList<Score> {
 
-        val file = File(context.filesDir,"highscores.txt")
+        var path = ""
+
+        when(gameMode){
+            0 -> path = "highscores_gamemode_0.txt"
+            1 -> path = "highscores_gamemode_1.txt"
+        }
+
+        var file = File(context.filesDir,path)
 
         val scoreboard = ArrayList<Score>()
         try {
