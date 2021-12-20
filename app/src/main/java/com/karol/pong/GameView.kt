@@ -93,7 +93,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 50f, 600f, 30f, 20f, 20f)
+        ball = Ball(this.context, 800f, 600f, 30f, 20f, 20f)
         paddle = Paddle(this.context)
 
         //Starting position for ball and paddle
@@ -102,7 +102,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //        }
 //        else ball.posY = 200f
 
-        ball.posX = 800f
+
         paddle.posX = 500f
 
         //Sets the color to ball and paddle.
