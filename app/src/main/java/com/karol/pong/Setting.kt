@@ -1,5 +1,7 @@
 package com.karol.pong
 
+import android.content.Context
+
 object Setting{
 
 
@@ -14,6 +16,8 @@ object Setting{
     var gameMode = 0
 
     var score = 0
+
+
 
 
 

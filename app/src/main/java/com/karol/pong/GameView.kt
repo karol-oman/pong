@@ -74,7 +74,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             GameHandler.allBricks.add(brick4)
 
             xpos += 250f
-
         }
 
     }
@@ -111,13 +110,13 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         ball.paint.color = Color.LTGRAY
 
 
-        paddle.paint1.color = Color.TRANSPARENT
-        paddle.paint2.color = Color.TRANSPARENT
-        paddle.paint3.color = Color.TRANSPARENT
-        paddle.paint4.color = Color.TRANSPARENT
-        paddle.paint5.color = Color.TRANSPARENT
-        paddle.paint6.color = Color.TRANSPARENT
-        paddle.paint7.color = Color.TRANSPARENT
+//        paddle.paint1.color = Color.TRANSPARENT
+//        paddle.paint2.color = Color.TRANSPARENT
+//        paddle.paint3.color = Color.TRANSPARENT
+//        paddle.paint4.color = Color.TRANSPARENT
+//        paddle.paint5.color = Color.TRANSPARENT
+//        paddle.paint6.color = Color.TRANSPARENT
+//        paddle.paint7.color = Color.TRANSPARENT
         //changes color on paddle
         /*paddle.paint1.color = Color.WHITE
         paddle.paint2.color = Color.GREEN
@@ -189,6 +188,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun intersects() {
 
+
         if (RectF.intersects(paddle.zone1, ball.hitbox)) {
             println("Hit zone 1")
             Setting.score++
@@ -223,6 +223,31 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             println("Hit zone 7")
             Setting.score++
             ball.speedY *= -1f
+        }
+
+        when (Setting.score + 1) {
+            1 -> playActivity.updateLevel("")
+            10 -> {
+                ball.speedY = -80f
+                playActivity.updateLevel("Level: 2")
+            }
+            11 -> playActivity.updateLevel("")
+
+            20 -> {
+                ball.speedY = -110f
+                playActivity.updateLevel("Level: 3")
+            }
+            21 -> playActivity.updateLevel("")
+            40 -> {
+                ball.speedY = -150f
+                playActivity.updateLevel("Level: 4")
+            }
+            41 -> playActivity.updateLevel("")
+            80 -> {
+                ball.speedY = -200f
+                playActivity.updateLevel("Level: 5")
+            }
+            81 -> playActivity.updateLevel("")
         }
 
 

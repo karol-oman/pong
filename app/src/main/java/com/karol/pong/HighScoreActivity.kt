@@ -10,7 +10,7 @@ import com.karol.pong.databinding.ActivityHighscoreBinding
 import com.karol.pong.fragments.HighScorePongFragment
 import com.karol.pong.fragments.HighScoreShurikenFragment
 
-class HighScoreActivity(context: Context) : AppCompatActivity() {
+class HighScoreActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityHighscoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {

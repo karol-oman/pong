@@ -31,7 +31,7 @@ class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
          */
 
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
-        if (dataController.validateScore(score, Setting.gameMode)){
+        if (dataController.validateScore(Setting.score, Setting.gameMode)){
             view.button_save.visibility = View.VISIBLE
             view.edit_text_if_highscore.visibility = View.VISIBLE
         }
@@ -58,8 +58,7 @@ class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
 
     private fun restart(){
         val intent = Intent(activity, PlayActivity::class.java)
-        //TODO FIX GAME MODE HERE
-        intent.putExtra("gamemode",gameMode)
+
         startActivity(intent)
     }
 
@@ -69,12 +68,12 @@ class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
     }
 
     private fun save(){
-        if (edit_text_if_highscore.text.isNotBlank()) {
-            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score), gameMode)
+        if (edit_text_if_highscore.text!!.isNotBlank()) {
+            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), Setting.score), gameMode)
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
             view?.button_save?.isEnabled = false
         }
 
-        else if (edit_text_if_highscore.text.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
+        else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
     }
 }
