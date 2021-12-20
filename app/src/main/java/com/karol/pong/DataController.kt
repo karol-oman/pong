@@ -6,31 +6,29 @@ import android.content.Context
  * The DataController handles all the communication with the DataHandler
  */
 
-class DataController(appContext : Context) {
-
-    val context = appContext
+class DataController(val context : Context) {
 
     /**
      * Getters and setters for the various functions
      */
 
-    fun validateScore(score : Int) : Boolean{
+    fun validateScore(score : Int, gameMode : Int) : Boolean{
 
-        return checkIfTopTen(score)
+        return checkIfTopTen(score, gameMode)
     }
 
-    fun saveScore(score : Score){
-        setScore(score)
+    fun saveScore(score : Score, gameMode : Int){
+        setScore(score, gameMode)
     }
 
-    fun highestScore() : Score{
+    fun highestScore(gameMode : Int) : Score{
 
-        return getHighestScore()
+        return getHighestScore(gameMode)
     }
 
-    fun highscores() : ArrayList<Score>{
+    fun highscores(gameMode : Int) : ArrayList<Score>{
 
-        return getHighScores()
+        return getHighScores(gameMode)
     }
 
     /**
@@ -39,9 +37,9 @@ class DataController(appContext : Context) {
      * Also returns true if there's less than 10 spots filled in the scoreboard
      */
 
-    private fun checkIfTopTen(scoreToCheck : Int) : Boolean{
+    private fun checkIfTopTen(scoreToCheck : Int, gameMode : Int) : Boolean{
 
-        var scoreboard = DataManager.load(context)
+        var scoreboard = DataManager.load(gameMode, context)
 
         if (scoreboard.size < 10){
             return true
@@ -63,10 +61,10 @@ class DataController(appContext : Context) {
      * Otherwise returns a temporary score of 0
      */
 
-    private fun getHighestScore() : Score{
+    private fun getHighestScore(gameMode : Int) : Score{
 
 
-        val scoreboard = DataManager.load(context)
+        val scoreboard = DataManager.load(gameMode, context)
 
 
         if (scoreboard.isNotEmpty()){
@@ -86,9 +84,9 @@ class DataController(appContext : Context) {
      * Loads the highscores and returns them all
      */
 
-    private fun getHighScores() : ArrayList<Score>{
+    private fun getHighScores(gameMode : Int) : ArrayList<Score>{
 
-        return  DataManager.load(context)
+        return  DataManager.load(gameMode, context)
     }
 
     /**
@@ -96,9 +94,9 @@ class DataController(appContext : Context) {
      * If the scoreboard has more than 10 spots, we remove the last spot to maintain the scoreboard at 10 spots
      */
 
-    private fun setScore(newScore : Score) {
+    private fun setScore(newScore : Score, gameMode : Int) {
 
-        var scoreboard = DataManager.load(context)
+        var scoreboard = DataManager.load(gameMode, context)
         scoreboard.add(newScore)
         scoreboard.sortByDescending { Score -> Score.score }
 
@@ -106,6 +104,6 @@ class DataController(appContext : Context) {
             scoreboard.removeAt(10)
         }
 
-        DataManager.save(scoreboard,context)
+        DataManager.save(scoreboard,gameMode, context)
     }
 }

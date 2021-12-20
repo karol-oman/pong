@@ -17,8 +17,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     lateinit var ball: Ball
     private lateinit var bricks: Bricks
 
-    private var score: Int = 0
 
+
+    //private var score: Int = Setting.score
     private var playActivity = context as PlayActivity
 
     private lateinit var paddle: Paddle
@@ -27,8 +28,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private var mHolder: SurfaceHolder? = holder
 
     private val randomBackground = (0..6).random()
-
-    private val gameMode = Setting.gameMode
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -92,7 +91,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private fun setup() {
 
         //Generates bricks in game
-        generateBricks()
+        if(Setting.gameMode == 1)
+            generateBricks()
 
         //Creates ball and paddle objects
         ball = Ball(this.context, 800f, 600f, 30f, 20f, 20f)
@@ -175,7 +175,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
         canvas.drawBitmap(paintedPaddle, paddle.zone1.left, paddle.zone7.top,null )
 
-        if(gameMode == 1){
+        if(Setting.gameMode == 1){
 
             //TODO DISPLAY METRICS HERE
 
@@ -191,37 +191,37 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (RectF.intersects(paddle.zone1, ball.hitbox)) {
             println("Hit zone 1")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone2, ball.hitbox)) {
             println("Hit zone 2")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone3, ball.hitbox)) {
             println("Hit zone 3")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone4, ball.hitbox)) {
             println("Hit zone 4")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone5, ball.hitbox)) {
             println("Hit zone 5")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone6, ball.hitbox)) {
             println("Hit zone 6")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
         else if (RectF.intersects(paddle.zone7, ball.hitbox)) {
             println("Hit zone 7")
-            score++
+            Setting.score++
             ball.speedY *= -1f
         }
 
@@ -259,12 +259,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //
 
 
-          println("Total score: $score")
-          playActivity.updateScore("Total score: $score")
+          println("Total score: " + Setting.score)
+          playActivity.updateScore("Total score: " + Setting.score)
 
 //        }
         if (ball.posY + ball.size > bounds.bottom) {
-            playActivity.showGameOver(score, gameMode)
+            playActivity.showGameOver(Setting.score, Setting.gameMode)
             playActivity.updateLevel("")
             println("u suck")
             running = false

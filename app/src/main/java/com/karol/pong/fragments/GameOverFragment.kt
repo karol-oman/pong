@@ -12,7 +12,7 @@ import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
-class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): Fragment() {
+class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
 
     private var dataController = DataController(context1)
     override fun onCreateView(
@@ -31,7 +31,7 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
          */
 
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
-        if (dataController.validateScore(score)){
+        if (dataController.validateScore(score, Setting.gameMode)){
             view.button_save.visibility = View.VISIBLE
             view.edit_text_if_highscore.visibility = View.VISIBLE
         }
@@ -40,7 +40,7 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
             view.button_save.visibility = View.INVISIBLE
         }
 
-
+        view.game_over_score.text = "Total score: " + Setting.score.toString()
         //Make warning pop up if u save without saving with a blank name
         view.button_main_menu.setOnClickListener{
             goHome()
@@ -70,7 +70,7 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
 
     private fun save(){
         if (edit_text_if_highscore.text.isNotBlank()) {
-            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score))
+            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), score), gameMode)
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
             view?.button_save?.isEnabled = false
         }

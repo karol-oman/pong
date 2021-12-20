@@ -23,7 +23,7 @@ class PlayActivity : AppCompatActivity() {
         }
 
         val dataController = DataController(this);
-        var text = "Highscore: ${dataController.highestScore().score}"
+        var text = "Highscore: ${dataController.highestScore(Setting.gameMode).score}"
 
         binding.textViewHighScore.text = text
 
@@ -35,7 +35,7 @@ class PlayActivity : AppCompatActivity() {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
-                add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
+                add(R.id.frame_play, GameOverFragment(applicationContext, gameMode))
             }
         })
     }

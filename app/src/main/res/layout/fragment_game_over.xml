@@ -19,33 +19,44 @@
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="267dp"
+            android:layout_height="346dp"
+            android:background="@drawable/game_over_frame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/game_over_frame">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/game_over_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="YOUR SCORE:"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/edit_text_if_highscore"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
 
 
             <EditText
                 android:id="@+id/edit_text_if_highscore"
                 android:layout_width="161dp"
                 android:layout_height="49dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="10dp"
                 android:hint="Name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
+                app:layout_constraintBottom_toTopOf="@+id/button_main_menu"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/game_over_pic"
                 android:layout_width="275dp"
                 android:layout_height="190dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/gameover"
+                android:layout_marginTop="8dp"
                 android:padding="10dp"
+                android:src="@drawable/gameover"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,19 +81,17 @@
                 android:src="@drawable/ic_baseline_restart_alt_24"
                 android:text="RESTART"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_save"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageButton
                 android:id="@+id/button_save"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="36dp"
+                android:layout_height="49dp"
                 android:src="@drawable/ic_baseline_save_24"
                 android:text="SAVED"
+                app:layout_constraintBottom_toTopOf="@+id/button_restart"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
+                app:layout_constraintStart_toEndOf="@+id/edit_text_if_highscore" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
