@@ -5,59 +5,88 @@
     android:id="@+id/game_over_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.GameOverFragment">
+    tools:context=".fragments.GameOverFragment"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
 
-        <LinearLayout
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:background="@color/purple_200">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/game_over_frame">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GAME OVER"
-                android:textSize="50sp" />
+
             <EditText
                 android:id="@+id/edit_text_if_highscore"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="Name"/>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/button_restart"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:icon="@drawable/ic_baseline_restart_alt_24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="RESTART" />
+                android:layout_width="161dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:hint="Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
 
-            <Button
+            <ImageView
+                android:id="@+id/game_over_pic"
+                android:layout_width="275dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/gameover"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/button_main_menu"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                app:icon="@drawable/ic_baseline_home_24"
-                android:layout_marginLeft="10dp"
+                android:layout_width="129dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_home_24"
+                android:text="HOME"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/edit_text_if_highscore"
+                app:layout_constraintTop_toBottomOf="@+id/button_save" />
+
+            <ImageView
+                android:id="@+id/button_restart"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="129dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/ic_baseline_restart_alt_24"
+                android:text="RESTART"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_save"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageButton
+                android:id="@+id/button_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HOME" />
+                android:layout_marginEnd="36dp"
+                android:src="@drawable/ic_baseline_save_24"
+                android:text="SAVED"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
 
-            </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -35,7 +35,7 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
 
             Setting.ballID = binding.viewPagerBall.currentItem
-            Setting.paddleID = binding.viewPagerPaddle.currentItem
+            Setting.paddleID= binding.viewPagerPaddle.currentItem
 
             startActivity(intent)
 
