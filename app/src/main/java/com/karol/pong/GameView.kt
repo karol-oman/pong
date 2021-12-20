@@ -74,7 +74,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             GameHandler.allBricks.add(brick4)
 
             xpos += 250f
-
         }
 
     }
@@ -95,7 +94,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 50f, 600f, 30f, 20f, 20f)
+        ball = Ball(this.context, 800f, 600f, 30f, 50f, 100f)
         paddle = Paddle(this.context)
 
         //Starting position for ball and paddle
@@ -104,20 +103,20 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //        }
 //        else ball.posY = 200f
 
-        ball.posX = 800f
+
         paddle.posX = 500f
 
         //Sets the color to ball and paddle.
         ball.paint.color = Color.LTGRAY
 
 
-        paddle.paint1.color = Color.TRANSPARENT
-        paddle.paint2.color = Color.TRANSPARENT
-        paddle.paint3.color = Color.TRANSPARENT
-        paddle.paint4.color = Color.TRANSPARENT
-        paddle.paint5.color = Color.TRANSPARENT
-        paddle.paint6.color = Color.TRANSPARENT
-        paddle.paint7.color = Color.TRANSPARENT
+//        paddle.paint1.color = Color.TRANSPARENT
+//        paddle.paint2.color = Color.TRANSPARENT
+//        paddle.paint3.color = Color.TRANSPARENT
+//        paddle.paint4.color = Color.TRANSPARENT
+//        paddle.paint5.color = Color.TRANSPARENT
+//        paddle.paint6.color = Color.TRANSPARENT
+//        paddle.paint7.color = Color.TRANSPARENT
         //changes color on paddle
         /*paddle.paint1.color = Color.WHITE
         paddle.paint2.color = Color.GREEN
@@ -189,6 +188,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun intersects() {
 
+
         if (RectF.intersects(paddle.zone1, ball.hitbox)) {
             println("Hit zone 1")
             Setting.score++
@@ -224,6 +224,32 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             Setting.score++
             ball.speedY *= -1f
         }
+
+        //TODO CHECK IF "SETTINGS.SCORE" IS CAUSING STUCK BUG
+//        when (Setting.score + 1) {
+//            1 -> playActivity.updateLevel("")
+//            10 -> {
+//                ball.speedY = -110f
+//                playActivity.updateLevel("Level: 2")
+//            }
+//            11 -> playActivity.updateLevel("")
+//
+//            20 -> {
+//                ball.speedY = -110f
+//                playActivity.updateLevel("Level: 3")
+//            }
+//            21 -> playActivity.updateLevel("")
+//            40 -> {
+//                ball.speedY = -150f
+//                playActivity.updateLevel("Level: 4")
+//            }
+//            41 -> playActivity.updateLevel("")
+//            80 -> {
+//                ball.speedY = -200f
+//                playActivity.updateLevel("Level: 5")
+//            }
+//            81 -> playActivity.updateLevel("")
+//        }
 
 
 
