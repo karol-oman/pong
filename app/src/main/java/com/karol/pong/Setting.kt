@@ -13,6 +13,8 @@ object Setting{
     //1 == Bricks
     var gameMode = 0
 
+    var score = 0
+
 
 
 }
