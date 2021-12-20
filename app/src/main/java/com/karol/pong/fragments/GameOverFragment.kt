@@ -12,7 +12,7 @@ import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
-class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): Fragment() {
+class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
 
     private var dataController = DataController(context1)
     override fun onCreateView(
@@ -40,7 +40,7 @@ class GameOverFragment(context1: Context, val score: Int, val gameMode : Int): F
             view.button_save.visibility = View.INVISIBLE
         }
 
-
+        view.game_over_score.text = "Total score: " + Setting.score.toString()
         //Make warning pop up if u save without saving with a blank name
         view.button_main_menu.setOnClickListener{
             goHome()

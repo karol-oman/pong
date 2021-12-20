@@ -43,7 +43,7 @@ class PlayActivity : AppCompatActivity() {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
-                add(R.id.frame_play, GameOverFragment(applicationContext, score, gameMode))
+                add(R.id.frame_play, GameOverFragment(applicationContext, gameMode))
             }
         })
     }
