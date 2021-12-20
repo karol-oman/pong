@@ -29,7 +29,7 @@ class PlayActivity : AppCompatActivity() {
         println("GameMode: $gameMode")
 
         val dataController = DataController(this);
-        var text = "Highscore: ${dataController.highestScore().score}"
+        var text = "Highscore: ${dataController.highestScore(Setting.gameMode).score}"
 
         binding.textViewHighScore.text = text
 
