@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
-    private var ballSelected: Int = 3
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +27,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.viewPagerPaddle.adapter = pagerAdapterTwo
 
 
-        button_save.setOnClickListener() {
+        button_save.setOnClickListener {
 
             //println("current ID:" + binding.viewPagerBall.currentItem)
             println("Current BG:" + binding.viewPagerPaddle.currentItem)
@@ -75,8 +75,6 @@ class SettingsActivity : AppCompatActivity() {
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 3
 
-        //TODO Går det att lägga dom i samma Adapter?
-
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> {
@@ -87,7 +85,8 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 2 -> {
                     PaddleThreeFragment()
-                }else -> {
+                }
+                else -> {
                     PaddleOneFragment()
                 }
             }

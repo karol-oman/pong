@@ -12,7 +12,7 @@ import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 
-class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
+class GameOverFragment(context1: Context, private val gameMode : Int): Fragment() {
 
     private var dataController = DataController(context1)
     override fun onCreateView(

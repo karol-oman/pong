@@ -23,7 +23,7 @@ object DataManager {
             1 -> path = "highscores_gamemode_1.txt"
         }
 
-        var file = File(context.filesDir,path)
+        val file = File(context.filesDir,path)
 
 
         try {
@@ -67,7 +67,7 @@ object DataManager {
             1 -> path = "highscores_gamemode_1.txt"
         }
 
-        var file = File(context.filesDir,path)
+        val file = File(context.filesDir,path)
 
         val scoreboard = ArrayList<Score>()
         try {
