@@ -27,7 +27,11 @@ class Bricks(var posX: Float, var posY: Float) {
         if(RectF.intersects(ball.hitbox, bricks)){
 
             ball.speedY *= -1f
+
             destroy = true
+
+            Setting.score++
+
             println("Collision")
 
 

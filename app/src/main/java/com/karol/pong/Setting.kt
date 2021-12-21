@@ -17,6 +17,10 @@ object Setting{
 
     var score = 0
 
+    var test = true
+
+
+
 
 
 

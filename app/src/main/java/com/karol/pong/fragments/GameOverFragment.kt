@@ -32,10 +32,12 @@ class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
 
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
         if (dataController.validateScore(Setting.score, Setting.gameMode)){
+            view.textInputLayout.visibility = View.VISIBLE
             view.button_save.visibility = View.VISIBLE
             view.edit_text_if_highscore.visibility = View.VISIBLE
         }
         else {
+            view.textInputLayout.visibility = View.INVISIBLE
             view.edit_text_if_highscore.visibility = View.INVISIBLE
             view.button_save.visibility = View.INVISIBLE
         }

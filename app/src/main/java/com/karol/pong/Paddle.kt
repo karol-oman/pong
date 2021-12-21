@@ -28,7 +28,7 @@ class Paddle(context: Context) {
     var width = 500f
     var height = 50f
 
-    lateinit var paddle: RectF
+    //lateinit var paddle: RectF
 
     lateinit var zone1: RectF
     lateinit var zone2: RectF
