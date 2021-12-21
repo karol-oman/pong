@@ -80,11 +80,23 @@ class DataController(val context : Context) {
 
     /**
      * Loads the highscores and returns them all
+     * If there's no highscores returns a temporary score of 0
      */
 
     private fun getHighScores(gameMode : Int) : ArrayList<Score>{
 
-        return  DataManager.load(gameMode, context)
+        val scoreboard = DataManager.load(gameMode, context)
+
+
+        return if (scoreboard.isNotEmpty()){
+            scoreboard.sortByDescending { Score -> Score.score }
+
+            scoreboard
+        } else{
+
+            scoreboard.add(Score("It's empty in here", 0))
+            scoreboard
+        }
     }
 
     /**
