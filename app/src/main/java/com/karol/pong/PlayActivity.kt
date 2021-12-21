@@ -1,6 +1,7 @@
 package com.karol.pong
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
@@ -30,6 +31,16 @@ class PlayActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        Setting.test = false
+
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
 
     fun showGameOver(score : Int, gameMode:Int) {
 

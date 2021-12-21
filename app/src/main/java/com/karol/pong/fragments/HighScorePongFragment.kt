@@ -38,16 +38,15 @@ class HighScorePongFragment: Fragment() {
                 view.list_item_name.text = dataController.highscores(0)[position].name
                 view.list_item_score.text = dataController.highscores(0)[position].score.toString()
 
-
                 when (position) {
                     0 -> {
-                        view.list_item_image.setImageResource(R.drawable.ball4)
+                        view.list_item_image.setImageResource(R.drawable.gold)
                     }
                     1 -> {
-                        view.list_item_image.setImageResource(R.drawable.ball2)
+                        view.list_item_image.setImageResource(R.drawable.silver)
                     }
                     2 -> {
-                        view.list_item_image.setImageResource(R.drawable.ball3)
+                        view.list_item_image.setImageResource(R.drawable.bronze)
                     }
                 }
 

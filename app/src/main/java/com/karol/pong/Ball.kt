@@ -41,7 +41,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
             speedX *= -1
 
         }
-        if(abs(posY) - abs(size) < 0 ){
+        if(abs(posY) - abs(size) < bounds.top + 20f){
             speedY *= -1
 
         }
