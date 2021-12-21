@@ -109,11 +109,11 @@
                 android:id="@+id/button_save"
                 android:layout_width="wrap_content"
                 android:layout_height="49dp"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_baseline_save_24"
                 android:text="SAVED"
                 app:layout_constraintBottom_toTopOf="@+id/button_restart"
-                app:layout_constraintEnd_toEndOf="parent"
-                 />
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

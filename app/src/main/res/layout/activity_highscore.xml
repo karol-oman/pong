@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HighScoreActivity"
-    android:background="@drawable/backgroundoneblur"
-    >
+    android:background="@drawable/backgroundoneblur">
 
     <ImageView
         android:id="@+id/imageView"
@@ -25,10 +24,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
