@@ -15,20 +15,14 @@ class Bricks(var posX: Float, var posY: Float) {
 
     var destroy = false
 
-
     var bricks: RectF = RectF(posX, posY, posX + width, posY + height)
-
 
     fun draw(canvas: Canvas?){
 
         canvas?.drawRect(bricks, paint)
 
-
     }
     fun update(ball: Ball){
-
-
-
 
         if(RectF.intersects(ball.hitbox, bricks)){
 

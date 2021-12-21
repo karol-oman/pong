@@ -60,12 +60,13 @@ class GameOverFragment(context1: Context, val gameMode : Int): Fragment() {
 
     private fun restart(){
         val intent = Intent(activity, PlayActivity::class.java)
-
+        Setting.score = 0
         startActivity(intent)
     }
 
     private fun goHome(){
         val intent = Intent(activity, MainActivity::class.java)
+        Setting.score = 0
         startActivity(intent)
     }
 
