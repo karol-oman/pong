@@ -23,31 +23,40 @@
         </FrameLayout>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/text_view_current_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Current high score:"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-
-
-        app:layout_constraintEnd_toStartOf="@+id/text_view_high_score"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_high_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginEnd="60dp"
-
-        android:textColor="@color/black"
-        android:textSize="20sp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@drawable/frame_total_score"
+        android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="High Score:" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_view_current_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_high_score"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Current high score:" />
+
+        <TextView
+            android:id="@+id/text_view_high_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="High Score:" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_view_lvl"
