@@ -17,7 +17,7 @@ class HighScoreShurikenFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(R.layout.layout_high_score_shuriken, container, false)
         val dataController = DataController(activity!!.applicationContext)
 

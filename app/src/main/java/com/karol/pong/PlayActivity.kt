@@ -1,6 +1,5 @@
 package com.karol.pong
 
-
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +7,7 @@ import androidx.fragment.app.commit
 import com.karol.pong.databinding.ActivityPlayBinding
 import com.karol.pong.fragments.GameFragment
 import com.karol.pong.fragments.GameOverFragment
-import java.lang.Exception
+
 
 class PlayActivity : AppCompatActivity() {
 
@@ -23,18 +22,16 @@ class PlayActivity : AppCompatActivity() {
             add(R.id.frame_play, GameFragment())
         }
 
-        val dataController = DataController(this);
-        var text = "Highscore: ${dataController.highestScore(Setting.gameMode).score}"
+        val dataController = DataController(this)
+        val text = "High score: ${dataController.highestScore(Setting.gameMode).score}"
 
         binding.textViewHighScore.text = text
-
-
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Setting.test = false
+        Setting.rageQuit = true
 
 
         val intent = Intent(this, MainActivity::class.java)
@@ -42,7 +39,7 @@ class PlayActivity : AppCompatActivity() {
     }
 
 
-    fun showGameOver(score : Int, gameMode:Int) {
+    fun showGameOver(gameMode: Int) {
 
         runOnUiThread(Runnable {
             supportFragmentManager.commit {
@@ -57,6 +54,7 @@ class PlayActivity : AppCompatActivity() {
 
         })
     }
+
     fun updateLevel(str: String) {
         runOnUiThread(Runnable {
             binding.textViewLvl.text = str

@@ -39,7 +39,7 @@ class DataController(val context : Context) {
 
     private fun checkIfTopTen(scoreToCheck : Int, gameMode : Int) : Boolean{
 
-        var scoreboard = DataManager.load(gameMode, context)
+        val scoreboard = DataManager.load(gameMode, context)
 
         if (scoreboard.size < 10){
             return true
@@ -67,16 +67,14 @@ class DataController(val context : Context) {
         val scoreboard = DataManager.load(gameMode, context)
 
 
-        if (scoreboard.isNotEmpty()){
+        return if (scoreboard.isNotEmpty()){
             scoreboard.sortByDescending { Score -> Score.score }
 
-            return scoreboard[0]
-        }
-
-        else{
+            scoreboard[0]
+        } else{
 
             scoreboard.add(Score("It's empty in here", 0))
-            return scoreboard[0]
+            scoreboard[0]
         }
     }
 
@@ -96,7 +94,7 @@ class DataController(val context : Context) {
 
     private fun setScore(newScore : Score, gameMode : Int) {
 
-        var scoreboard = DataManager.load(gameMode, context)
+        val scoreboard = DataManager.load(gameMode, context)
         scoreboard.add(newScore)
         scoreboard.sortByDescending { Score -> Score.score }
 

@@ -1,11 +1,11 @@
 package com.karol.pong
 
-import android.content.Context
+
 import android.graphics.*
 import kotlin.math.abs
 
 
-class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float) {
+class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float) {
 
 
     var paint = Paint()
@@ -41,7 +41,7 @@ class Ball(context: Context, var posX: Float, var posY: Float, var size: Float, 
             speedX *= -1
 
         }
-        if(abs(posY) - abs(size) < bounds.top + 20f){
+        if(abs(posY) - abs(size) - abs(100) < bounds.top){
             speedY *= -1
 
         }
