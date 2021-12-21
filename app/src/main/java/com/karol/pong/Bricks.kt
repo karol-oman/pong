@@ -1,12 +1,11 @@
 package com.karol.pong
 
-import android.content.Context
+
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 
-class Bricks(var posX: Float, var posY: Float) {
+class Bricks(posX: Float, posY: Float) {
 
     var paint = Paint()
 

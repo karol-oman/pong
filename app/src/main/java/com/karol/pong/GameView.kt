@@ -1,6 +1,6 @@
 package com.karol.pong
 
-import android.annotation.SuppressLint
+
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -9,17 +9,18 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
 
+
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
     private var running = false
     lateinit var canvas: Canvas
     lateinit var ball: Ball
-    private lateinit var bricks: Bricks
 
 
+    private var score: Int = 0
 
-    //private var score: Int = Setting.score
+
     private var playActivity = context as PlayActivity
 
     private lateinit var paddle: Paddle
@@ -94,15 +95,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(this.context, 800f, 600f, 30f, 30f, 40f)
-        paddle = Paddle(this.context)
-
-        //Starting position for ball and paddle
-//        if(gameMode == 1){
-//            ball.posY = 900f
-//        }
-//        else ball.posY = 200f
-
+        ball = Ball(500f, 800f, 30f, 30f, 40f)
+        paddle = Paddle()
 
         paddle.posX = 500f
 
@@ -119,13 +113,13 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle.paint7.color = Color.TRANSPARENT
 
         //changes color on paddle
-        /*paddle.paint1.color = Color.WHITE
-        paddle.paint2.color = Color.GREEN
-        paddle.paint3.color = Color.BLUE
-        paddle.paint4.color = Color.YELLOW
-        paddle.paint5.color = Color.CYAN
-        paddle.paint6.color = Color.RED
-        paddle.paint7.color = Color.MAGENTA */
+//        paddle.paint1.color = Color.WHITE
+//        paddle.paint2.color = Color.GREEN
+//        paddle.paint3.color = Color.BLUE
+//        paddle.paint4.color = Color.YELLOW
+//        paddle.paint5.color = Color.CYAN
+//        paddle.paint6.color = Color.RED
+//        paddle.paint7.color = Color.MAGENTA
     }
 
     private fun start() {
@@ -170,7 +164,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         ball.draw(canvas)
 
-//        canvas.drawBitmap(paintedBall, ball.posX - ball.size * 2f, ball.posY - ball.size * 2f, null)
+        //
         canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
         canvas.drawBitmap(paintedPaddle, paddle.zone1.left, paddle.zone7.top,null )
 
@@ -188,43 +182,67 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun intersects() {
 
+        //TODO implement paddle zone behaviours in Sprint 3
+        when {
+            RectF.intersects(paddle.zone1, ball.hitbox) -> {
+                println("Hit zone 1")
 
-        if (RectF.intersects(paddle.zone1, ball.hitbox)) {
-            println("Hit zone 1")
+                ball.speedY *= -1
 
-            ball.speedY *= -1f
-            Setting.score++
-        }
-        else if (RectF.intersects(paddle.zone2, ball.hitbox)) {
-            println("Hit zone 2")
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
+                score++
+            }
+            RectF.intersects(paddle.zone2, ball.hitbox) -> {
+                println("Hit zone 2")
 
-            ball.speedY *= -1f
-            Setting.score++
-        }
-        else if (RectF.intersects(paddle.zone3, ball.hitbox)) {
-            println("Hit zone 3")
-            Setting.score++
-            ball.speedY *= -1f
-        }
-        else if (RectF.intersects(paddle.zone4, ball.hitbox)) {
-            println("Hit zone 4")
-            Setting.score++
-            ball.speedY *= -1f
-        }
-        else if (RectF.intersects(paddle.zone5, ball.hitbox)) {
-            println("Hit zone 5")
-            Setting.score++
-            ball.speedY *= -1f
-        }
-        else if (RectF.intersects(paddle.zone6, ball.hitbox)) {
-            println("Hit zone 6")
-            Setting.score++
-            ball.speedY *= -1f
-        }
-        else if (RectF.intersects(paddle.zone7, ball.hitbox)) {
-            println("Hit zone 7")
-            Setting.score++
-            ball.speedY *= -1f
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
+                score++
+            }
+            RectF.intersects(paddle.zone3, ball.hitbox) -> {
+                println("Hit zone 3")
+
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
+                score++
+            }
+            RectF.intersects(paddle.zone4, ball.hitbox) -> {
+                println("Hit zone 4")
+
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
+                score++
+            }
+            RectF.intersects(paddle.zone5, ball.hitbox) -> {
+                println("Hit zone 5")
+
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
+                score++
+
+            }
+            RectF.intersects(paddle.zone6, ball.hitbox) -> {
+                println("Hit zone 6")
+
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
+                score++
+
+            }
+            RectF.intersects(paddle.zone7, ball.hitbox) -> {
+                println("Hit zone 7")
+
+                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
+                score++
+            }
         }
 
         if(Setting.gameMode == 0){
@@ -234,10 +252,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 RectF.intersects(paddle.zone5, ball.hitbox) || RectF.intersects(paddle.zone6, ball.hitbox) ||
                 RectF.intersects(paddle.zone7, ball.hitbox)){
 
-                when (Setting.score + 1) {
+                when (score) {
                     1 -> playActivity.updateLevel("")
                     10 -> {
-                        ball.speedY = -30f
+                        ball.speedY = -80f
                         playActivity.updateLevel("Level: 2")
                     }
                     11 -> playActivity.updateLevel("")
@@ -261,57 +279,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             }
         }
 
+        playActivity.updateScore("Total score: $score")
 
 
-
-//        if (RectF.intersects(paddle.paddle, ball.hitbox)) {
-//
-//            ball.speedY *= -1f
-//
-//            //Increase difficulty based on score.
-//            when (score + 1) {
-//                1 -> playActivity.updateLevel("")
-//                10 -> {
-//                    ball.speedY = -80f
-//                    playActivity.updateLevel("Level: 2")
-//                }
-//                11 -> playActivity.updateLevel("")
-//
-//                20 -> {
-//                    ball.speedY = -110f
-//                    playActivity.updateLevel("Level: 3")
-//                }
-//                21 -> playActivity.updateLevel("")
-//                40 -> {
-//                    ball.speedY = -150f
-//                    playActivity.updateLevel("Level: 4")
-//                }
-//                41 -> playActivity.updateLevel("")
-//                80 -> {
-//                    ball.speedY = -200f
-//                    playActivity.updateLevel("Level: 5")
-//                }
-//                81 -> playActivity.updateLevel("")
-//            }
-//
-
-
-          println("Total score: " + Setting.score)
-          playActivity.updateScore("Total score: " + Setting.score)
-
-//        }
         if (ball.posY + ball.size > bounds.bottom) {
-            playActivity.showGameOver(Setting.score, Setting.gameMode)
+            playActivity.showGameOver(Setting.gameMode)
             playActivity.updateLevel("")
-            println("u suck")
+            Setting.score = score
             running = false
+
         }
 
-
-        //if(RectF.intersects(paddle.paddle, RectF(bounds.bottom))){
     }
-
-
     override fun surfaceCreated(p0: SurfaceHolder) {
 
     }
@@ -327,14 +306,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         stop()
     }
     override fun run() {
-        while (running && Setting.test) {
+        while (running && !Setting.rageQuit) {
             update()
             draw()
             intersects()
             ball.checkBounds(bounds)
-
         }
-
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

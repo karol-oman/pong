@@ -52,17 +52,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:layout_editor_absoluteX="0dp" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_sound"
-        android:layout_width="@dimen/image_ball_width"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:checked="true"
 
-        android:text="@string/sound"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager_paddle" />
+    <!--    TODO  sound not yet implemented. See you in sprint 3-->
+    <!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--        android:id="@+id/switch_sound"-->
+<!--        android:layout_width="@dimen/image_ball_width"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:checked="true"-->
+
+<!--        android:text="@string/sound"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/view_pager_paddle" />-->
 
     <Button
         android:id="@+id/button_save"

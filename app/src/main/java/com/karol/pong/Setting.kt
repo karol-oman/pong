@@ -1,12 +1,10 @@
 package com.karol.pong
 
-import android.content.Context
-
 object Setting{
 
 
+    //ID for drawables
     var ballID: Int = 0
-
     var paddleID = 0
 
 
@@ -17,7 +15,15 @@ object Setting{
 
     var score = 0
 
-    var test = true
+    var rageQuit = true
+
+
+    //Ball speeds
+    //Coming soon
+//    var speedY = 30f
+//    var speedX = 0f
+//    var totSpeed = speedX + speedY
+
 
 
 
