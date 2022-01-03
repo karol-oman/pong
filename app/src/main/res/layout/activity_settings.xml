@@ -19,12 +19,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/frame_total_score"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/frame_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -47,6 +51,34 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             tools:layout_editor_absoluteX="0dp" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:padding="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left_arrow"
+            android:layout_gravity="center"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right"
+            android:layout_gravity="left"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -54,7 +86,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="40dp"
-        android:background="@drawable/frame_total_score"
+        android:background="@drawable/frame_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -74,7 +106,28 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/image_ball_height"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            tools:layout_editor_absoluteX="0dp" />
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_arrow"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
