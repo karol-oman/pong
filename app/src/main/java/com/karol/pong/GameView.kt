@@ -253,16 +253,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 RectF.intersects(paddle.zone7, ball.hitbox)){
 
                 when (score) {
-                    1 -> playActivity.updateLevel("")
-                    10 -> {
+                    1 -> playActivity.updateLevel(android.R.color.transparent)
+                    2 -> {
                         ball.speedY = -80f
-                        playActivity.updateLevel("Level: 2")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 1")
                     }
-                    11 -> playActivity.updateLevel("")
 
+                    3 -> playActivity.updateLevel(android.R.color.transparent)
+/*
                     20 -> {
                         ball.speedY = -110f
-                        playActivity.updateLevel("Level: 3")
+                       playActivity.updateLevel("Level: 3")
                     }
                     21 -> playActivity.updateLevel("")
                     40 -> {
@@ -275,7 +277,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                         playActivity.updateLevel("Level: 5")
                     }
                     81 -> playActivity.updateLevel("")
-                }
+                */}
             }
         }
 
@@ -284,7 +286,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(Setting.gameMode)
-            playActivity.updateLevel("")
+            //playActivity.updateLevel("")
             Setting.score = score
             running = false
 
