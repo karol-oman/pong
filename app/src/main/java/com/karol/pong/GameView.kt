@@ -7,9 +7,8 @@ import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.animation.AnimationUtils
 import androidx.core.graphics.scale
-
+import kotlin.math.abs
 
 
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
@@ -31,6 +30,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val randomBackground = (0..6).random()
 
+    private val randomBallPos = (50..(getScreenWidth()-50)).random()
+    private val randomBallXSpeed = (-30..30).random()
+
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
@@ -42,11 +44,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
         .scale(getScreenWidth(), getScreenHeight())
-
-
     private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
     private var paintedPaddle: Bitmap = BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500,50, true)
+
     init {
 
         if (mHolder != null)
@@ -57,30 +58,42 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         setup()
     }
     private fun generateBricks(){
-        var xpos = 0f
+        var xpos = +10f
+        var ypos = 70f
 
-        for (i in 0..5){
+        val margin = 10f
+
+
+        for (i in 0..11){
 
             val brick = Bricks(0f,0f)
 
-            val brick1 = Bricks(xpos, brick.height )
+            val brick1 = Bricks(xpos, brick.height + ypos)
             GameHandler.allBricks.add(brick1)
 
-            val brick2 = Bricks(xpos, brick.height*2 + brick.height/2)
+            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos)
             GameHandler.allBricks.add(brick2)
 
-            val brick3 = Bricks(xpos, brick.height*4)
+            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos)
             GameHandler.allBricks.add(brick3)
 
-            val brick4 = Bricks(xpos, brick.height*5 + brick.height/2)
+            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos)
             GameHandler.allBricks.add(brick4)
 
-//            if (Setting.level == 1){
-//                val brick5 = Bricks(xpos, brick.height*6 * brick.height/2)
-//                GameHandler.allBricks.add(brick5)
-//            }
+            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos)
+            GameHandler.allBricks.add(brick5)
 
-            xpos += 250f
+            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos)
+            GameHandler.allBricks.add(brick6)
+
+
+            xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
+
+//            val brick1 = Bricks(getScreenWidth()/12f-margin, brick.height + 10f)
+//            GameHandler.allBricks.add(brick1)
+
+//            val brick2 = Bricks(, brick.height + 10f)
+//            GameHandler.allBricks.add(brick2)
         }
 
     }
@@ -101,8 +114,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(500f, 800f, 30f, 30f, 40f)
+        ball = Ball(randomBallPos.toFloat(), 800f, 30f, randomBallXSpeed.toFloat(), 40f)
         paddle = Paddle()
+
+        println(getScreenWidth())
 
         paddle.posX = 500f
 
@@ -199,9 +214,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if(Setting.gameMode == 1){
 
-            //TODO DISPLAY METRICS HERE
-
-                for (brick in GameHandler.allBricks) {
+            for (brick in GameHandler.allBricks) {
                 brick.draw(canvas)
 
             }
@@ -220,40 +233,40 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 ball.speedY *= -1
 
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
                 score++
             }
             RectF.intersects(paddle.zone2, ball.hitbox) -> {
                 //println("Hit zone 2")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
                 score++
             }
             RectF.intersects(paddle.zone3, ball.hitbox) -> {
                 //println("Hit zone 3")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
                 score++
             }
             RectF.intersects(paddle.zone4, ball.hitbox) -> {
                 //println("Hit zone 4")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
+                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
                 score++
             }
             RectF.intersects(paddle.zone5, ball.hitbox) -> {
                 //println("Hit zone 5")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
                 score++
 
             }
@@ -261,8 +274,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 //println("Hit zone 6")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
                 score++
 
             }
@@ -270,8 +283,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 //println("Hit zone 7")
 
                 ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
+                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
                 score++
             }
         }
@@ -333,9 +346,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(Setting.gameMode)
-            //playActivity.updateLevel("")
+            playActivity.updateLevel(android.R.color.transparent)
             Setting.score = score
             running = false
+
 
         }
 

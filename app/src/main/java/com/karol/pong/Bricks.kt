@@ -1,6 +1,7 @@
 package com.karol.pong
 
 
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
@@ -9,12 +10,12 @@ class Bricks(posX: Float, posY: Float) {
 
     var paint = Paint()
 
-    var width = 200f
-    var height = 100f
+    var width = 0f
+    var height = 50f
 
     var destroy = false
 
-    var bricks: RectF = RectF(posX, posY, posX + width, posY + height)
+    private var bricks: RectF = RectF(posX, posY, posX + getScreenWidth()/14, posY + height)
 
     fun draw(canvas: Canvas?){
 
@@ -34,6 +35,14 @@ class Bricks(posX: Float, posY: Float) {
             println("Collision")
 
         }
+    }
+
+    private fun getScreenWidth(): Int {
+        return Resources.getSystem().displayMetrics.widthPixels
+    }
+
+    private fun getScreenHeight(): Int {
+        return Resources.getSystem().displayMetrics.heightPixels
     }
 
 }

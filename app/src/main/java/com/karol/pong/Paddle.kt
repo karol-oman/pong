@@ -36,6 +36,8 @@ class Paddle {
     lateinit var zone6: RectF
     lateinit var zone7: RectF
 
+//    lateinit var paddle: RectF
+
     private var totZones = 7
     private var widthZone = abs(width) / abs(totZones)
 
@@ -63,7 +65,8 @@ class Paddle {
         canvas?.drawRect(zone6, paint6)
         canvas?.drawRect(zone7, paint7)
 
-        println()
+//        paddle = RectF(posX, posY, width, height)
+//        canvas?.drawRect(paddle, paint1)
 
     }
 
