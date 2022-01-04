@@ -23,9 +23,9 @@ object Setting{
 
     //Ball speeds
     //Coming soon
-//    var speedY = 30f
-//    var speedX = 0f
-//    var totSpeed = speedX + speedY
+    var speedY = 30f
+    var speedX = 0f
+    var totSpeed = speedX + speedY
 
 
 
