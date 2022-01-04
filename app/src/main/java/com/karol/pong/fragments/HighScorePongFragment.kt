@@ -25,9 +25,6 @@ class HighScorePongFragment: Fragment() {
         val view: View = inflater.inflate(R.layout.layout_high_score_pong, container, false)
         val dataController = DataController(activity!!.applicationContext)
 
-
-
-
         val adapter = object : ArrayAdapter<Score>(
             activity!!.applicationContext,
             R.layout.list_view_item, R.id.list_item_name,

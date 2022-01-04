@@ -15,12 +15,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/test"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+<!--        <FrameLayout-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
 
-        </FrameLayout>
+<!--        </FrameLayout>-->
     </FrameLayout>
 
     <LinearLayout
@@ -28,7 +28,6 @@
         android:layout_height="30dp"
         android:background="@drawable/frame_total_score"
         android:orientation="horizontal"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -56,12 +55,20 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="High Score:" />
 
+        <TextView
+            android:id="@+id/text_view_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Level:"
+            android:textSize="20sp"
+            android:textColor="@color/black"/>
+
     </LinearLayout>
 
-    <TextView
+    <ImageView
         android:id="@+id/text_view_lvl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
         tools:text="Level"
         android:textColor="@color/black"
         android:textSize="20sp"

@@ -7,7 +7,9 @@ import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.animation.AnimationUtils
 import androidx.core.graphics.scale
+
 
 
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
@@ -16,7 +18,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private var running = false
     lateinit var canvas: Canvas
     lateinit var ball: Ball
-
 
     private var score: Int = 0
 
@@ -35,7 +36,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
 
-    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.ball5)
+    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.shuri)
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
@@ -58,7 +59,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private fun generateBricks(){
         var xpos = 0f
 
-        for (i in 0..6){
+        for (i in 0..5){
 
             val brick = Bricks(0f,0f)
 
@@ -73,6 +74,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             val brick4 = Bricks(xpos, brick.height*5 + brick.height/2)
             GameHandler.allBricks.add(brick4)
+
+//            if (Setting.level == 1){
+//                val brick5 = Bricks(xpos, brick.height*6 * brick.height/2)
+//                GameHandler.allBricks.add(brick5)
+//            }
 
             xpos += 250f
         }
@@ -100,6 +106,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         paddle.posX = 500f
 
+
         //Sets the color to ball and paddle.
         ball.paint.color = Color.TRANSPARENT
 
@@ -120,6 +127,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //        paddle.paint5.color = Color.CYAN
 //        paddle.paint6.color = Color.RED
 //        paddle.paint7.color = Color.MAGENTA
+
     }
 
     private fun start() {
@@ -141,18 +149,39 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
 
         ball.update()
-        for(brick in GameHandler.allBricks){
-            brick.update(ball)
-        }
-        val x = GameHandler.allBricks.toMutableList()
 
-        for (brick in x){
-            if (brick.destroy){
-                GameHandler.allBricks.remove(brick)
+        if(Setting.gameMode == 1){
+
+            for(brick in GameHandler.allBricks){
+                brick.update(ball)
             }
+            val x = GameHandler.allBricks.toMutableList()
+
+            for (brick in x){
+                if (brick.destroy){
+                    GameHandler.allBricks.remove(brick)
+                    Setting.test++
+                    println("TOTAL BRICKS" + GameHandler.allBricks.size)
+
+                }
+            }
+
+            if(ball.posY < 1500f)
+                println("under 1500")
+
+            //println("TOTAL BRICKS" + GameHandler.allBricks.size)
+
+            if(GameHandler.allBricks.isEmpty() && ball.posY > (getScreenHeight()/2).toFloat()){
+
+                //Setting.level++
+                generateBricks()
+            }
+
         }
+
 
     }
+
     private fun draw() {
 
         canvas = mHolder!!.lockCanvas()
@@ -174,7 +203,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 for (brick in GameHandler.allBricks) {
                 brick.draw(canvas)
+
             }
+
 
         }
 
@@ -185,7 +216,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         //TODO implement paddle zone behaviours in Sprint 3
         when {
             RectF.intersects(paddle.zone1, ball.hitbox) -> {
-                println("Hit zone 1")
+                //println("Hit zone 1")
 
                 ball.speedY *= -1
 
@@ -194,7 +225,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 score++
             }
             RectF.intersects(paddle.zone2, ball.hitbox) -> {
-                println("Hit zone 2")
+                //println("Hit zone 2")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
@@ -202,7 +233,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 score++
             }
             RectF.intersects(paddle.zone3, ball.hitbox) -> {
-                println("Hit zone 3")
+                //println("Hit zone 3")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
@@ -210,7 +241,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 score++
             }
             RectF.intersects(paddle.zone4, ball.hitbox) -> {
-                println("Hit zone 4")
+                //println("Hit zone 4")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
@@ -218,7 +249,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 score++
             }
             RectF.intersects(paddle.zone5, ball.hitbox) -> {
-                println("Hit zone 5")
+                //println("Hit zone 5")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
@@ -227,7 +258,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             }
             RectF.intersects(paddle.zone6, ball.hitbox) -> {
-                println("Hit zone 6")
+                //println("Hit zone 6")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
@@ -236,7 +267,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             }
             RectF.intersects(paddle.zone7, ball.hitbox) -> {
-                println("Hit zone 7")
+                //println("Hit zone 7")
 
                 ball.speedY *= -1
 //                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
@@ -253,16 +284,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 RectF.intersects(paddle.zone7, ball.hitbox)){
 
                 when (score) {
-                    1 -> playActivity.updateLevel("")
-                    10 -> {
+                    1 -> playActivity.updateLevel(android.R.color.transparent)
+                    2 -> {
                         ball.speedY = -80f
-                        playActivity.updateLevel("Level: 2")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 1")
                     }
-                    11 -> playActivity.updateLevel("")
 
+                    3 -> playActivity.updateLevel(android.R.color.transparent)
+/*
                     20 -> {
                         ball.speedY = -110f
-                        playActivity.updateLevel("Level: 3")
+                       playActivity.updateLevel("Level: 3")
                     }
                     21 -> playActivity.updateLevel("")
                     40 -> {
@@ -275,16 +308,22 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                         playActivity.updateLevel("Level: 5")
                     }
                     81 -> playActivity.updateLevel("")
-                }
+                */}
             }
         }
 
-        playActivity.updateScore("Total score: $score")
+        if(Setting.gameMode == 0){
+            playActivity.updateScore("Total score: $score")
+        }
+        if(Setting.gameMode == 1){
+            playActivity.updateScore("Total score: ${Setting.test}")
+        }
+
 
 
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(Setting.gameMode)
-            playActivity.updateLevel("")
+            //playActivity.updateLevel("")
             Setting.score = score
             running = false
 
@@ -298,7 +337,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         bounds = Rect(0, 0, p2, p3)
 
-        paddle.posY = bounds.bottom.toFloat() - 100f
+        paddle.posY = bounds.bottom.toFloat() - 400f
 
         start()
     }

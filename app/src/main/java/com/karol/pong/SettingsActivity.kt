@@ -29,9 +29,6 @@ class SettingsActivity : AppCompatActivity() {
 
         button_save.setOnClickListener {
 
-            //println("current ID:" + binding.viewPagerBall.currentItem)
-            println("Current BG:" + binding.viewPagerPaddle.currentItem)
-
             val intent = Intent(this, MainActivity::class.java)
 
             Setting.ballID = binding.viewPagerBall.currentItem
@@ -45,7 +42,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 4
+        override fun getItemCount(): Int = 5
 
 
         //TODO FIX POSITION!!!
@@ -63,6 +60,9 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 3 -> {
                     BallFourFragment()
+                }
+                4 -> {
+                    BallFiveFragment()
                 }
                 else -> {
                     BallOneFragment()
