@@ -55,9 +55,16 @@ class PlayActivity : AppCompatActivity() {
         })
     }
 
-    fun updateLevel(str: String) {
+    fun updateLevel(id: Int) {
         runOnUiThread(Runnable {
-            binding.textViewLvl.text = str
+            binding.textViewLvl.setBackgroundResource(id)
+
+        })
+    }
+
+    fun updateLevelText(str : String) {
+        runOnUiThread(Runnable {
+            binding.textViewLevel.text = str
 
         })
     }

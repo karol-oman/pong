@@ -7,7 +7,9 @@ import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.animation.AnimationUtils
 import androidx.core.graphics.scale
+
 
 
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
@@ -34,7 +36,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
 
-    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.ball5)
+    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.shuri)
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
@@ -127,6 +129,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 //        paddle.paint5.color = Color.CYAN
 //        paddle.paint6.color = Color.RED
 //        paddle.paint7.color = Color.MAGENTA
+
     }
 
     private fun start() {
@@ -283,16 +286,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 RectF.intersects(paddle.zone7, ball.hitbox)){
 
                 when (score) {
-                    1 -> playActivity.updateLevel("")
-                    10 -> {
+                    1 -> playActivity.updateLevel(android.R.color.transparent)
+                    2 -> {
                         ball.speedY = -80f
-                        playActivity.updateLevel("Level: 2")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 1")
                     }
-                    11 -> playActivity.updateLevel("")
 
+                    3 -> playActivity.updateLevel(android.R.color.transparent)
+/*
                     20 -> {
                         ball.speedY = -110f
-                        playActivity.updateLevel("Level: 3")
+                       playActivity.updateLevel("Level: 3")
                     }
                     21 -> playActivity.updateLevel("")
                     40 -> {
@@ -305,7 +310,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                         playActivity.updateLevel("Level: 5")
                     }
                     81 -> playActivity.updateLevel("")
-                }
+                */}
             }
         }
 
@@ -320,7 +325,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (ball.posY + ball.size > bounds.bottom) {
             playActivity.showGameOver(Setting.gameMode)
-            playActivity.updateLevel("")
+            //playActivity.updateLevel("")
             Setting.score = score
             running = false
 

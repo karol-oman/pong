@@ -42,7 +42,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
-        override fun getItemCount(): Int = 4
+        override fun getItemCount(): Int = 5
 
 
         //TODO FIX POSITION!!!
@@ -60,6 +60,9 @@ class SettingsActivity : AppCompatActivity() {
                 }
                 3 -> {
                     BallFourFragment()
+                }
+                4 -> {
+                    BallFiveFragment()
                 }
                 else -> {
                     BallOneFragment()

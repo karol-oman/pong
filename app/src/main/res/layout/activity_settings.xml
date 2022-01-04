@@ -19,42 +19,121 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:src="@drawable/ball"
-        android:id="@+id/imageView2"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/frame_settings"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ball"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_ball"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_ball_height"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="10dp"
+                android:src="@drawable/left_arrow"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:paddingBottom="10dp"
+                android:src="@drawable/right"
+                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/frame_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/paddle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager_ball" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_paddle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_ball_height"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:padding="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_arrow"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/right"
+                />
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager_ball"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/image_ball_height"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:layout_editor_absoluteX="0dp" />
+        </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:src="@drawable/paddle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager_ball" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager_paddle"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/image_ball_height"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
 
 
-    <!--    TODO  sound not yet implemented. See you in sprint 3-->
-    <!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--        TODO  sound not yet implemented. See you in sprint 3-->
+<!--        <com.google.android.material.switchmaterial.SwitchMaterial-->
 <!--        android:id="@+id/switch_sound"-->
 <!--        android:layout_width="@dimen/image_ball_width"-->
 <!--        android:layout_height="wrap_content"-->
@@ -66,6 +145,7 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/view_pager_paddle" />-->
 
+
     <Button
         android:id="@+id/button_save"
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
@@ -74,7 +154,6 @@
         android:layout_gravity="center"
         android:text="@string/back"
         app:icon="@drawable/ic_baseline_save_24"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
