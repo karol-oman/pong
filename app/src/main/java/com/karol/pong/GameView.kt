@@ -297,32 +297,41 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 RectF.intersects(paddle.zone7, ball.hitbox)){
 
                 when (score) {
-                    1 -> playActivity.updateLevel(android.R.color.transparent)
-                    2 -> {
-                        Setting.totSpeed = (Setting.totSpeed * 1.2f)
-                        //ball.speedY = -80f
-                        playActivity.updateLevel(R.drawable.levelup)
+
+                    0 -> {
+                        playActivity.updateLevel(android.R.color.transparent)
                         playActivity.updateLevelText("Level: 1")
                     }
+                    10 -> {
+                        ball.speedY = -80f
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 2")
+                    }
+                    2 -> {
+                        playActivity.updateLevel(android.R.color.transparent)
 
-                    3 -> playActivity.updateLevel(android.R.color.transparent)
-/*
+                    }
                     20 -> {
                         ball.speedY = -110f
-                       playActivity.updateLevel("Level: 3")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 3")
                     }
-                    21 -> playActivity.updateLevel("")
-                    40 -> {
+                    21 -> playActivity.updateLevel(android.R.color.transparent)
+
+                    30 -> {
                         ball.speedY = -150f
-                        playActivity.updateLevel("Level: 4")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 4")
                     }
-                    41 -> playActivity.updateLevel("")
-                    80 -> {
+                    31 -> playActivity.updateLevel(android.R.color.transparent)
+
+                    50 -> {
                         ball.speedY = -200f
-                        playActivity.updateLevel("Level: 5")
+                        playActivity.updateLevel(R.drawable.levelup)
+                        playActivity.updateLevelText("Level: 4")
                     }
-                    81 -> playActivity.updateLevel("")
-                */}
+                    51 -> playActivity.updateLevel(android.R.color.transparent)
+                }
             }
         }
 
