@@ -13,9 +13,12 @@ object Setting{
     //1 == Bricks
     var gameMode = 0
 
-    var score = 0
+    var level = 1
 
-    var rageQuit = true
+    var score = 0
+    var test = 0
+
+    var rageQuit = false
 
 
     //Ball speeds
