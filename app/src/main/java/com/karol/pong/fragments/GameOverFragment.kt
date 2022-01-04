@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
+import android.graphics.Color
+
 
 class GameOverFragment(context1: Context, private val gameMode : Int): Fragment() {
 
+    private var saved = false
     private var dataController = DataController(context1)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,11 +49,11 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
         view.game_over_score.text = "Total score: " + Setting.score.toString()
         //Make warning pop up if u save without saving with a blank name
         view.button_main_menu.setOnClickListener{
-            goHome()
+            areYouSure(1)
         }
 
         view.button_restart.setOnClickListener{
-            restart()
+            areYouSure(2)
         }
         view.button_save.setOnClickListener{
             save()
@@ -74,9 +78,43 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
         if (edit_text_if_highscore.text!!.isNotBlank()) {
             dataController.saveScore(Score(edit_text_if_highscore.text.toString(), Setting.score), gameMode)
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
+            saved = true
             view?.button_save?.isEnabled = false
         }
 
         else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
     }
-}
+
+    private fun areYouSure(where : Int){
+
+        if (!saved && dataController.validateScore(Setting.score, Setting.gameMode)){
+
+            val builder = AlertDialog.Builder(context!!, R.style.ThemeOverlay_AppCompat_Dialog)
+            builder.setMessage("Do you really want to continue without saving?")
+                .setPositiveButton("Yes"
+                ) { _, _ ->
+                    when (where) {
+                        1 -> goHome()
+                        2 -> restart()
+                    }
+                }
+                .setNegativeButton("No"
+                ) { dialog, _ ->
+                    dialog.dismiss()
+                }
+            val dialog = builder.create()
+
+            dialog.show()
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
+            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
+        }
+            else {
+                when (where){
+                    1 -> goHome()
+                    2 -> restart()
+                }
+            }
+
+        }
+
+    }
