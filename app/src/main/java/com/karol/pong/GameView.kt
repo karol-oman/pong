@@ -102,6 +102,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         ball = Ball(500f, 800f, 30f, 30f, 40f)
         paddle = Paddle()
 
+        println(getScreenWidth())
+
         paddle.posX = 500f
 
 
