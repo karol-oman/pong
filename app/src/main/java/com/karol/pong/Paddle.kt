@@ -55,7 +55,6 @@ class Paddle {
 
         zone7 = RectF(posX + abs(widthZone*6), posY, posX + abs(widthZone*7), posY + height)
 
-
         canvas?.drawRect(zone1, paint1)
         canvas?.drawRect(zone2, paint2)
         canvas?.drawRect(zone3, paint3)

@@ -46,12 +46,12 @@ class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float,
 
         }
 
-        if (posY + size > bounds.bottom){
-            //speedY *= -1
-
-            println("u suck")
-
-        }
+//        if (posY + size > bounds.bottom){
+//            //speedY *= -1
+//
+//
+//
+//        }
     }
 
 }

@@ -23,16 +23,16 @@ class PlayActivity : AppCompatActivity() {
         }
 
         val dataController = DataController(this)
-        val text = "High score: ${dataController.highestScore(Setting.gameMode).score}"
 
+        val text = "High score: ${dataController.highestScore(Setting.gameMode).score}"
         binding.textViewHighScore.text = text
 
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        Setting.rageQuit = true
 
+        Setting.rageQuit = true
 
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)

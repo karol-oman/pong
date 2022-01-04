@@ -29,9 +29,6 @@ class SettingsActivity : AppCompatActivity() {
 
         button_save.setOnClickListener {
 
-            //println("current ID:" + binding.viewPagerBall.currentItem)
-            println("Current BG:" + binding.viewPagerPaddle.currentItem)
-
             val intent = Intent(this, MainActivity::class.java)
 
             Setting.ballID = binding.viewPagerBall.currentItem

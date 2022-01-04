@@ -33,10 +33,6 @@ class Bricks(posX: Float, posY: Float) {
 
             println("Collision")
 
-
-
-
-
         }
     }
 
