@@ -119,7 +119,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(randomBallPos.toFloat(), 800f, 30f, randomBallXSpeed.toFloat(), 40f)
+        ball = Ball(randomBallPos.toFloat(), 800f, 30f, randomBallXSpeed.toFloat(), 20f)
         paddle = Paddle()
 
         println(getScreenWidth())
@@ -229,6 +229,53 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         mHolder!!.unlockCanvasAndPost(canvas)
     }
     private fun intersects() {
+        val widthPerZone = paddle.width/6
+
+                if(RectF.intersects(paddle.paddle, ball.hitbox)){
+
+                    ball.speedY *= -1f
+                    val ballTotalSpeed = abs(ball.speedY) + abs(ball.speedX)
+
+                    if ((ball.hitbox.centerX() < paddle.posX + widthPerZone)){
+                        println("zon1")
+                        ball.speedX = (ballTotalSpeed * 0.8f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.2f) * -1
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*2)){
+                        println("zon2")
+                        ball.speedX = (ballTotalSpeed * 0.7f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*3)){
+                        println("zon3")
+                        ball.speedX = (ballTotalSpeed * 0.6f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*4)){
+                        println("zon4")
+                        ball.speedX = (ballTotalSpeed * 0.6f)
+                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*5)){
+                        println("zon5")
+                        ball.speedX = (ballTotalSpeed * 0.7f)
+                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
+
+                    }
+                    else if ((ball.hitbox.centerX() <= paddle.posX + widthPerZone*6)){
+                        println("zon6")
+                        ball.speedX = (ballTotalSpeed * 0.8f)
+                        ball.speedY = (ballTotalSpeed * 0.2f) * -1
+
+                    }
+                    else if(ball.hitbox.centerY() + ball.width <= paddle.posY ){
+                        println("träffade kanten")
+
+                    }
 
         //TODO implement paddle zone behaviours in Sprint 3
 //        when {
@@ -295,41 +342,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if(Setting.gameMode == 0){
 
-            val widthPerZone = paddle.width/6
-
-                if(RectF.intersects(paddle.paddle, ball.hitbox)){
-
-                    ball.speedY *= -1f
-
-
-                    if ((ball.hitbox.centerX() < paddle.posX + widthPerZone)){
-                        println("zon1")
-
-                    }
-                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*2)){
-                        println("zon2")
-
-                    }
-                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*3)){
-                        println("zon3")
-
-                    }
-                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*4)){
-                        println("zon4")
-
-                    }
-                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*5)){
-                        println("zon5")
-
-                    }
-                    else if ((ball.hitbox.centerX() <= paddle.posX + widthPerZone*6)){
-                        println("zon6")
-
-                    }
-                    else if(ball.hitbox.centerY() + ball.width <= paddle.posY ){
-                        println("träffade kanten")
-
-                    }
 
                 when (score) {
 
