@@ -222,7 +222,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             for (brick in GameHandler.allBricks) {
                 brick.draw(canvas)
                 //canvas.drawBitmap(paintedBrick, 1000f, 1000f, null)
-
             }
         }
 
