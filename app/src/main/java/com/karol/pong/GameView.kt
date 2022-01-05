@@ -48,6 +48,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var paintedPaddle: Bitmap = BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500,50, true)
 
+    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
+
+
+
     init {
 
         if (mHolder != null)
@@ -59,7 +63,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
     private fun generateBricks(){
         var xpos = +10f
-        var ypos = 70f
+        val ypos = 70f
 
         val margin = 10f
 
@@ -85,6 +89,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos)
             GameHandler.allBricks.add(brick6)
+
 
 
             xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
@@ -210,16 +215,15 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         //
         canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
-        canvas.drawBitmap(paintedPaddle, paddle.zone1.left, paddle.zone7.top,null )
+        canvas.drawBitmap(paintedPaddle, paddle.paddle.left, paddle.paddle.top,null )
 
         if(Setting.gameMode == 1){
 
             for (brick in GameHandler.allBricks) {
                 brick.draw(canvas)
+                //canvas.drawBitmap(paintedBrick, 1000f, 1000f, null)
 
             }
-
-
         }
 
         mHolder!!.unlockCanvasAndPost(canvas)
@@ -227,74 +231,105 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private fun intersects() {
 
         //TODO implement paddle zone behaviours in Sprint 3
-        when {
-            RectF.intersects(paddle.zone1, ball.hitbox) -> {
-                //println("Hit zone 1")
-
-                ball.speedY *= -1
-
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
-                score++
-            }
-            RectF.intersects(paddle.zone2, ball.hitbox) -> {
-                //println("Hit zone 2")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
-                score++
-            }
-            RectF.intersects(paddle.zone3, ball.hitbox) -> {
-                //println("Hit zone 3")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
-                score++
-            }
-            RectF.intersects(paddle.zone4, ball.hitbox) -> {
-                //println("Hit zone 4")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
-                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
-                score++
-            }
-            RectF.intersects(paddle.zone5, ball.hitbox) -> {
-                //println("Hit zone 5")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
-                score++
-
-            }
-            RectF.intersects(paddle.zone6, ball.hitbox) -> {
-                //println("Hit zone 6")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
-                score++
-
-            }
-            RectF.intersects(paddle.zone7, ball.hitbox) -> {
-                //println("Hit zone 7")
-
-                ball.speedY *= -1
-                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
-                score++
-            }
-        }
+//        when {
+//            RectF.intersects(paddle.zone1, ball.hitbox) -> {
+//                //println("Hit zone 1")
+//
+//                ball.speedY *= -1
+//
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
+//                score++
+//            }
+//            RectF.intersects(paddle.zone2, ball.hitbox) -> {
+//                //println("Hit zone 2")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
+//                score++
+//            }
+//            RectF.intersects(paddle.zone3, ball.hitbox) -> {
+//                //println("Hit zone 3")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
+//                score++
+//            }
+//            RectF.intersects(paddle.zone4, ball.hitbox) -> {
+//                //println("Hit zone 4")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
+//                score++
+//            }
+//            RectF.intersects(paddle.zone5, ball.hitbox) -> {
+//                //println("Hit zone 5")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
+//                score++
+//
+//            }
+//            RectF.intersects(paddle.zone6, ball.hitbox) -> {
+//                //println("Hit zone 6")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
+//                score++
+//
+//            }
+//            RectF.intersects(paddle.zone7, ball.hitbox) -> {
+//                //println("Hit zone 7")
+//
+//                ball.speedY *= -1
+//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
+//                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
+//                score++
+//            }
+//        }
 
         if(Setting.gameMode == 0){
 
-            if (RectF.intersects(paddle.zone1, ball.hitbox) || RectF.intersects(paddle.zone2, ball.hitbox) ||
-                RectF.intersects(paddle.zone3, ball.hitbox) || RectF.intersects(paddle.zone4, ball.hitbox) ||
-                RectF.intersects(paddle.zone5, ball.hitbox) || RectF.intersects(paddle.zone6, ball.hitbox) ||
-                RectF.intersects(paddle.zone7, ball.hitbox)){
+            val widthPerZone = paddle.width/6
+
+                if(RectF.intersects(paddle.paddle, ball.hitbox)){
+
+                    ball.speedY *= -1f
+
+
+                    if ((ball.hitbox.centerX() < paddle.posX + widthPerZone)){
+                        println("zon1")
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*2)){
+                        println("zon2")
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*3)){
+                        println("zon3")
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*4)){
+                        println("zon4")
+
+                    }
+                    else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*5)){
+                        println("zon5")
+
+                    }
+                    else if ((ball.hitbox.centerX() <= paddle.posX + widthPerZone*6)){
+                        println("zon6")
+
+                    }
+                    else if(ball.hitbox.centerY() + ball.width <= paddle.posY ){
+                        println("träffade kanten")
+
+                    }
 
                 when (score) {
 
