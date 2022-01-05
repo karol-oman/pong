@@ -43,6 +43,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="181dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:hint="Name"
                 app:endIconMode="clear_text"
                 app:layout_constraintBottom_toTopOf="@+id/button_main_menu"
@@ -54,6 +55,7 @@
                     android:id="@+id/edit_text_if_highscore"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -85,11 +87,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="129dp"
                 android:layout_height="49dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_home_24"
+
                 android:text="HOME"
                 app:layout_constraintBottom_toBottomOf="parent"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_save" />
 
@@ -98,6 +102,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="129dp"
                 android:layout_height="49dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_restart_alt_24"
                 android:text="RESTART"
@@ -108,8 +113,9 @@
                 android:id="@+id/button_save"
                 android:layout_width="wrap_content"
                 android:layout_height="49dp"
-                android:layout_marginEnd="20dp"
-                android:src="@drawable/ic_baseline_save_24"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/savee"
                 android:text="SAVED"
                 app:layout_constraintBottom_toTopOf="@+id/button_restart"
                 app:layout_constraintEnd_toEndOf="parent" />
