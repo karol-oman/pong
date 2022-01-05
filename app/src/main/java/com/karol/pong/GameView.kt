@@ -1,6 +1,7 @@
 package com.karol.pong
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -19,7 +20,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     lateinit var ball: Ball
 
     private var score: Int = 0
-
 
     private var playActivity = context as PlayActivity
 
@@ -41,6 +41,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.shuri)
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
+
+    private var playerHasShoot = false
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
         .scale(getScreenWidth(), getScreenHeight())
@@ -119,12 +121,13 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(randomBallPos.toFloat(), 800f, 30f, randomBallXSpeed.toFloat(), 20f)
         paddle = Paddle()
+        paddle.posX = getScreenWidth()/2f
+        ball = Ball(paddle.posX + paddle.width / 2, 1750f, 30f, 0f, 0f)
 
         println(getScreenWidth())
 
-        paddle.posX = 500f
+
 
 
         //Sets the color to ball and paddle.
@@ -428,11 +431,26 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         paddle.posX = event!!.x
 
+        if (!playerHasShoot){
+            performClick()
+            playerHasShoot = true
+        }
+
         //Sets the position of paddle to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
+
+
         }
         return true
+    }
+
+    override fun performClick(): Boolean {
+
+
+        ball.speedX = -30f
+        ball.speedY = -30f
+        return super.performClick()
     }
 
 }
