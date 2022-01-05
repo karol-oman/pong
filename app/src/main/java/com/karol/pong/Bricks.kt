@@ -7,19 +7,22 @@ import androidx.core.graphics.scale
 import java.security.AccessController.getContext
 
 
-class Bricks(posX: Float, posY: Float) {
+class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap) {
 
+    val paintedBrick1 = paintedBrick
     var paint = Paint()
 
 //    var res: Resources = Resources.getSystem()
 //    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(res, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
 
-    var width = 0f
+    var width = 10f
     var height = 50f
 
     var destroy = false
 
     private var bricks: RectF = RectF(posX, posY, posX + getScreenWidth()/14, posY + height)
+
+    //private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
 
 
 
@@ -27,8 +30,8 @@ class Bricks(posX: Float, posY: Float) {
 
         paint.color = Color.BLACK
 
-        canvas?.drawRect(bricks, paint)
-        //canvas?.drawBitmap(paintedBrick, bricks.top, bricks.left, null)
+        //canvas?.drawRect(bricks, paint)
+        canvas?.drawBitmap(paintedBrick1, bricks.left, bricks.top, null)
 
     }
     fun update(ball: Ball){
