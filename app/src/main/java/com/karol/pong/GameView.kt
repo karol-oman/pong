@@ -388,7 +388,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 hasStarted = true
                 ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
                 ball.speedX = 0f
-                ball.speedY = 20f
+                ball.speedY = -20f
                 return true
             }
 
