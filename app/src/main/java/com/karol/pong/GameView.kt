@@ -1,6 +1,7 @@
 package com.karol.pong
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
@@ -20,7 +21,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var score: Int = 0
 
-
     private var playActivity = context as PlayActivity
 
     private lateinit var paddle: Paddle
@@ -30,8 +30,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val randomBackground = (0..6).random()
 
-    private val randomBallPos = (50..(getScreenWidth()-50)).random()
-    private val randomBallXSpeed = (-30..30).random()
+    private val randomBallYSpeed = (-30..30).random().toFloat()
+    private val randomBallXSpeed = (-30..30).random().toFloat()
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -42,13 +42,17 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
+    private val brickArray = arrayOf(R.drawable.paddle_kiwii, R.drawable.paddle_dragon, R.drawable.paddle_green_apple,R.drawable.paddle_purple_apple, R.drawable.paddle_strawberry, R.drawable.paddle_watermelon)
+
+    private var hasStarted = false
+
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
         .scale(getScreenWidth(), getScreenHeight())
     private var paintedBall: Bitmap = BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
     private var paintedPaddle: Bitmap = BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500,50, true)
 
-    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
+    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, brickArray[(0..5).random()]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
 
 
 
@@ -70,24 +74,25 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         for (i in 0..11){
 
-            val brick = Bricks(0f,0f)
 
-            val brick1 = Bricks(xpos, brick.height + ypos)
+            val brick = Bricks(0f,0f, paintedBrick )
+
+            val brick1 = Bricks(xpos, brick.height + ypos, paintedBrick )
             GameHandler.allBricks.add(brick1)
 
-            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos)
+            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos, paintedBrick )
             GameHandler.allBricks.add(brick2)
 
-            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos)
+            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick3)
 
-            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos)
+            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick4)
 
-            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos)
+            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick5)
 
-            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos)
+            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick6)
 
 
@@ -119,12 +124,13 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             generateBricks()
 
         //Creates ball and paddle objects
-        ball = Ball(randomBallPos.toFloat(), 800f, 30f, randomBallXSpeed.toFloat(), 40f)
         paddle = Paddle()
+        paddle.posX = (getScreenWidth()/2f) - paddle.width / 2f
+        ball = Ball(paddle.posX + paddle.width / 2, 1750f, 30f, 0f, 0f)
 
         println(getScreenWidth())
 
-        paddle.posX = 500f
+
 
 
         //Sets the color to ball and paddle.
@@ -228,107 +234,56 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         mHolder!!.unlockCanvasAndPost(canvas)
     }
     private fun intersects() {
-
-        //TODO implement paddle zone behaviours in Sprint 3
-//        when {
-//            RectF.intersects(paddle.zone1, ball.hitbox) -> {
-//                //println("Hit zone 1")
-//
-//                ball.speedY *= -1
-//
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.7f))
-//                score++
-//            }
-//            RectF.intersects(paddle.zone2, ball.hitbox) -> {
-//                //println("Hit zone 2")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.65f))
-//                score++
-//            }
-//            RectF.intersects(paddle.zone3, ball.hitbox) -> {
-//                //println("Hit zone 3")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-//                ball.speedX = -(abs(Setting.totSpeed) * abs(0.6f))
-//                score++
-//            }
-//            RectF.intersects(paddle.zone4, ball.hitbox) -> {
-//                //println("Hit zone 4")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(1f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0f))
-//                score++
-//            }
-//            RectF.intersects(paddle.zone5, ball.hitbox) -> {
-//                //println("Hit zone 5")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.4f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.6f))
-//                score++
-//
-//            }
-//            RectF.intersects(paddle.zone6, ball.hitbox) -> {
-//                //println("Hit zone 6")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.35f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.65f))
-//                score++
-//
-//            }
-//            RectF.intersects(paddle.zone7, ball.hitbox) -> {
-//                //println("Hit zone 7")
-//
-//                ball.speedY *= -1
-//                ball.speedY = -(abs(Setting.totSpeed) * abs(0.3f))
-//                ball.speedX = (abs(Setting.totSpeed) * abs(0.7f))
-//                score++
-//            }
-//        }
-
-        if(Setting.gameMode == 0){
-
-            val widthPerZone = paddle.width/6
+        val widthPerZone = paddle.width/6
 
                 if(RectF.intersects(paddle.paddle, ball.hitbox)){
 
                     ball.speedY *= -1f
-
+                    val ballTotalSpeed = abs(ball.speedY) + abs(ball.speedX)
 
                     if ((ball.hitbox.centerX() < paddle.posX + widthPerZone)){
                         println("zon1")
+                        ball.speedX = (ballTotalSpeed * 0.8f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.2f) * -1
 
                     }
                     else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*2)){
                         println("zon2")
+                        ball.speedX = (ballTotalSpeed * 0.7f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
 
                     }
                     else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*3)){
                         println("zon3")
+                        ball.speedX = (ballTotalSpeed * 0.6f) * -1
+                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
 
                     }
                     else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*4)){
                         println("zon4")
+                        ball.speedX = (ballTotalSpeed * 0.6f)
+                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
 
                     }
                     else if ((ball.hitbox.centerX() < paddle.posX + widthPerZone*5)){
                         println("zon5")
+                        ball.speedX = (ballTotalSpeed * 0.7f)
+                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
 
                     }
                     else if ((ball.hitbox.centerX() <= paddle.posX + widthPerZone*6)){
                         println("zon6")
+                        ball.speedX = (ballTotalSpeed * 0.8f)
+                        ball.speedY = (ballTotalSpeed * 0.2f) * -1
 
                     }
                     else if(ball.hitbox.centerY() + ball.width <= paddle.posY ){
                         println("träffade kanten")
 
                     }
+
+        if(Setting.gameMode == 0){
+
 
                 when (score) {
 
@@ -396,6 +351,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         bounds = Rect(0, 0, p2, p3)
 
         paddle.posY = bounds.bottom.toFloat() - 400f
+        ball.posY = bounds.bottom.toFloat() - 450f
 
         start()
     }
@@ -413,13 +369,41 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        paddle.posX = event!!.x
+        paddle.posX = event!!.x - paddle.width/2
 
-        //Sets the position of paddle to right of screen if paddle goes "outside" screen
+        //Sets the position of paddle & ball to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
         }
+        if (paddle.posX < bounds.left) {
+            paddle.posX = bounds.left.toFloat()
+        }
+
+        if (!hasStarted){
+            ball.posX = event!!.x
+
+            if (event!!.action == MotionEvent.ACTION_UP){
+
+                hasStarted = true
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+                ball.speedX = 0f
+                ball.speedY = -20f
+                return true
+            }
+
+            if (ball.posX < paddle.posX + paddle.width / 2 || ball.posX > paddle.posX + paddle.width / 2) {
+
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+
+            }
+
+            if (paddle.posX + paddle.width > bounds.right) {
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+            }
+        }
+
         return true
+
     }
 
 }

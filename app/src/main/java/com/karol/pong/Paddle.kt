@@ -65,7 +65,7 @@ class Paddle {
 //        canvas?.drawRect(zone5, paint5)
 //        canvas?.drawRect(zone6, paint6)
 //        canvas?.drawRect(zone7, paint7)
-        paint1.color = Color.BLACK
+        paint1.color = Color.TRANSPARENT
 
         paddle = RectF(posX, posY, posX + width, posY + height)
         canvas?.drawRect(paddle, paint1)
