@@ -1,11 +1,17 @@
 package com.karol.pong
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.core.graphics.scale
+
 object Setting{
 
 
     //ID for drawables
     var ballID: Int = 0
     var paddleID = 0
+
+
 
 
     //Game modes
