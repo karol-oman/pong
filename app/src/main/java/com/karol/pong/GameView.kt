@@ -42,6 +42,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
+    private val brickArray = arrayOf(R.drawable.paddle_kiwii, R.drawable.paddle_dragon, R.drawable.paddle_green_apple,R.drawable.paddle_purple_apple, R.drawable.paddle_strawberry, R.drawable.paddle_watermelon)
+
     private var hasStarted = false
 
     private var background: Bitmap = BitmapFactory.decodeResource(resources, imgId[randomBackground])
@@ -50,7 +52,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var paintedPaddle: Bitmap = BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500,50, true)
 
-    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
+    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, brickArray[(0..5).random()]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
 
 
 
@@ -72,24 +74,25 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         for (i in 0..11){
 
-            val brick = Bricks(0f,0f)
 
-            val brick1 = Bricks(xpos, brick.height + ypos)
+            val brick = Bricks(0f,0f, paintedBrick )
+
+            val brick1 = Bricks(xpos, brick.height + ypos, paintedBrick )
             GameHandler.allBricks.add(brick1)
 
-            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos)
+            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos, paintedBrick )
             GameHandler.allBricks.add(brick2)
 
-            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos)
+            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick3)
 
-            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos)
+            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick4)
 
-            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos)
+            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick5)
 
-            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos)
+            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos, paintedBrick )
             GameHandler.allBricks.add(brick6)
 
 
@@ -367,11 +370,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        paddle.posX = event!!.x
+        paddle.posX = event!!.x - paddle.width/2
 
         //Sets the position of paddle & ball to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
+        }
+        if (paddle.posX < bounds.left) {
+            paddle.posX = bounds.left.toFloat()
         }
 
         if (!hasStarted){

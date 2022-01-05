@@ -5,4 +5,5 @@ object GameHandler {
 
     val allBricks = mutableListOf<Bricks>()
 
+
 }
