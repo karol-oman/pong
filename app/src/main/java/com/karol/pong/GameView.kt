@@ -30,8 +30,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private val randomBackground = (0..6).random()
 
-    //private val randomBallPos = (50..(getScreenWidth()-50)).random()
-    private val randomBallXSpeed = (-30..30).random()
+    private val randomBallYSpeed = (-30..30).random().toFloat()
+    private val randomBallXSpeed = (-30..30).random().toFloat()
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -368,36 +368,37 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
         paddle.posX = event!!.x
-        if (!hasStarted){
-            ball.posX = event!!.x
-        }
-
-        if (!hasStarted){
-            //performClick()
-            //hasStarted = true
-        }
-
-        if (ball.posX < paddle.posX + paddle.width / 2 || ball.posX > paddle.posX + paddle.width / 2 && !hasStarted) {
-
-            ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-
-        }
-
 
         //Sets the position of paddle & ball to right of screen if paddle goes "outside" screen
         if (paddle.posX + paddle.width > bounds.right) {
             paddle.posX = bounds.right.toFloat() - paddle.width
-            ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
         }
+
+        if (!hasStarted){
+            ball.posX = event!!.x
+
+            if (event!!.action == MotionEvent.ACTION_UP){
+
+                hasStarted = true
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+                ball.speedX = 0f
+                ball.speedY = 20f
+                return true
+            }
+
+            if (ball.posX < paddle.posX + paddle.width / 2 || ball.posX > paddle.posX + paddle.width / 2) {
+
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+
+            }
+
+            if (paddle.posX + paddle.width > bounds.right) {
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+            }
+        }
+
         return true
-    }
 
-    override fun performClick(): Boolean {
-
-
-        ball.speedX = 0f
-        ball.speedY = 10f
-        return super.performClick()
     }
 
 }
