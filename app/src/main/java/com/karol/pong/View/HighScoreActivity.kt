@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.View
 
 
 import androidx.appcompat.app.AppCompatActivity

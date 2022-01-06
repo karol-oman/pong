@@ -1,4 +1,6 @@
-package com.karol.pong
+package com.karol.pong.Controller
+
+import com.karol.pong.Model.Bricks
 
 object GameHandler {
 

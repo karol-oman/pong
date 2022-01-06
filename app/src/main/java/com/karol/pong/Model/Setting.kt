@@ -1,8 +1,4 @@
-package com.karol.pong
-
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import androidx.core.graphics.scale
+package com.karol.pong.Model
 
 object Setting{
 
