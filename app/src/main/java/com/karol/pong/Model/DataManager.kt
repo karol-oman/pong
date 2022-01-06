@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.Model
 
 import android.content.Context
 import java.io.File

@@ -1,18 +1,16 @@
 package com.karol.pong.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.karol.pong.*
+import com.karol.pong.Controller.DataController
+import com.karol.pong.Model.Score
 import kotlinx.android.synthetic.main.layout_high_score_pong.view.*
-import kotlinx.android.synthetic.main.list_view_item.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
-import java.lang.String
 
 class HighScorePongFragment: Fragment() {
 

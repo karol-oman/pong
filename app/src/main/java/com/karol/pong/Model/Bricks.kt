@@ -1,13 +1,9 @@
-package com.karol.pong
+package com.karol.pong.Model
 
 
 import android.content.res.Resources
 import android.graphics.*
 import androidx.core.graphics.minus
-import androidx.core.graphics.plus
-import androidx.core.graphics.scale
-import com.karol.pong.Setting.speedY
-import java.security.AccessController.getContext
 import kotlin.math.abs
 
 
@@ -43,7 +39,12 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 
         if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
-            ball.speedY = abs(ball.speedY) * abs(-1)
+            if(ball.speedY == 0f ) {
+                ball.speedY = -1f
+            }
+            else {
+                ball.speedY = abs(ball.speedY) * abs(-1)
+            }
             destroy = true
 
             kotlin.io.println("Collision")

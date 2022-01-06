@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.View
 
 
 import android.annotation.SuppressLint
@@ -9,7 +9,12 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
-import kotlinx.coroutines.android.awaitFrame
+import com.karol.pong.Controller.GameHandler
+import com.karol.pong.Model.Ball
+import com.karol.pong.Model.Bricks
+import com.karol.pong.Model.Paddle
+import com.karol.pong.R
+import com.karol.pong.Model.Setting
 import kotlin.math.abs
 
 
@@ -39,11 +44,24 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
     )
 
-    private val ballArray = arrayOf(R.drawable.balll1, R.drawable.ball2,R.drawable.ball3,R.drawable.ball4, R.drawable.shuri)
+    private val ballArray = arrayOf(
+        R.drawable.balll1,
+        R.drawable.ball2,
+        R.drawable.ball3,
+        R.drawable.ball4,
+        R.drawable.shuri
+    )
 
     private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
 
-    private val brickArray = arrayOf(R.drawable.paddle_strawberry, R.drawable.paddle_dragon, R.drawable.paddle_watermelon, R.drawable.paddle_kiwii, R.drawable.paddle_green_apple, R.drawable.paddle_purple_apple)
+    private val brickArray = arrayOf(
+        R.drawable.paddle_strawberry,
+        R.drawable.paddle_dragon,
+        R.drawable.paddle_watermelon,
+        R.drawable.paddle_kiwii,
+        R.drawable.paddle_green_apple,
+        R.drawable.paddle_purple_apple
+    )
 
     private var hasStarted = false
 
@@ -160,6 +178,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun start() {
         running = true
+        running = true
         thread = Thread(this)
         thread?.start()
     }
@@ -187,6 +206,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             for (brick in x){
                 if (brick.destroy){
+                    println("destroyed")
                     if (GameHandler.allBricks.contains(brick)){
                         score += brick.brickScore
                         GameHandler.allBricks.remove(brick)
@@ -327,10 +347,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
 
         if (ball.posY + ball.size > bounds.bottom) {
+            running = false
             playActivity.showGameOver(Setting.gameMode)
             playActivity.updateLevel(android.R.color.transparent)
             Setting.score = score
-            running = false
+            //running = false
 
 
         }
@@ -380,8 +401,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 hasStarted = true
                 ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-                ball.speedX = 0f
-                ball.speedY = -20f
+                ball.speedX = -5f
+                ball.speedY = -40f
                 return true
             }
 
