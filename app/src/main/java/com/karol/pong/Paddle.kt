@@ -6,6 +6,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
+import androidx.core.graphics.minus
 import kotlin.math.abs
 
 
@@ -71,6 +72,4 @@ class Paddle {
         canvas?.drawRect(paddle, paint1)
 
     }
-
-
 }
