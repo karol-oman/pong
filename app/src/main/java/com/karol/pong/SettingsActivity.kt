@@ -26,7 +26,6 @@ class SettingsActivity : AppCompatActivity() {
         binding.viewPagerBall.adapter = pagerAdapterOne
         binding.viewPagerPaddle.adapter = pagerAdapterTwo
 
-
         button_save.setOnClickListener {
 
             val intent = Intent(this, MainActivity::class.java)
