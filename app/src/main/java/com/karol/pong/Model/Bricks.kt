@@ -43,7 +43,7 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
                 ball.speedY = -1f
             }
             else {
-                ball.speedY = abs(ball.speedY) * abs(-1)
+                ball.speedY *= -1
             }
             destroy = true
 
