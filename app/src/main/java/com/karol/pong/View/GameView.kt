@@ -8,10 +8,15 @@ import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
+import android.view.View.INVISIBLE
+import androidx.constraintlayout.widget.ConstraintSet.INVISIBLE
+import androidx.core.graphics.contains
 import androidx.core.graphics.scale
 import com.karol.pong.Controller.GameHandler
 import com.karol.pong.Model.*
 import com.karol.pong.R
+import kotlinx.android.synthetic.main.activity_highscore.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.abs
@@ -86,6 +91,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun generateBricks(){
 
+        var paintedBrick0: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(1337, 50, true)
         var paintedBrick1: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
         var paintedBrick2: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
         var paintedBrick3: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
@@ -93,13 +99,24 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         var paintedBrick5: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
         var paintedBrick6: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
 
+
+
+
         GameHandler.paintArray.clear()
 
         /**
          * Bricks are now generated based on the strings in GameHandler
          */
 
-        GameHandler.japan()
+        var random = (0..2).random()
+
+        when (random){
+
+            0 -> GameHandler.original()
+            1 -> GameHandler.japan()
+            2 -> GameHandler.fruitSalad()
+        }
+
 
         var appleArray = ArrayList<ArrayList<Bitmap>>()
 
@@ -111,7 +128,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 when (string[i]){
 
-                    '.' -> bitmapArray.add(paintedBrick1)
+                    '.' -> bitmapArray.add(paintedBrick0)
+                    'D' -> bitmapArray.add(paintedBrick1)
                     'G' -> bitmapArray.add(paintedBrick2)
                     'K' -> bitmapArray.add(paintedBrick3)
                     'P' -> bitmapArray.add(paintedBrick4)
@@ -148,8 +166,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 var total = (brick.height * multiplyHeight) + (margin * multiplyMargin) + ypos
 
-                val brick = Bricks(xpos, total, bitmap, 1 )
-                GameHandler.allBricks.add(brick)
+                if (bitmap.width < 1337){
+                    val brick = Bricks(xpos, total, bitmap, 1)
+
+                    GameHandler.allBricks.add(brick)
+                }
+
+                println(brick.paintedBrick1)
+                //if (brick.paintedBrick1 == )
 
                 multiplyHeight++
                 multiplyMargin++
@@ -441,7 +465,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         bounds = Rect(0, 0, p2, p3)
 
         paddle.posY = bounds.bottom.toFloat() - getScreenHeight()/10f
-        ball.posY = bounds.bottom.toFloat() - getScreenHeight()/9f
+        ball.posY = bounds.bottom.toFloat() - getScreenHeight()/10f - 50f
 
         start()
     }

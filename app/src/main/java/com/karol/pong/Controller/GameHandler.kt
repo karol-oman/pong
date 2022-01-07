@@ -10,12 +10,16 @@ object GameHandler {
     var paintArray = ArrayList<String>()
 
     /**
-     * . = dragon fruit
+     * . = no brick
+     * D = dragon fruit
      * G = green apple
      * K = kiwi
      * P = purple apple
      * S = strawberry
      * W = watermelon
+     *
+     * EACH ROW HAS TO BE 12 IN LENGTH.
+     * ANY SIZE VERTICALLY.
      */
 
     fun original(){
@@ -23,8 +27,8 @@ object GameHandler {
         paintArray.add("WWWWWWWWWWWW")
         paintArray.add("SSSSSSSSSSSS")
         paintArray.add("SSSSSSSSSSSS")
-        paintArray.add("............")
-        paintArray.add("............")
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDDDDDDDD")
         paintArray.add("KKKKKKKKKKKK")
         paintArray.add("KKKKKKKKKKKK")
         paintArray.add("GGGGGGGGGGGG")
@@ -48,14 +52,14 @@ object GameHandler {
     }
 
     fun fruitSalad(){
-        paintArray.add(".....SSSSSSS")
-        paintArray.add(".....SSSSSSS")
-        paintArray.add(".....SSSSSSS")
-        paintArray.add("....GGGSSSSS")
-        paintArray.add("GGGGGGWW....")
-        paintArray.add("GGGGGWWWWW..")
-        paintArray.add("GGGGWWWWWWW.")
-        paintArray.add("KKKKWWWWWW..")
+        paintArray.add("DDDDDSSSSSSS")
+        paintArray.add("DDDDDSSSSSSS")
+        paintArray.add("DDDDDSSSSSSS")
+        paintArray.add("DDDDGGGSSSSS")
+        paintArray.add("GGGGGGWWDDDD")
+        paintArray.add("GGGGGWWWWWDD")
+        paintArray.add("GGGGWWWWWWWD")
+        paintArray.add("KKKKWWWWWWDD")
         paintArray.add("KKKKKWWWWPPP")
         paintArray.add("KKKKKKPPPPPP")
         paintArray.add("KKKKKPPPPPPP")
