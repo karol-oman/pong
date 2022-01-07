@@ -1,4 +1,4 @@
-package com.karol.pong.fragments
+package com.karol.pong.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.karol.pong.R
 
-class PaddleTwoFragment: Fragment() {
+class PaddleThreeFragment: Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.layout_paddel_two, container, false)
+        return inflater.inflate(R.layout.layout_paddel_three, container, false)
     }
 
 }

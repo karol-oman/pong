@@ -8,8 +8,8 @@ import com.karol.pong.Controller.DataController
 import com.karol.pong.Model.Setting
 import com.karol.pong.R
 import com.karol.pong.databinding.ActivityPlayBinding
-import com.karol.pong.fragments.GameFragment
-import com.karol.pong.fragments.GameOverFragment
+import com.karol.pong.Fragment.GameFragment
+import com.karol.pong.Fragment.GameOverFragment
 
 
 class PlayActivity : AppCompatActivity() {
