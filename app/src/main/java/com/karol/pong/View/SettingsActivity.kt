@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.Model.Setting
 import com.karol.pong.databinding.ActivitySettingsBinding
-import com.karol.pong.fragments.*
+import com.karol.pong.Fragment.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {

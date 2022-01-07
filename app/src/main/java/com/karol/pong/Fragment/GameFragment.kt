@@ -1,21 +1,25 @@
-package com.karol.pong.fragments
+package com.karol.pong.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.karol.pong.R
+import com.karol.pong.View.GameView
 
-class BallFiveFragment : Fragment(){
+class GameFragment(): Fragment() {
+
 
     override fun onCreateView(
+
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.layout_ball_five, container, false)
+        savedInstanceState: Bundle?,
+
+    ): View {
+
+        return GameView(activity)
+    }
     }
 
 
-}
