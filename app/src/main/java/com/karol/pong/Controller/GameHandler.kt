@@ -37,31 +37,32 @@ object GameHandler {
 
 
     fun japan(){
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add(".....WW.....")
-        paintArray.add("....WWWW....")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("....WWWW....")
-        paintArray.add(".....WW.....")
-        paintArray.add("............")
-        paintArray.add("............")
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDWWDDDDD")
+        paintArray.add("DDDDWWWWDDDD")
+        paintArray.add("DDDWWWWWWDDD")
+        paintArray.add("DDDWWWWWWDDD")
+        paintArray.add("DDDWWWWWWDDD")
+        paintArray.add("DDDDWWWWDDDD")
+        paintArray.add("DDDDDWWDDDDD")
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDDDDDDDD")
 
     }
 
-    fun fruitSalad(){
-        paintArray.add("DDDDDSSSSSSS")
-        paintArray.add("DDDDDSSSSSSS")
-        paintArray.add("DDDDDSSSSSSS")
-        paintArray.add("DDDDGGGSSSSS")
-        paintArray.add("GGGGGGWWDDDD")
-        paintArray.add("GGGGGWWWWWDD")
-        paintArray.add("GGGGWWWWWWWD")
-        paintArray.add("KKKKWWWWWWDD")
-        paintArray.add("KKKKKWWWWPPP")
-        paintArray.add("KKKKKKPPPPPP")
-        paintArray.add("KKKKKPPPPPPP")
+    fun ball(){
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add(".....WW.....")
+        paintArray.add("....WWWW....")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("....WWWW....")
+        paintArray.add(".....WW.....")
+        paintArray.add("............")
+        paintArray.add("............")
+
     }
 }

@@ -39,11 +39,14 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 
         if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
-            if(ball.speedY == 0f ) {
-                ball.speedY = -1f
+            if(ball.speedX == -0f ) {
+                ball.speedY = 40f
+                println("1")
             }
             else {
                 ball.speedY *= -1
+                println(ball.speedX)
+                println("2")
             }
             destroy = true
 

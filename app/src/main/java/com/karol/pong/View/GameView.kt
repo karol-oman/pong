@@ -91,13 +91,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun generateBricks(){
 
-        var paintedBrick0: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(1337, 50, true)
-        var paintedBrick1: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var paintedBrick2: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var paintedBrick3: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var paintedBrick4: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var paintedBrick5: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var paintedBrick6: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
 
 
 
@@ -105,7 +104,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         GameHandler.paintArray.clear()
 
         /**
-         * Bricks are now generated based on the strings in GameHandler
+         * Bricks are generated based on the strings in GameHandler
          */
 
         var random = (0..2).random()
@@ -114,122 +113,47 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             0 -> GameHandler.original()
             1 -> GameHandler.japan()
-            2 -> GameHandler.fruitSalad()
+            2 -> GameHandler.ball()
         }
 
-
-        var appleArray = ArrayList<ArrayList<Bitmap>>()
-
-        for (i in 0..11){
-
-            val bitmapArray = ArrayList<Bitmap>()
-
-            for (string in GameHandler.paintArray){
-
-                when (string[i]){
-
-                    '.' -> bitmapArray.add(paintedBrick0)
-                    'D' -> bitmapArray.add(paintedBrick1)
-                    'G' -> bitmapArray.add(paintedBrick2)
-                    'K' -> bitmapArray.add(paintedBrick3)
-                    'P' -> bitmapArray.add(paintedBrick4)
-                    'S' -> bitmapArray.add(paintedBrick5)
-                    'W' -> bitmapArray.add(paintedBrick6)
-
-                }
-
-            }
-
-            appleArray.add(bitmapArray)
-
-        }
-
+        // Clears the GameHandler.allBricks from any remainders of previous games
         GameHandler.allBricks.clear()
-
-        //Rows with 6/8 and 2/8 margin: xpos += getScreenWidth()/8 + (getScreenWidth()/8 * 2)/6
-        //Rows with 12/14 and 2/14 margin: xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
 
         var xpos = 0f
         val ypos = 70f
         val margin = 10f
 
-        val brick = Bricks(0f, 0f, paintedBrick1, 0)
-
-
-
-        for (bitmapArray in appleArray) {
+        for (i in 0..11){
 
             var multiplyHeight = 1
             var multiplyMargin = 0
 
-            for (bitmap in bitmapArray){
+            for (string in GameHandler.paintArray){
 
-                var total = (brick.height * multiplyHeight) + (margin * multiplyMargin) + ypos
+                //The height of a brick is 50f
+                var total = (50f * multiplyHeight) + (margin * multiplyMargin) + ypos
 
-                if (bitmap.width < 1337){
-                    val brick = Bricks(xpos, total, bitmap, 1)
+                when (string[i]){
 
-                    GameHandler.allBricks.add(brick)
+                    'D' -> GameHandler.allBricks.add(Bricks(xpos, total, dragonfruit, 1))
+                    'G' -> GameHandler.allBricks.add(Bricks(xpos, total, greenapple, 1))
+                    'K' -> GameHandler.allBricks.add(Bricks(xpos, total, kiwi, 1))
+                    'P' -> GameHandler.allBricks.add(Bricks(xpos, total, purpleapple, 1))
+                    'S' -> GameHandler.allBricks.add(Bricks(xpos, total, strawberry, 1))
+                    'W' -> GameHandler.allBricks.add(Bricks(xpos, total, watermelon, 1))
+
                 }
-
-                println(brick.paintedBrick1)
-                //if (brick.paintedBrick1 == )
 
                 multiplyHeight++
                 multiplyMargin++
+
             }
 
+            //Rows with 6/8 and 2/8 margin: xpos += getScreenWidth()/8 + (getScreenWidth()/8 * 2)/6
+            //Rows with 12/14 and 2/14 margin: xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
             xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
 
         }
-
-
-        /*for (i in 0..11){
-
-
-            val brick = Bricks(0f,0f, paintedBrick, 0 )
-
-            val brick1 = Bricks(xpos, brick.height + ypos, paintedBrick, 5 )
-            GameHandler.allBricks.add(brick1)
-
-            val brick2 = Bricks(xpos, brick.height*2 + margin + ypos, paintedBrick, 5 )
-            GameHandler.allBricks.add(brick2)
-
-            val brick3 = Bricks(xpos, brick.height*3 + (margin * 2) + ypos, paintedBrick1, 4 )
-            GameHandler.allBricks.add(brick3)
-
-            val brick4 = Bricks(xpos, brick.height*4 + (margin * 3) + ypos, paintedBrick1, 4 )
-            GameHandler.allBricks.add(brick4)
-
-            val brick5 = Bricks(xpos, brick.height*5 + (margin * 4) + ypos, paintedBrick2, 3 )
-            GameHandler.allBricks.add(brick5)
-
-            val brick6 = Bricks(xpos, brick.height*6 + (margin * 5) + ypos, paintedBrick2, 3 )
-            GameHandler.allBricks.add(brick6)
-
-            val brick7 = Bricks(xpos, brick.height*7 + (margin * 6) +  ypos, paintedBrick3, 2 )
-            GameHandler.allBricks.add(brick7)
-
-            val brick8 = Bricks(xpos, brick.height*8 + (margin * 7) +  ypos, paintedBrick3, 2 )
-            GameHandler.allBricks.add(brick8)
-
-            val brick9 = Bricks(xpos, brick.height*9 + (margin * 8) + ypos, paintedBrick4, 1 )
-            GameHandler.allBricks.add(brick9)
-
-            val brick10 = Bricks(xpos, brick.height*10 + (margin * 9) + ypos, paintedBrick4, 1 )
-            GameHandler.allBricks.add(brick10)
-
-            val brick11 = Bricks(xpos, brick.height*11 + (margin * 10) + ypos, paintedBrick5, 1 )
-            GameHandler.allBricks.add(brick11)
-
-            val brick12 = Bricks(xpos, brick.height*12 + (margin * 11) + ypos, paintedBrick5, 1 )
-            GameHandler.allBricks.add(brick12)
-
-            //ModifiedSecond: xpos += getScreenWidth()/8 + (getScreenWidth()/8 * 2)/6
-            //Previously: xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
-            xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
-
-        }*/
 
     }
 
@@ -253,13 +177,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         paddle = Paddle()
         paddle.posX = (getScreenWidth()/2f) - paddle.width / 2f
         ball = Ball(paddle.posX + paddle.width / 2, 1750f, 30f, 0f, 0f)
-
-        println(getScreenWidth())
-
-
-
-
-
 
         //Sets the color to ball and paddle.
         ball.paint.color = Color.TRANSPARENT
@@ -510,7 +427,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 hasStarted = true
                 ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-                ball.speedX = 0f
+                ball.speedX = -0f
                 ball.speedY = -40f
                 return true
             }
