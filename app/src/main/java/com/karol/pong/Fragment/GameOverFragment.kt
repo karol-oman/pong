@@ -1,4 +1,4 @@
-package com.karol.pong.fragments
+package com.karol.pong.Fragment
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,11 @@ import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 import android.graphics.Color
+import com.karol.pong.Controller.DataController
+import com.karol.pong.Model.Score
+import com.karol.pong.Model.Setting
+import com.karol.pong.View.MainActivity
+import com.karol.pong.View.PlayActivity
 
 
 class GameOverFragment(context1: Context, private val gameMode : Int): Fragment() {

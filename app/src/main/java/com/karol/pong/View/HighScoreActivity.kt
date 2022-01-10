@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.View
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivityHighscoreBinding
-import com.karol.pong.fragments.HighScorePongFragment
-import com.karol.pong.fragments.HighScoreShurikenFragment
+import com.karol.pong.Fragment.HighScorePongFragment
+import com.karol.pong.Fragment.HighScoreShurikenFragment
 
 class HighScoreActivity: AppCompatActivity() {
 

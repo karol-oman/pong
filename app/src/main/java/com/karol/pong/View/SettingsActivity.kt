@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.View
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.karol.pong.Model.Setting
 import com.karol.pong.databinding.ActivitySettingsBinding
-import com.karol.pong.fragments.*
+import com.karol.pong.Fragment.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
@@ -25,7 +26,6 @@ class SettingsActivity : AppCompatActivity() {
         val pagerAdapterTwo =ViewPagerAdapterTwo(this)
         binding.viewPagerBall.adapter = pagerAdapterOne
         binding.viewPagerPaddle.adapter = pagerAdapterTwo
-
 
         button_save.setOnClickListener {
 

@@ -1,6 +1,8 @@
-package com.karol.pong
+package com.karol.pong.Controller
 
 import android.content.Context
+import com.karol.pong.Model.DataManager
+import com.karol.pong.Model.Score
 
 /**
  * The DataController handles all the communication with the DataHandler
@@ -21,7 +23,7 @@ class DataController(val context : Context) {
         setScore(score, gameMode)
     }
 
-    fun highestScore(gameMode : Int) : Score{
+    fun highestScore(gameMode : Int) : Score {
 
         return getHighestScore(gameMode)
     }
@@ -61,7 +63,7 @@ class DataController(val context : Context) {
      * Otherwise returns a temporary score of 0
      */
 
-    private fun getHighestScore(gameMode : Int) : Score{
+    private fun getHighestScore(gameMode : Int) : Score {
 
 
         val scoreboard = DataManager.load(gameMode, context)

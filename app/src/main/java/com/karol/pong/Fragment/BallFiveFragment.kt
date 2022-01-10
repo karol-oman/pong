@@ -1,4 +1,4 @@
-package com.karol.pong.fragments
+package com.karol.pong.Fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

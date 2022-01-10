@@ -1,4 +1,4 @@
-package com.karol.pong
+package com.karol.pong.Model
 
 
 import android.graphics.*
@@ -45,13 +45,5 @@ class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float,
             speedY *= -1
 
         }
-
-//        if (posY + size > bounds.bottom){
-//            //speedY *= -1
-//
-//
-//
-//        }
     }
-
 }

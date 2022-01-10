@@ -1,13 +1,13 @@
-package com.karol.pong
+package com.karol.pong.Model
 
 
 import android.content.res.Resources
 import android.graphics.*
-import androidx.core.graphics.scale
-import java.security.AccessController.getContext
+import androidx.core.graphics.minus
+import kotlin.math.abs
 
 
-class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap) {
+class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 
     val paintedBrick1 = paintedBrick
     var paint = Paint()
@@ -18,6 +18,7 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap) {
     var width = 10f
     var height = 50f
 
+    val brickScore = bScore
     var destroy = false
 
     private var bricks: RectF = RectF(posX, posY, posX + getScreenWidth()/14, posY + height)
@@ -36,18 +37,24 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap) {
     }
     fun update(ball: Ball){
 
-        if(RectF.intersects(ball.hitbox, bricks)){
+        if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
-            ball.speedY *= -1f
-
+            if(ball.speedX == -0f ) {
+                ball.speedY = 40f
+                println("1")
+            }
+            else {
+                ball.speedY *= -1
+                println(ball.speedX)
+                println("2")
+            }
             destroy = true
 
-            Setting.score++
-
-            println("Collision")
+            kotlin.io.println("Collision")
 
         }
     }
+
 
     private fun getScreenWidth(): Int {
         return Resources.getSystem().displayMetrics.widthPixels

@@ -1,12 +1,15 @@
-package com.karol.pong
+package com.karol.pong.View
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
+import com.karol.pong.Controller.DataController
+import com.karol.pong.Model.Setting
+import com.karol.pong.R
 import com.karol.pong.databinding.ActivityPlayBinding
-import com.karol.pong.fragments.GameFragment
-import com.karol.pong.fragments.GameOverFragment
+import com.karol.pong.Fragment.GameFragment
+import com.karol.pong.Fragment.GameOverFragment
 
 
 class PlayActivity : AppCompatActivity() {
@@ -51,6 +54,7 @@ class PlayActivity : AppCompatActivity() {
     fun updateScore(str: String) {
         runOnUiThread(Runnable {
             binding.textViewCurrentScore.text = str
+
 
         })
     }
