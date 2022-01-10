@@ -65,4 +65,37 @@ object GameHandler {
         paintArray.add("............")
 
     }
+
+    fun sarahLevel(){
+        paintArray.add(".SSS.GGG.W")
+        paintArray.add(".SSS.GGG.W")
+        paintArray.add(".SSS.GGG.W")
+        paintArray.add("...PPP.KKK")
+        paintArray.add("...PPP.KKK")
+        paintArray.add("...PPP.KKK")
+        paintArray.add("WWW..GGG.S")
+        paintArray.add("WWW..GGG.S")
+        paintArray.add("WWW..GGG.S")
+        paintArray.add("..PPP..KKK")
+        paintArray.add("..PPP..KKK")
+        paintArray.add("..PPP..KKK")
+        paintArray.add("DDD..GGG.W")
+        paintArray.add("DDD..GGG.W")
+
+
+
+    }
+
+    /**
+     * . = no brick
+     * D = dragon fruit
+     * G = green apple
+     * K = kiwi
+     * P = purple apple
+     * S = strawberry
+     * W = watermelon
+     *
+     * EACH ROW HAS TO BE 12 IN LENGTH.
+     * ANY SIZE VERTICALLY.
+     */
 }

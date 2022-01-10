@@ -16,15 +16,18 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 //    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(res, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
 
     var width = 10f
-    var height = 50f
+    var height = 70f
 
+
+    var brickRight = posX+getScreenWidth()/12
     val brickScore = bScore
     var destroy = false
 
-    private var bricks: RectF = RectF(posX, posY, posX + getScreenWidth()/14, posY + height)
+    private var bricks: RectF = RectF(posX, posY, brickRight, posY + height)
+
+
 
     //private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
-
 
 
     fun draw(canvas: Canvas?){
@@ -39,15 +42,18 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 
         if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
-            if(ball.speedX == -0f ) {
-                ball.speedY = 40f
-                println("1")
+            if(ball.posY < bricks.bottom && ball.posY  > bricks.top)
+            {
+                ball.speedX *= -1
+                println("SIDE HIT")
             }
             else {
                 ball.speedY *= -1
                 println(ball.speedX)
-                println("2")
+                println("TOP/BOT HIT")
             }
+
+
             destroy = true
 
             kotlin.io.println("Collision")
