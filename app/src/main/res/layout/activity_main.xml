@@ -71,7 +71,7 @@
             android:layout_height="@dimen/button_height"
             android:layout_gravity="center"
 
-            android:text="BRICKS"
+            android:text="BREAKOUT"
             app:icon="@drawable/ic_baseline_play_arrow_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
