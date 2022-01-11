@@ -23,31 +23,31 @@ object GameHandler {
      */
 
     fun original(){
-        paintArray.add("WWWWWWWWWWWW")
-        paintArray.add("WWWWWWWWWWWW")
-        paintArray.add("SSSSSSSSSSSS")
-        paintArray.add("SSSSSSSSSSSS")
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("KKKKKKKKKKKK")
-        paintArray.add("KKKKKKKKKKKK")
-        paintArray.add("GGGGGGGGGGGG")
-        paintArray.add("GGGGGGGGGGGG")
+        paintArray.add("WWWWWWWWWW")
+        paintArray.add("WWWWWWWWWW")
+        paintArray.add("SSSSSSSSSS")
+        paintArray.add("SSSSSSSSSS")
+        paintArray.add("DDDDDDDDDD")
+        paintArray.add("DDDDDDDDDD")
+        paintArray.add("KKKKKKKKKK")
+        paintArray.add("KKKKKKKKKK")
+        paintArray.add("GGGGGGGGGG")
+        paintArray.add("GGGGGGGGGG")
     }
 
 
     fun japan(){
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("DDDDDWWDDDDD")
-        paintArray.add("DDDDWWWWDDDD")
-        paintArray.add("DDDWWWWWWDDD")
-        paintArray.add("DDDWWWWWWDDD")
-        paintArray.add("DDDWWWWWWDDD")
-        paintArray.add("DDDDWWWWDDDD")
-        paintArray.add("DDDDDWWDDDDD")
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDDDDDD")
+        paintArray.add("DDDD..DDDD")
+        paintArray.add("DDDDSSDDDD")
+        paintArray.add("DDDSSSSDDD")
+        paintArray.add("D.SSSSSS.D")
+        paintArray.add("D.SSSSSS.D")
+        paintArray.add("D.SSSSSS.D")
+        paintArray.add("DD.SSSS.DD")
+        paintArray.add("DD.DSSD.DD")
+        paintArray.add("DD.DDDD.DD")
+        paintArray.add("DD.DDDD.DD")
 
     }
 

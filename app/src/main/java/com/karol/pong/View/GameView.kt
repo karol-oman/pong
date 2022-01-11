@@ -118,7 +118,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             1 -> GameHandler.japan()
             2 -> GameHandler.ball()
         }*/
-        GameHandler.sarahLevel()
+        GameHandler.japan()
 
         // Clears the GameHandler.allBricks from any remainders of previous games
         GameHandler.allBricks.clear()
