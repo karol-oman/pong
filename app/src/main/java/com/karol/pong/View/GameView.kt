@@ -112,16 +112,16 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         var random = (0..2).random()
 
-       /* when (random){
+
         /*when (random){
 
             0 -> GameHandler.original()
             1 -> GameHandler.japan()
             2 -> GameHandler.ball()
         }*/
-        GameHandler.japan()
+        GameHandler.labyrinth()
 
-        GameHandler.ball2()
+
         // Clears the GameHandler.allBricks from any remainders of previous games
         GameHandler.allBricks.clear()
 
