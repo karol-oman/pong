@@ -65,25 +65,33 @@ object GameHandler {
         paintArray.add("............")
 
     }
-    fun labyrinth(){
-        paintArray.add("DDDDDDDDDDDD")
-        paintArray.add("DDDDDDDDDDDD")
+    fun ball2(){
+        paintArray.add("....KK......")
+        paintArray.add(".....K......")
+        paintArray.add(".....WW.....")
+        paintArray.add("...KWWWWK...")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWKWWKWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("...KWWWWK...")
+        paintArray.add("....KWWK....")
+        paintArray.add(".....KK.....")
         paintArray.add("............")
         paintArray.add("............")
         paintArray.add("............")
-        paintArray.add("DDDDDDDDD...")
-        paintArray.add("DDDDDDDDD...")
+        paintArray.add(".....WW.....")
+        paintArray.add("....WWWW....")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("....WWWW....")
+        paintArray.add(".....WW.....")
         paintArray.add("............")
         paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add("...DDDDDDDDD")
-        paintArray.add("...DDDDDDDDD")
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add("DDDDDDDDD...")
-        paintArray.add("DDDDDDDDD...")
-
 
     }
 }
