@@ -1,8 +1,6 @@
 package com.karol.pong.Model
 
-class Score(inputName:String, inputScore:Int) {
+class Score(val name : String, val score : Int) {
 
-    val name = inputName
-    var score = inputScore
 
 }

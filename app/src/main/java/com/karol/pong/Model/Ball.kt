@@ -5,16 +5,11 @@ import android.graphics.*
 import kotlin.math.abs
 
 
-class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float) {
+class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float, var speedY: Float, var height : Float) {
 
 
     var paint = Paint()
-
-    var width = 300f
-    var height = 50f
-
     var hitbox: RectF = RectF(posX - size, posY - size, posX + size , posY + size)
-
 
     fun update(){
         posY += speedY
@@ -25,7 +20,7 @@ class Ball(var posX: Float, var posY: Float, var size: Float, var speedX: Float,
 
 
     fun draw (canvas: Canvas){
-
+        paint.color = Color.TRANSPARENT
         canvas.drawCircle(posX,posY,size,paint)
         canvas.drawRect(hitbox, paint)
 

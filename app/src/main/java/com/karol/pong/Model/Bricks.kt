@@ -7,27 +7,13 @@ import androidx.core.graphics.minus
 import kotlin.math.abs
 
 
-class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
+class Bricks(posX: Float, posY: Float, private val paintedBrick: Bitmap, bScore: Int, val height : Float){
 
-    val paintedBrick1 = paintedBrick
     var paint = Paint()
-
-//    var res: Resources = Resources.getSystem()
-//    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(res, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
-
-    var width = 10f
-    var height = 70f
-
-
-    var brickRight = posX+getScreenWidth()/12
     val brickScore = bScore
     var destroy = false
 
-    private var bricks: RectF = RectF(posX, posY, brickRight, posY + height)
-
-
-
-    //private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
+    private var bricks: RectF = RectF(posX, posY, posX + Setting.brickWidth, posY + Setting.brickHeight)
 
 
     fun draw(canvas: Canvas?){
@@ -35,7 +21,7 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
         paint.color = Color.BLACK
 
         //canvas?.drawRect(bricks, paint)
-        canvas?.drawBitmap(paintedBrick1, bricks.left, bricks.top, null)
+        canvas?.drawBitmap(paintedBrick, bricks.left, bricks.top, null)
 
     }
     fun update(ball: Ball){
@@ -60,15 +46,6 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
             kotlin.io.println("Collision")
 
         }
-    }
-
-
-    private fun getScreenWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
-    }
-
-    private fun getScreenHeight(): Int {
-        return Resources.getSystem().displayMetrics.heightPixels
     }
 
 }
