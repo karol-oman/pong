@@ -22,29 +22,47 @@ object GameHandler {
      * ANY SIZE VERTICALLY.
      */
 
-    fun original(){
-        paintArray.add("WWWWWWWWWW")
-        paintArray.add("WWWWWWWWWW")
+
+    fun test(){
+        paintArray.add("........S.")
+    }
+
+    fun test2(){
+        paintArray.add("....S.....")
+    }
+
+    fun test3(){
+        paintArray.add(".S........")
+    }
+
+
+    fun bill(){
+        paintArray.add("DDD..S.D.D")
+        paintArray.add("D..D...D.D")
+        paintArray.add("DDD..D.D.D")
+        paintArray.add("D..D.D.D.D")
+        paintArray.add("DDD..D.D.D")
+        paintArray.add("..........")
+        paintArray.add("..S....S..")
+        paintArray.add(".SSS..SSS.")
         paintArray.add("SSSSSSSSSS")
-        paintArray.add("SSSSSSSSSS")
-        paintArray.add("DDDDDDDDDD")
-        paintArray.add("DDDDDDDDDD")
-        paintArray.add("KKKKKKKKKK")
-        paintArray.add("KKKKKKKKKK")
-        paintArray.add("GGGGGGGGGG")
-        paintArray.add("GGGGGGGGGG")
+        paintArray.add(".SSSSSSSS.")
+        paintArray.add("..SSSSSS..")
+        paintArray.add("...SSSS...")
+        paintArray.add("....SS....")
+
     }
 
 
     fun japan(){
         paintArray.add("DDDDDDDDDD")
-        paintArray.add("DDDD..DDDD")
+        paintArray.add("DDDDDDDDDD")
         paintArray.add("DDDDSSDDDD")
         paintArray.add("DDDSSSSDDD")
         paintArray.add("D.SSSSSS.D")
         paintArray.add("D.SSSSSS.D")
         paintArray.add("D.SSSSSS.D")
-        paintArray.add("DD.SSSS.DD")
+        paintArray.add("D..SSSS..D")
         paintArray.add("DD.DSSD.DD")
         paintArray.add("DD.DDDD.DD")
         paintArray.add("DD.DDDD.DD")
@@ -67,38 +85,46 @@ object GameHandler {
     }
 
     fun sarahLevel(){
+        paintArray.add("..S...G...")
         paintArray.add(".SSS.GGG.W")
-        paintArray.add(".SSS.GGG.W")
-        paintArray.add(".SSS.GGG.W")
-        paintArray.add("...PPP.KKK")
-        paintArray.add("...PPP.KKK")
-        paintArray.add("...PPP.KKK")
+        paintArray.add("..S...G...")
+        paintArray.add("D..P...K.")
+        paintArray.add("DD.PPP.KKK")
+        paintArray.add("D...P...K.")
+        paintArray.add(".W....G...")
         paintArray.add("WWW..GGG.S")
-        paintArray.add("WWW..GGG.S")
-        paintArray.add("WWW..GGG.S")
+        paintArray.add(".W....G...")
+        paintArray.add("...P....K.")
         paintArray.add("..PPP..KKK")
-        paintArray.add("..PPP..KKK")
-        paintArray.add("..PPP..KKK")
+        paintArray.add("...P....K.")
+        paintArray.add(".D....G...")
         paintArray.add("DDD..GGG.W")
-        paintArray.add("DDD..GGG.W")
-
-
 
     }
+    fun labyrinth() {
+        paintArray.add("DDDDDDDDDD")
+        paintArray.add("GGGGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("..DDDDDDDD")
+        paintArray.add("..GGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("DDDDDDDD..")
+        paintArray.add("GGGGGGGG..")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("..DDDDDDDD")
+        paintArray.add("..GGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("DDDDDDDD..")
+        paintArray.add("GGGGGGGG..")
+        paintArray.add(".......D..")
+        paintArray.add(".......D..")
+    }
 
-    /**
-     * . = no brick
-     * D = dragon fruit
-     * G = green apple
-     * K = kiwi
-     * P = purple apple
-     * S = strawberry
-     * W = watermelon
-     *
-     * EACH ROW HAS TO BE 12 IN LENGTH.
-     * ANY SIZE VERTICALLY.
-     */
-    fun ball2(){
+    fun apple(){
         paintArray.add("....KK......")
         paintArray.add(".....K......")
         paintArray.add(".....WW.....")
@@ -113,18 +139,18 @@ object GameHandler {
         paintArray.add("...KWWWWK...")
         paintArray.add("....KWWK....")
         paintArray.add(".....KK.....")
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add(".....WW.....")
-        paintArray.add("....WWWW....")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("....WWWW....")
-        paintArray.add(".....WW.....")
-        paintArray.add("............")
-        paintArray.add("............")
 
+
+    }
+    fun karolLevel(){
+        paintArray.add("DD......DD")
+        paintArray.add(".GG....GG.")
+        paintArray.add("..KK..KK..")
+        paintArray.add("...PPPP...")
+        paintArray.add("....PP....")
+        paintArray.add("...PPPP...")
+        paintArray.add("..KK..KK..")
+        paintArray.add(".GG....GG.")
+        paintArray.add("DD......DD")
     }
 }
