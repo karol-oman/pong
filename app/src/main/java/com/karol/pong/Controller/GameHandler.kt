@@ -65,4 +65,25 @@ object GameHandler {
         paintArray.add("............")
 
     }
+    fun labyrinth(){
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("DDDDDDDDDDDD")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("DDDDDDDDD...")
+        paintArray.add("DDDDDDDDD...")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("...DDDDDDDDD")
+        paintArray.add("...DDDDDDDDD")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("DDDDDDDDD...")
+        paintArray.add("DDDDDDDDD...")
+
+
+    }
 }
