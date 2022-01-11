@@ -20,6 +20,7 @@ object Setting{
     var score = 0
     var test = 0
 
+
     var rageQuit = false
 
 
@@ -28,6 +29,7 @@ object Setting{
     var speedY = 30f
     var speedX = 0f
     var totSpeed = speedX + speedY
+    var speedMultiplier = 1.4f
 
 
 
