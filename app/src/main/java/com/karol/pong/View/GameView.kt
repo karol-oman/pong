@@ -29,6 +29,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private lateinit var canvas: Canvas
     private lateinit var ball: Ball
 
+    var totalBrickRowWidth = getScreenWidth()/12 + (getScreenWidth()/12* 2)/10
+    var brickHeight = 70
+
     private var score: Int = 0
 
     private var playActivity = context as PlayActivity
@@ -91,12 +94,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun generateBricks(){
 
-        var dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
-        var watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5]).scale(getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12, 50, true)
+        var dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0]).scale(totalBrickRowWidth, brickHeight , true)
+        var greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1]).scale(totalBrickRowWidth, brickHeight, true)
+        var kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2]).scale(totalBrickRowWidth, brickHeight, true)
+        var purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3]).scale(totalBrickRowWidth, brickHeight, true)
+        var strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4]).scale(totalBrickRowWidth, brickHeight, true)
+        var watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5]).scale(totalBrickRowWidth, brickHeight, true)
 
 
 
@@ -109,12 +112,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         var random = (0..2).random()
 
+       /* when (random){
         /*when (random){
 
             0 -> GameHandler.original()
             1 -> GameHandler.japan()
             2 -> GameHandler.ball()
         }*/
+        GameHandler.japan()
 
         GameHandler.ball2()
         // Clears the GameHandler.allBricks from any remainders of previous games
@@ -124,7 +129,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         val ypos = 70f
         val margin = 10f
 
-        for (i in 0..11){
+        for (i in 0..9){
 
             var multiplyHeight = 1
             var multiplyMargin = 0
@@ -132,7 +137,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             for (string in GameHandler.paintArray){
 
                 //The height of a brick is 50f
-                var total = (50f * multiplyHeight) + (margin * multiplyMargin) + ypos
+                var total = (70f * multiplyHeight) + (margin * multiplyMargin) + ypos
 
                 when (string[i]){
 
@@ -152,7 +157,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             //Rows with 6/8 and 2/8 margin: xpos += getScreenWidth()/8 + (getScreenWidth()/8 * 2)/6
             //Rows with 12/14 and 2/14 margin: xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
-            xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
+            //xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
+            xpos += totalBrickRowWidth
 
         }
 
@@ -177,7 +183,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         //Creates ball and paddle objects
         paddle = Paddle()
         paddle.posX = (getScreenWidth()/2f) - paddle.width / 2f
-        ball = Ball(paddle.posX + paddle.width / 2, 1750f, 30f, 0f, 0f)
+        ball = Ball(paddle.posX + paddle.width / 2, paddle.posY, 30f, 0f, 0f)
 
         //Sets the color to ball and paddle.
         ball.paint.color = Color.TRANSPARENT
