@@ -127,4 +127,46 @@ object GameHandler {
         paintArray.add("............")
 
     }
+
+    fun bill(){
+        paintArray.add("DDD..S.D.D")
+        paintArray.add("D..D...D.D")
+        paintArray.add("DDD..D.D.D")
+        paintArray.add("D..D.D.D.D")
+        paintArray.add("DDD..D.D.D")
+        paintArray.add("..........")
+        paintArray.add("..S....S..")
+        paintArray.add(".SSS..SSS.")
+        paintArray.add("SSSSSSSSSS")
+        paintArray.add(".SSSSSSSS.")
+        paintArray.add("..SSSSSS..")
+        paintArray.add("...SSSS...")
+        paintArray.add("....SS....")
+
+    }
+    fun labyrinth() {
+        paintArray.add("DDDDDDDDDD")
+        paintArray.add("GGGGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("..DDDDDDDD")
+        paintArray.add("..GGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("DDDDDDDD..")
+        paintArray.add("GGGGGGGG..")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("..DDDDDDDD")
+        paintArray.add("..GGGGGGGG")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("DDDDDDDD..")
+        paintArray.add("GGGGGGGG..")
+        paintArray.add(".......D..")
+        paintArray.add(".......D..")
+    }
+
+
+
 }
