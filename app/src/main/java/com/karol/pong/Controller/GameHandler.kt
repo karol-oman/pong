@@ -98,4 +98,33 @@ object GameHandler {
      * EACH ROW HAS TO BE 12 IN LENGTH.
      * ANY SIZE VERTICALLY.
      */
+    fun ball2(){
+        paintArray.add("....KK......")
+        paintArray.add(".....K......")
+        paintArray.add(".....WW.....")
+        paintArray.add("...KWWWWK...")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWKWWKWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("..KWWWWWWK..")
+        paintArray.add("...KWWWWK...")
+        paintArray.add("....KWWK....")
+        paintArray.add(".....KK.....")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add("............")
+        paintArray.add(".....WW.....")
+        paintArray.add("....WWWW....")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("...WWWWWW...")
+        paintArray.add("....WWWW....")
+        paintArray.add(".....WW.....")
+        paintArray.add("............")
+        paintArray.add("............")
+
+    }
 }

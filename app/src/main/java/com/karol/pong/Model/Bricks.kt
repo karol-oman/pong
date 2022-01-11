@@ -51,6 +51,7 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
                 ball.speedY *= -1
                 println(ball.speedX)
                 println("TOP/BOT HIT")
+                println("2")
             }
 
 
