@@ -35,7 +35,11 @@ class Bricks(
     }
     fun update(ball: Ball){
 
-        if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
+        if (ball.posY != ball.rememberedBallPos){
+            ball.bounce = false
+        }
+
+        if(!ball.bounce && RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
 
             if(ball.posY < bricks.bottom && ball.posY  > bricks.top)
@@ -50,10 +54,9 @@ class Bricks(
                 println("2")
             }
 
-
             destroy = true
-
-            kotlin.io.println("Collision")
+            ball.rememberedBallPos = ball.posY
+            ball.bounce = true
 
         }
     }

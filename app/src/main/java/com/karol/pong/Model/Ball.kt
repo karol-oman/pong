@@ -13,6 +13,7 @@ class Ball(
     var speedX: Float,
     var speedY: Float,
     var height : Float,
+    var bounce: Boolean = false,
     var hitbox: RectF = RectF(
 
         posX - size,
@@ -24,6 +25,8 @@ class Ball(
 )
 
 {
+
+    var rememberedBallPos = 0f
 
     fun update(){
         posY += speedY

@@ -42,13 +42,11 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
         if (dataController.validateScore(Setting.score, Setting.gameMode)){
             view.textInputLayout.visibility = View.VISIBLE
-            view.button_save.visibility = View.VISIBLE
             view.edit_text_if_highscore.visibility = View.VISIBLE
         }
         else {
             view.textInputLayout.visibility = View.INVISIBLE
             view.edit_text_if_highscore.visibility = View.INVISIBLE
-            view.button_save.visibility = View.INVISIBLE
         }
 
         view.game_over_score.text = "Total score: " + Setting.score.toString()
@@ -59,9 +57,6 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
 
         view.button_restart.setOnClickListener{
             areYouSure(2)
-        }
-        view.button_save.setOnClickListener{
-            save()
         }
 
         return view
@@ -84,7 +79,6 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
             dataController.saveScore(Score(edit_text_if_highscore.text.toString(), Setting.score), gameMode)
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
             saved = true
-            view?.button_save?.isEnabled = false
         }
 
         else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
@@ -92,7 +86,7 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
 
     private fun areYouSure(where : Int){
 
-        if (!saved && dataController.validateScore(Setting.score, Setting.gameMode)){
+        if (!saved && edit_text_if_highscore.text!!.isBlank() && dataController.validateScore(Setting.score, Setting.gameMode)){
 
             val builder = AlertDialog.Builder(context!!, R.style.ThemeOverlay_AppCompat_Dialog)
             builder.setMessage("Do you really want to continue without saving?")
@@ -115,8 +109,14 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
         }
             else {
                 when (where){
-                    1 -> goHome()
-                    2 -> restart()
+                    1 -> {
+                        if(edit_text_if_highscore.text!!.isNotBlank()) save()
+                        goHome()
+                    }
+                    2 -> {
+                        if(edit_text_if_highscore.text!!.isNotBlank()) save()
+                        restart()
+                    }
                 }
             }
 
