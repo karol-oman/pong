@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.karol.pong.View.GameView
+import com.karol.pong.Controller.GameView
 
 class GameFragment(): Fragment() {
 
