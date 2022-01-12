@@ -25,6 +25,7 @@ class PlayActivity : AppCompatActivity() {
             add(R.id.frame_play, GameFragment())
         }
 
+
         val dataController = DataController(this)
 
         val text = "High score: ${dataController.highestScore(Setting.gameMode).score}"

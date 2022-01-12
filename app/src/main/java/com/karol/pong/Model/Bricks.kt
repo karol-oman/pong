@@ -37,6 +37,7 @@ class Bricks(
 
         if(RectF.intersects(bricks,ball.hitbox - abs(20f))){
 
+
             if(ball.posY < bricks.bottom && ball.posY  > bricks.top)
             {
                 ball.speedX *= -1

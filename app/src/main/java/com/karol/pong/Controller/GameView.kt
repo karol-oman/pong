@@ -1,4 +1,4 @@
-package com.karol.pong.View
+package com.karol.pong.Controller
 
 
 import android.annotation.SuppressLint
@@ -8,9 +8,9 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
-import com.karol.pong.Controller.GameHandler
 import com.karol.pong.Model.*
 import com.karol.pong.R
+import com.karol.pong.View.PlayActivity
 import kotlin.math.abs
 
 
@@ -87,6 +87,15 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         setup()
     }
 
+    /**
+     * Controllers + objects are setup here
+     */
+
+    var paddleC = PaddleController(
+        Paddle()
+    )
+
+
     private fun generateBricks() {
 
         var dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
@@ -111,15 +120,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
          * Bricks are generated based on the strings in GameHandler
          */
 
-        var random = (0..2).random()
-
-
-
 
 
         when (level) {
 
-            0 -> GameHandler.bill()
+            0 -> GameHandler.labyrinth()
             1 -> {
                 GameHandler.labyrinth()
                 ball.speedY *= Setting.speedMultiplier
@@ -157,8 +162,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         // Clears the GameHandler.allBricks from any remainders of previous games
         GameHandler.allBricks.clear()
 
-        var xpos = 0f
-        val ypos = 70f
+        var xposBrick = 0f
+        val yposBrick = 20f
         val margin = 10f
 
         for (i in 0..9) {
@@ -169,16 +174,16 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             for (string in GameHandler.paintArray) {
 
                 //The height of a brick is 50f
-                var total = (70f * multiplyHeight) + (margin * multiplyMargin) + ypos
+                var total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposBrick
 
                 when (string[i]) {
 
-                    'D' -> GameHandler.allBricks.add(Bricks(xpos, total, dragonfruit, 1, Setting.brickHeight))
-                    'G' -> GameHandler.allBricks.add(Bricks(xpos, total, greenapple, 1, Setting.brickHeight))
-                    'K' -> GameHandler.allBricks.add(Bricks(xpos, total, kiwi, 1, Setting.brickHeight))
-                    'P' -> GameHandler.allBricks.add(Bricks(xpos, total, purpleapple, 1, Setting.brickHeight))
-                    'S' -> GameHandler.allBricks.add(Bricks(xpos, total, strawberry, 1, Setting.brickHeight))
-                    'W' -> GameHandler.allBricks.add(Bricks(xpos, total, watermelon, 1, Setting.brickHeight))
+                    'D' -> GameHandler.allBricks.add(Bricks(xposBrick, total, dragonfruit, 1, Setting.brickHeight))
+                    'G' -> GameHandler.allBricks.add(Bricks(xposBrick, total, greenapple, 1, Setting.brickHeight))
+                    'K' -> GameHandler.allBricks.add(Bricks(xposBrick, total, kiwi, 1, Setting.brickHeight))
+                    'P' -> GameHandler.allBricks.add(Bricks(xposBrick, total, purpleapple, 1, Setting.brickHeight))
+                    'S' -> GameHandler.allBricks.add(Bricks(xposBrick, total, strawberry, 1, Setting.brickHeight))
+                    'W' -> GameHandler.allBricks.add(Bricks(xposBrick, total, watermelon, 1, Setting.brickHeight))
 
                 }
 
@@ -187,7 +192,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             }
 
-            xpos += Setting.brickWidth + Setting.margin
+            xposBrick += Setting.brickWidth + Setting.margin
 
         }
 
@@ -226,13 +231,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun update() {
 
-        if (ball.posX >= bounds.right) {
+        if (ball.posX > bounds.right) {
             ball.posX -= 10f
-            ball.speedX *= -1
         }
-        if (ball.posX <= bounds.left) {
+        if (ball.posX < bounds.left) {
             ball.posX += 10f
-            ball.speedX *= -1
         }
 
         ball.update()

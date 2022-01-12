@@ -70,17 +70,17 @@ object GameHandler {
     }
 
     fun ball(){
-        paintArray.add("............")
-        paintArray.add("............")
-        paintArray.add(".....WW.....")
-        paintArray.add("....WWWW....")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("...WWWWWW...")
-        paintArray.add("....WWWW....")
-        paintArray.add(".....WW.....")
-        paintArray.add("............")
-        paintArray.add("............")
+        paintArray.add("..........")
+        paintArray.add("..........")
+        paintArray.add("....WW....")
+        paintArray.add("...WWWW...")
+        paintArray.add("..WWWWWW..")
+        paintArray.add("..WWWWWW..")
+        paintArray.add("..WWWWWW..")
+        paintArray.add("...WWWW...")
+        paintArray.add("....WW....")
+        paintArray.add("..........")
+        paintArray.add("..........")
 
     }
 
