@@ -3,22 +3,14 @@ package com.karol.pong.View
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
-import android.view.View.INVISIBLE
-import androidx.constraintlayout.widget.ConstraintSet.INVISIBLE
-import androidx.core.graphics.contains
 import androidx.core.graphics.scale
 import com.karol.pong.Controller.GameHandler
 import com.karol.pong.Model.*
 import com.karol.pong.R
-import kotlinx.android.synthetic.main.activity_highscore.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
@@ -29,7 +21,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private lateinit var canvas: Canvas
     private lateinit var ball: Ball
 
-    var totalBrickRowWidth = getScreenWidth() / 12 + (getScreenWidth() / 12 * 2) / 10
+    var totalBrickRowWidth = Setting.screenWidth / 12 + (Setting.screenWidth / 12 * 2) / 10
     var brickHeight = 70
 
     private var score: Int = 0
@@ -77,12 +69,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var background: Bitmap =
         BitmapFactory.decodeResource(resources, imgId[randomBackground])
-            .scale(getScreenWidth(), getScreenHeight())
+            .scale(Setting.screenWidth, Setting.screenHeight)
     private var paintedBall: Bitmap =
         BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
     private var paintedPaddle: Bitmap =
-        BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(500, 50, true)
+        BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(Setting.paddleWidth.toInt(), Setting.paddleHeight.toInt(), true)
 
 
     init {
@@ -181,12 +173,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 when (string[i]) {
 
-                    'D' -> GameHandler.allBricks.add(Bricks(xpos, total, dragonfruit, 1))
-                    'G' -> GameHandler.allBricks.add(Bricks(xpos, total, greenapple, 1))
-                    'K' -> GameHandler.allBricks.add(Bricks(xpos, total, kiwi, 1))
-                    'P' -> GameHandler.allBricks.add(Bricks(xpos, total, purpleapple, 1))
-                    'S' -> GameHandler.allBricks.add(Bricks(xpos, total, strawberry, 1))
-                    'W' -> GameHandler.allBricks.add(Bricks(xpos, total, watermelon, 1))
+                    'D' -> GameHandler.allBricks.add(Bricks(xpos, total, dragonfruit, 1, Setting.brickHeight))
+                    'G' -> GameHandler.allBricks.add(Bricks(xpos, total, greenapple, 1, Setting.brickHeight))
+                    'K' -> GameHandler.allBricks.add(Bricks(xpos, total, kiwi, 1, Setting.brickHeight))
+                    'P' -> GameHandler.allBricks.add(Bricks(xpos, total, purpleapple, 1, Setting.brickHeight))
+                    'S' -> GameHandler.allBricks.add(Bricks(xpos, total, strawberry, 1, Setting.brickHeight))
+                    'W' -> GameHandler.allBricks.add(Bricks(xpos, total, watermelon, 1, Setting.brickHeight))
 
                 }
 
@@ -195,21 +187,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             }
 
-            //Rows with 6/8 and 2/8 margin: xpos += getScreenWidth()/8 + (getScreenWidth()/8 * 2)/6
-            //Rows with 12/14 and 2/14 margin: xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
-            //xpos += getScreenWidth()/14 + (getScreenWidth()/14 * 2)/12
-            xpos += totalBrickRowWidth
+            xpos += Setting.brickWidth + Setting.margin
 
         }
 
-    }
-
-    private fun getScreenWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
-    }
-
-    private fun getScreenHeight(): Int {
-        return Resources.getSystem().displayMetrics.heightPixels
     }
 
 
@@ -222,20 +203,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         //Creates ball and paddle objects
         paddle = Paddle()
-        paddle.posX = (getScreenWidth() / 2f) - paddle.width / 2f
-        ball = Ball(paddle.posX + paddle.width / 2, paddle.posY, 30f, 0f, 0f)
+        paddle.posX = (Setting.screenWidth / 2f) - paddle.width / 2f
+        ball = Ball(paddle.posX + paddle.width / 2, paddle.posY, 30f, 0f, 0f, 50f)
 
-        //Sets the color to ball and paddle.
-        ball.paint.color = Color.TRANSPARENT
-
-
-        paddle.paint1.color = Color.TRANSPARENT
-        paddle.paint2.color = Color.TRANSPARENT
-        paddle.paint3.color = Color.TRANSPARENT
-        paddle.paint4.color = Color.TRANSPARENT
-        paddle.paint5.color = Color.TRANSPARENT
-        paddle.paint6.color = Color.TRANSPARENT
-        paddle.paint7.color = Color.TRANSPARENT
     }
 
     private fun start() {
@@ -256,6 +226,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun update() {
 
+        if (ball.posX >= bounds.right) {
+            ball.posX -= 10f
+            ball.speedX *= -1
+        }
+        if (ball.posX <= bounds.left) {
+            ball.posX += 10f
+            ball.speedX *= -1
+        }
 
         ball.update()
 
@@ -275,10 +253,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     }
 
                     }
-                    println("TOTAL BRICKS" + GameHandler.allBricks.size)
                 }
 
-                if (GameHandler.allBricks.isEmpty() && ball.posY > (getScreenHeight() / 2).toFloat()) {
+                if (GameHandler.allBricks.isEmpty() && ball.posY > (Setting.screenHeight / 2).toFloat()) {
                     level++
                     generateBricks()
                 }
@@ -317,7 +294,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         private fun intersects() {
             val widthPerZone = abs(paddle.width) / abs(6)
-            if (ball.posY >= bounds.bottom.toFloat() - getScreenHeight() / 9f - 100f && !hasScore && ball.speedY < 0 && Setting.gameMode == 0) {
+            if (ball.posY >= bounds.bottom.toFloat() - Setting.screenHeight / 6f - 100f && !hasScore && ball.speedY < 0 && Setting.gameMode == 0) {
 
                 score++
                 hasScore = true
@@ -360,7 +337,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 }
             }
 
-            if (ball.posY < bounds.bottom.toFloat() - getScreenHeight() / 2) {
+            if (ball.posY < bounds.bottom.toFloat() - Setting.screenHeight / 2) {
                 hasScore = false
             }
 
@@ -431,8 +408,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             bounds = Rect(0, 0, p2, p3)
 
-            paddle.posY = bounds.bottom.toFloat() - getScreenHeight() / 10f
-            ball.posY = bounds.bottom.toFloat() - getScreenHeight() / 10f - 50f
+            paddle.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f
+            ball.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f - 50f
 
             start()
         }
@@ -461,15 +438,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             }
             if (paddle.posX < bounds.left) {
                 paddle.posX = bounds.left.toFloat()
-            }
-
-            if (ball.posX >= bounds.right) {
-                ball.posX = bounds.right.toFloat() - 50f
-                ball.speedX *= -1
-            }
-            if (ball.posX <= bounds.left) {
-                ball.posX = bounds.left.toFloat() + 50f
-                ball.speedX *= -1
             }
 
             if (!hasStarted) {

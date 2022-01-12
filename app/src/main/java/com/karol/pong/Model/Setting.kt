@@ -1,7 +1,11 @@
 package com.karol.pong.Model
 
+import android.content.res.Resources
+
 object Setting{
 
+    val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
     //ID for drawables
     var ballID: Int = 0
@@ -28,11 +32,17 @@ object Setting{
     //Coming soon
     var speedY = 30f
     var speedX = 0f
-    var totSpeed = speedX + speedY
-    var speedMultiplier = 1.4f
+
+    var speedMultiplier = 1.25f
+
+    val brickHeight = 70f
+
+    val paddleHeight = 50f
+    var paddleWidth : Float = screenWidth / 2.5f
 
 
-
+    val margin = (screenWidth / 12 * 2) / 10
+    val brickWidth = screenWidth / 12
 
 
 

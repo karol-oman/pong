@@ -1,41 +1,36 @@
 package com.karol.pong.Model
 
 
-import android.content.res.Resources
 import android.graphics.*
 import androidx.core.graphics.minus
 import kotlin.math.abs
 
 
-class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
+class Bricks(
 
-    val paintedBrick1 = paintedBrick
-    var paint = Paint()
+    var posX: Float,
+    var posY: Float,
+    private val paintedBrick: Bitmap,
+    var brickScore: Int,
+    val height : Float,
+    var destroy: Boolean = false,
 
-//    var res: Resources = Resources.getSystem()
-//    private var paintedBrick: Bitmap = BitmapFactory.decodeResource(res, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
+    private var bricks: RectF = RectF(
+        posX,
+        posY,
+        posX + Setting.brickWidth,
+        posY + Setting.brickHeight
+    )
+)
 
-    var width = 10f
-    var height = 70f
-
-
-    var brickRight = posX+getScreenWidth()/12
-    val brickScore = bScore
-    var destroy = false
-
-    private var bricks: RectF = RectF(posX, posY, brickRight, posY + height)
-
-
-
-    //private var paintedBrick: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.paddle_kiwii).scale(getScreenWidth()/14, 50, true)
-
+{
 
     fun draw(canvas: Canvas?){
-
+        var paint = Paint()
         paint.color = Color.BLACK
 
         //canvas?.drawRect(bricks, paint)
-        canvas?.drawBitmap(paintedBrick1, bricks.left, bricks.top, null)
+        canvas?.drawBitmap(paintedBrick, bricks.left, bricks.top, null)
 
     }
     fun update(ball: Ball){
@@ -61,14 +56,4 @@ class Bricks(posX: Float, posY: Float, paintedBrick: Bitmap, bScore: Int){
 
         }
     }
-
-
-    private fun getScreenWidth(): Int {
-        return Resources.getSystem().displayMetrics.widthPixels
-    }
-
-    private fun getScreenHeight(): Int {
-        return Resources.getSystem().displayMetrics.heightPixels
-    }
-
 }
