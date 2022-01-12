@@ -153,9 +153,4 @@ object GameHandler {
         paintArray.add(".GG....GG.")
         paintArray.add("DD......DD")
     }
-
-
-
-
-
 }
