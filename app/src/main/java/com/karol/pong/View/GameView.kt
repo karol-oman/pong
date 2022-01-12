@@ -3,22 +3,14 @@ package com.karol.pong.View
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.*
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
-import android.view.View
-import android.view.View.INVISIBLE
-import androidx.constraintlayout.widget.ConstraintSet.INVISIBLE
-import androidx.core.graphics.contains
 import androidx.core.graphics.scale
 import com.karol.pong.Controller.GameHandler
 import com.karol.pong.Model.*
 import com.karol.pong.R
-import kotlinx.android.synthetic.main.activity_highscore.view.*
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 
@@ -234,6 +226,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun update() {
 
+        if (ball.posX >= bounds.right) {
+            ball.posX -= 10f
+            ball.speedX *= -1
+        }
+        if (ball.posX <= bounds.left) {
+            ball.posX += 10f
+            ball.speedX *= -1
+        }
 
         ball.update()
 
@@ -253,7 +253,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     }
 
                     }
-                    println("TOTAL BRICKS" + GameHandler.allBricks.size)
                 }
 
                 if (GameHandler.allBricks.isEmpty() && ball.posY > (Setting.screenHeight / 2).toFloat()) {
@@ -295,7 +294,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         private fun intersects() {
             val widthPerZone = abs(paddle.width) / abs(6)
-            if (ball.posY >= bounds.bottom.toFloat() - Setting.screenHeight / 9f - 100f && !hasScore && ball.speedY < 0 && Setting.gameMode == 0) {
+            if (ball.posY >= bounds.bottom.toFloat() - Setting.screenHeight / 6f - 100f && !hasScore && ball.speedY < 0 && Setting.gameMode == 0) {
 
                 score++
                 hasScore = true
@@ -306,7 +305,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                         playActivity.updateLevel(android.R.color.transparent)
                         playActivity.updateLevelText("Level: 1")
                     }
-                    2 -> {
+                    10 -> {
                         ball.speedY *= 1.5f
                         playActivity.updateLevel(R.drawable.levelup)
                         playActivity.updateLevelText("Level: 2")
@@ -409,8 +408,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             bounds = Rect(0, 0, p2, p3)
 
-            paddle.posY = bounds.bottom.toFloat() - Setting.screenHeight / 10f
-            ball.posY = bounds.bottom.toFloat() - Setting.screenHeight / 10f - 50f
+            paddle.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f
+            ball.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f - 50f
 
             start()
         }
@@ -439,15 +438,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             }
             if (paddle.posX < bounds.left) {
                 paddle.posX = bounds.left.toFloat()
-            }
-
-            if (ball.posX >= bounds.right) {
-                ball.posX = bounds.right.toFloat() - 50f
-                ball.speedX *= -1
-            }
-            if (ball.posX <= bounds.left) {
-                ball.posX = bounds.left.toFloat() + 50f
-                ball.speedX *= -1
             }
 
             if (!hasStarted) {

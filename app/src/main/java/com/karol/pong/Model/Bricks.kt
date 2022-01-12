@@ -1,23 +1,32 @@
 package com.karol.pong.Model
 
 
-import android.content.res.Resources
 import android.graphics.*
 import androidx.core.graphics.minus
 import kotlin.math.abs
 
 
-class Bricks(posX: Float, posY: Float, private val paintedBrick: Bitmap, bScore: Int, val height : Float){
+class Bricks(
 
-    var paint = Paint()
-    val brickScore = bScore
-    var destroy = false
+    var posX: Float,
+    var posY: Float,
+    private val paintedBrick: Bitmap,
+    var brickScore: Int,
+    val height : Float,
+    var destroy: Boolean = false,
 
-    private var bricks: RectF = RectF(posX, posY, posX + Setting.brickWidth, posY + Setting.brickHeight)
+    private var bricks: RectF = RectF(
+        posX,
+        posY,
+        posX + Setting.brickWidth,
+        posY + Setting.brickHeight
+    )
+)
 
+{
 
     fun draw(canvas: Canvas?){
-
+        var paint = Paint()
         paint.color = Color.BLACK
 
         //canvas?.drawRect(bricks, paint)
@@ -47,5 +56,4 @@ class Bricks(posX: Float, posY: Float, private val paintedBrick: Bitmap, bScore:
 
         }
     }
-
 }

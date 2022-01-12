@@ -33,7 +33,7 @@ object Setting{
     var speedY = 30f
     var speedX = 0f
 
-    var speedMultiplier = 1.4f
+    var speedMultiplier = 1.25f
 
     val brickHeight = 70f
 
