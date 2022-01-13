@@ -44,7 +44,7 @@ object Setting{
     val margin = (screenWidth / 12 * 2) / 10
     val brickWidth = screenWidth / 12
 
-
+    var running = false
 
 
 

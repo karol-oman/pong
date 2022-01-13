@@ -39,7 +39,7 @@ class Bricks(
             ball.bounce = false
         }
 
-        if(!ball.bounce && RectF.intersects(bricks,ball.hitbox - abs(20f))){
+        if(!ball.bounce && RectF.intersects(bricks,ball.hitbox)){
 
 
             if(ball.posY < bricks.bottom && ball.posY  > bricks.top)
