@@ -17,14 +17,13 @@ import kotlin.math.abs
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
     private var thread: Thread? = null
-    private var running = false
     private lateinit var canvas: Canvas
     private lateinit var ball: Ball
+    private var running = false
 
-    var totalBrickRowWidth = Setting.screenWidth / 12 + (Setting.screenWidth / 12 * 2) / 10
-    var brickHeight = 70
+    private var totalBrickRowWidth = Setting.screenWidth / 12 + (Setting.screenWidth / 12 * 2) / 10
+    private var brickHeight = 70
 
-    private var score: Int = 0
     private var level = 0
 
     private var playActivity = context as PlayActivity
@@ -35,11 +34,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private var mHolder: SurfaceHolder? = holder
 
     private val randomBackground = (0..6).random()
-
-    private var hasScore = true
-
-    //private val randomBallYSpeed = (-30..30).random().toFloat()
-    //private val randomBallXSpeed = (-30..30).random().toFloat()
 
     private val imgId = arrayOf(
         R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
@@ -82,33 +76,31 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         if (mHolder != null)
             mHolder?.addCallback(this)
 
-        println("running $running")
 
         setup()
     }
 
     /**
-     * Controllers + objects are setup here
+     * IntersectHandler
      */
 
-    var paddleC = PaddleController(
-        Paddle()
-    )
+    private var intersectHandler = IntersectHandler(playActivity)
+
 
 
     private fun generateBricks() {
 
-        var dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
+        val dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
             .scale(totalBrickRowWidth, brickHeight, true)
-        var greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1])
+        val greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1])
             .scale(totalBrickRowWidth, brickHeight, true)
-        var kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2])
+        val kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2])
             .scale(totalBrickRowWidth, brickHeight, true)
-        var purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3])
+        val purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3])
             .scale(totalBrickRowWidth, brickHeight, true)
-        var strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4])
+        val strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4])
             .scale(totalBrickRowWidth, brickHeight, true)
-        var watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5])
+        val watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5])
             .scale(totalBrickRowWidth, brickHeight, true)
 
 
@@ -130,24 +122,24 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 ball.speedY *= Setting.speedMultiplier
             }
             2 -> {
-                GameHandler.ball()
+                GameHandler.japan()
                 ball.speedY *= Setting.speedMultiplier
             }
             3 -> {
-                GameHandler.japan()
+                GameHandler.karolLevel()
                 ball.speedY *= Setting.speedMultiplier
             }
 
             4 -> {
-                GameHandler.karolLevel()
-                ball.speedY *= Setting.speedMultiplier
-            }
-            5 -> {
                 GameHandler.apple()
                 ball.speedY *= Setting.speedMultiplier
             }
-            6 -> {
+            5 -> {
                 GameHandler.sarahLevel()
+                ball.speedY *= Setting.speedMultiplier
+            }
+            6 -> {
+                GameHandler.bill()
                 ball.speedY *= Setting.speedMultiplier
             }
             else -> {
@@ -174,7 +166,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             for (string in GameHandler.paintArray) {
 
                 //The height of a brick is 50f
-                var total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposBrick
+                val total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposBrick
 
                 when (string[i]) {
 
@@ -201,6 +193,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private fun setup() {
 
+        Setting.score = 0
+
         if (Setting.gameMode == 0) playActivity.updateLevelText("Level: 1")
         //Generates bricks in game
         else if (Setting.gameMode == 1) generateBricks()
@@ -214,7 +208,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
 
     private fun start() {
-        running = true
         running = true
         thread = Thread(this)
         thread?.start()
@@ -234,7 +227,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         if (ball.posX > bounds.right) {
             ball.posX -= 10f
         }
-        if (ball.posX < bounds.left) {
+        else if (ball.posX < bounds.left) {
             ball.posX += 10f
         }
 
@@ -242,26 +235,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (Setting.gameMode == 1) {
 
-            for (brick in GameHandler.allBricks) {
-                brick.update(ball)
+            if (GameHandler.allBricks.isEmpty() && ball.posY > (Setting.screenHeight / 2).toFloat()) {
+                level++
+                generateBricks()
             }
-            val x = GameHandler.allBricks.toMutableList()
-
-            for (brick in x) {
-                if (brick.destroy) {
-                    println("destroyed")
-                    if (GameHandler.allBricks.contains(brick)) {
-                        score += brick.brickScore
-                        GameHandler.allBricks.remove(brick)
-                    }
-
-                    }
-                }
-
-                if (GameHandler.allBricks.isEmpty() && ball.posY > (Setting.screenHeight / 2).toFloat()) {
-                    level++
-                    generateBricks()
-                }
 
             }
 
@@ -292,116 +269,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 }
             }
 
+
+            if (Setting.gameMode == 0) {
+                playActivity.updateScore("Total score: ${Setting.score}")
+            }
+            if (Setting.gameMode == 1) {
+                playActivity.updateScore("Total score: ${Setting.score}")
+            }
+
             mHolder!!.unlockCanvasAndPost(canvas)
         }
 
-        private fun intersects() {
-            val widthPerZone = abs(paddle.width) / abs(6)
-            if (ball.posY >= bounds.bottom.toFloat() - Setting.screenHeight / 6f - 100f && !hasScore && ball.speedY < 0 && Setting.gameMode == 0) {
 
-                score++
-                hasScore = true
-
-                when (score) {
-
-                    0 -> {
-                        playActivity.updateLevel(android.R.color.transparent)
-                        playActivity.updateLevelText("Level: 1")
-                    }
-                    10 -> {
-                        ball.speedY *= 1.5f
-                        playActivity.updateLevel(R.drawable.levelup)
-                        playActivity.updateLevelText("Level: 2")
-                    }
-                    11 -> {
-                        playActivity.updateLevel(android.R.color.transparent)
-
-                    }
-                    20 -> {
-                        ball.speedY *= 1.5f
-                        playActivity.updateLevel(R.drawable.levelup)
-                        playActivity.updateLevelText("Level: 3")
-                    }
-                    21 -> playActivity.updateLevel(android.R.color.transparent)
-
-                    30 -> {
-                        ball.speedY *= 1.5f
-                        playActivity.updateLevel(R.drawable.levelup)
-                        playActivity.updateLevelText("Level: 4")
-                    }
-                    31 -> playActivity.updateLevel(android.R.color.transparent)
-
-                    50 -> {
-                        ball.speedY *= 1.5f
-                        playActivity.updateLevel(R.drawable.levelup)
-                        playActivity.updateLevelText("Level: 4")
-                    }
-                    51 -> playActivity.updateLevel(android.R.color.transparent)
-                }
-            }
-
-            if (ball.posY < bounds.bottom.toFloat() - Setting.screenHeight / 2) {
-                hasScore = false
-            }
-
-            if (RectF.intersects(paddle.paddle, ball.hitbox)) {
-                println(ball.posY)
-                val ballTotalSpeed = abs(ball.speedY) + abs(ball.speedX)
-
-                when {
-                    ball.hitbox.centerX() < paddle.posX + widthPerZone -> {
-                        println("zon1")
-                        ball.speedX = (ballTotalSpeed * 0.7f) * -1
-                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
-                    }
-                    ball.hitbox.centerX() < paddle.posX + widthPerZone * 2 -> {
-                        println("zon2")
-                        ball.speedX = (ballTotalSpeed * 0.6f) * -1
-                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
-                    }
-                    ball.hitbox.centerX() < paddle.posX + widthPerZone * 3 -> {
-                        println("zon3")
-                        ball.speedX = (ballTotalSpeed * 0.3f) * -1
-                        ball.speedY = (ballTotalSpeed * 0.7f) * -1
-                    }
-                    ball.hitbox.centerX() < paddle.posX + widthPerZone * 4 -> {
-                        println("zon4")
-                        ball.speedX = (ballTotalSpeed * 0.3f)
-                        ball.speedY = (ballTotalSpeed * 0.7f) * -1
-                    }
-                    ball.hitbox.centerX() < paddle.posX + widthPerZone * 5 -> {
-                        println("zon5")
-                        ball.speedX = (ballTotalSpeed * 0.6f)
-                        ball.speedY = (ballTotalSpeed * 0.4f) * -1
-                    }
-                    ball.hitbox.centerX() <= paddle.posX + widthPerZone * 6 -> {
-                        println("zon6")
-                        ball.speedX = (ballTotalSpeed * 0.7f)
-                        ball.speedY = (ballTotalSpeed * 0.3f) * -1
-                    }
-                }
-
-            }
-
-            if (Setting.gameMode == 0) {
-                playActivity.updateScore("Total score: $score")
-            }
-            if (Setting.gameMode == 1) {
-                playActivity.updateScore("Total score: $score")
-            }
-
-
-
-            if (ball.posY + ball.size > bounds.bottom) {
-                running = false
-                playActivity.showGameOver(Setting.gameMode)
-                playActivity.updateLevel(android.R.color.transparent)
-                Setting.score = score
-
-
-            }
-
-        }
 
         override fun surfaceCreated(p0: SurfaceHolder) {
 
@@ -411,8 +290,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             bounds = Rect(0, 0, p2, p3)
 
-            paddle.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f
-            ball.posY = bounds.bottom.toFloat() - Setting.screenHeight / 6f - 50f
+            paddle.posY = Setting.screenHeight - Setting.screenHeight / 6f
+            ball.posY = Setting.screenHeight - Setting.screenHeight / 6f - 50f
 
             start()
         }
@@ -424,11 +303,16 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         override fun run() {
             while (running && !Setting.rageQuit) {
                 draw()
-                intersects()
+                intersectHandler.intersects(ball, paddle, bounds)
                 update()
-                ball.checkBounds(bounds)
+                intersectHandler.checkBounds(ball, bounds)
+                checkIfDead()
+
+
             }
         }
+
+
 
         @SuppressLint("ClickableViewAccessibility")
         override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -469,4 +353,14 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             return true
 
         }
+
+    private fun checkIfDead(){
+        if (ball.posY + ball.size > bounds.bottom) {
+            running = false
+            playActivity.showGameOver(Setting.gameMode)
+            playActivity.updateLevel(android.R.color.transparent)
+            Setting.score = Setting.score
+
+        }
     }
+}

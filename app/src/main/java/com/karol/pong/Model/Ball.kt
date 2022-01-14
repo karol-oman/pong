@@ -42,18 +42,5 @@ class Ball(
         canvas.drawRect(hitbox, paint)
     }
 
-    fun checkBounds(bounds: Rect){
 
-        if(posX - size < 0){
-            speedX *= -1
-        }
-
-        if(posX + size > bounds.right){
-            speedX *= -1
-        }
-
-        if(abs(posY) - abs(size) - abs(100) < bounds.top){
-            speedY *= -1
-        }
-    }
 }

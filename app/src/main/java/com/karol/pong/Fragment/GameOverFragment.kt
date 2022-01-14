@@ -93,8 +93,15 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
                 .setPositiveButton("Yes"
                 ) { _, _ ->
                     when (where) {
-                        1 -> goHome()
-                        2 -> restart()
+                        1 -> {
+                            Setting.score = 0
+                            goHome()
+                        }
+
+                        2 -> {
+                            Setting.score = 0
+                            restart()
+                        }
                     }
                 }
                 .setNegativeButton("No"
@@ -111,10 +118,12 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
                 when (where){
                     1 -> {
                         if(edit_text_if_highscore.text!!.isNotBlank()) save()
+                        Setting.score = 0
                         goHome()
                     }
                     2 -> {
                         if(edit_text_if_highscore.text!!.isNotBlank()) save()
+                        Setting.score = 0
                         restart()
                     }
                 }
