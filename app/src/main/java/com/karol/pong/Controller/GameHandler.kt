@@ -4,7 +4,6 @@ import com.karol.pong.Model.Bricks
 
 object GameHandler {
 
-
     val allBricks = mutableListOf<Bricks>()
 
     var paintArray = ArrayList<String>()
