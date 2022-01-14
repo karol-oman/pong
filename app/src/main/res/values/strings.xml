@@ -20,5 +20,17 @@
     <string name="play_high_Score">High Score::</string>
     <string name="play_current">Current high score:</string>
 
+    <!-- High score fragment-->
+    <string name="game_over_score">YOUR SCORE:</string>
+    <string name="game_over_hint">Enter name</string>
+
+    <!--List item view-->
+    <string name="list_view_hint_1">Bill</string>
+
+    <string name="list_view_hint_2">1337</string>
+
+
+
+
 
 </resources>

@@ -45,6 +45,7 @@
 
             <ImageView
                 android:layout_width="@dimen/layout_width_pong"
+
                 android:layout_height="@dimen/layout_height_pong"
                 android:src="@drawable/g" />
 
