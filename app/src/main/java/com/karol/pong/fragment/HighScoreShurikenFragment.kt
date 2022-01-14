@@ -1,4 +1,4 @@
-package com.karol.pong.Fragment
+package com.karol.pong.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.karol.pong.Controller.DataController
+import com.karol.pong.controller.DataController
 import com.karol.pong.R
-import com.karol.pong.Model.Score
+import com.karol.pong.model.Score
 import kotlinx.android.synthetic.main.layout_high_score_shuriken.view.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
 
-class HighScoreShurikenFragment: Fragment() {
+class HighScoreShurikenFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

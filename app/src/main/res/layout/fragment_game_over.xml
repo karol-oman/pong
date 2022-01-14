@@ -5,7 +5,9 @@
     android:id="@+id/game_over_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.GameOverFragment" >
+    tools:context=".fragment.GameOverFragment"
+
+    >
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +15,12 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical"
+
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/game_over_constraint_width"
-            android:layout_height="@dimen/game_over_constraint_height"
+            android:layout_width="267dp"
+            android:layout_height="346dp"
             android:background="@drawable/game_over_frame"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,8 +31,8 @@
                 android:id="@+id/game_over_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/game_over_score"
-                android:textSize="@dimen/game_over_text_size"
+                android:text="YOUR SCORE:"
+                android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/game_over_pic" />
@@ -38,9 +41,10 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/game_over_edit_name"
+                android:layout_width="181dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/game_over_hint"
+                android:hint="Name"
+                app:endIconMode="clear_text"
                 app:layout_constraintBottom_toTopOf="@+id/button_main_menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,38 +54,55 @@
                     android:id="@+id/edit_text_if_highscore"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/game_over_text_size" />
+                    android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <!--            <EditText-->
+            <!--                android:id="@+id/edit_text_if_highscore"-->
+            <!--                android:layout_width="161dp"-->
+            <!--                android:layout_height="49dp"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:hint="Name"-->
+            <!--                 />-->
+
             <ImageView
                 android:id="@+id/game_over_pic"
-                android:layout_width="@dimen/game_over_width"
-                android:layout_height="@dimen/game_over_height"
-                android:layout_marginTop="@dimen/game_over_margin_top"
+                android:layout_width="275dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="8dp"
+                android:padding="10dp"
                 android:src="@drawable/gameover"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/button_main_menu"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/game_over_image_view_width"
-                android:layout_height="@dimen/game_over_image_view_height"
-                android:layout_margin="@dimen/game_over_image_view_margin"
+                android:layout_width="129dp"
+                android:layout_height="49dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_home_24"
+
+                android:text="HOME"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/button_restart"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="@dimen/game_over_image_view_width"
-                android:layout_height="@dimen/game_over_image_view_height"
-                android:layout_margin="@dimen/game_over_image_view_margin"
+                android:layout_width="129dp"
+                android:layout_height="49dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/ic_baseline_restart_alt_24"
+                android:text="RESTART"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

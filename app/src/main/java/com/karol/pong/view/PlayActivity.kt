@@ -1,15 +1,15 @@
-package com.karol.pong.View
+package com.karol.pong.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.commit
-import com.karol.pong.Controller.DataController
-import com.karol.pong.Model.Setting
+import com.karol.pong.controller.DataController
+import com.karol.pong.model.Setting
 import com.karol.pong.R
 import com.karol.pong.databinding.ActivityPlayBinding
-import com.karol.pong.Fragment.GameFragment
-import com.karol.pong.Fragment.GameOverFragment
+import com.karol.pong.fragment.GameFragment
+import com.karol.pong.fragment.GameOverFragment
 
 
 class PlayActivity : AppCompatActivity() {
@@ -67,7 +67,7 @@ class PlayActivity : AppCompatActivity() {
         })
     }
 
-    fun updateLevelText(str : String) {
+    fun updateLevelText(str: String) {
         runOnUiThread(Runnable {
             binding.textViewLevel.text = str
 
