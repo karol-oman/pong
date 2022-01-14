@@ -1,6 +1,6 @@
-package com.karol.pong.Controller
+package com.karol.pong.controller
 
-import com.karol.pong.Model.Bricks
+import com.karol.pong.model.Bricks
 
 object GameHandler {
 
@@ -22,20 +22,20 @@ object GameHandler {
      */
 
 
-    fun test(){
+    fun test() {
         paintArray.add("........S.")
     }
 
-    fun test2(){
+    fun test2() {
         paintArray.add("....S.....")
     }
 
-    fun test3(){
+    fun test3() {
         paintArray.add(".S........")
     }
 
 
-    fun bill(){
+    fun bill() {
         paintArray.add("DDD..S.D.D")
         paintArray.add("D..D...D.D")
         paintArray.add("DDD..D.D.D")
@@ -53,7 +53,7 @@ object GameHandler {
     }
 
 
-    fun japan(){
+    fun japan() {
         paintArray.add("DDDDDDDDDD")
         paintArray.add("DDDDDDDDDD")
         paintArray.add("DDDDSSDDDD")
@@ -68,7 +68,7 @@ object GameHandler {
 
     }
 
-    fun ball(){
+    fun ball() {
         paintArray.add("..........")
         paintArray.add("..........")
         paintArray.add("....WW....")
@@ -83,7 +83,7 @@ object GameHandler {
 
     }
 
-    fun sarahLevel(){
+    fun sarahLevel() {
         paintArray.add("..S...G...")
         paintArray.add(".SSS.GGG.W")
         paintArray.add("..S...G...")
@@ -100,6 +100,7 @@ object GameHandler {
         paintArray.add("DDD..GGG.W")
 
     }
+
     fun labyrinth() {
         paintArray.add("DDDDDDDDDD")
         paintArray.add("GGGGGGGGGG")
@@ -123,7 +124,7 @@ object GameHandler {
         paintArray.add(".......D..")
     }
 
-    fun apple(){
+    fun apple() {
         paintArray.add("....KK......")
         paintArray.add(".....K......")
         paintArray.add(".....WW.....")
@@ -141,7 +142,8 @@ object GameHandler {
 
 
     }
-    fun karolLevel(){
+
+    fun karolLevel() {
         paintArray.add("DD......DD")
         paintArray.add(".GG....GG.")
         paintArray.add("..KK..KK..")

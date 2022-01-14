@@ -1,11 +1,11 @@
-package com.karol.pong.View
+package com.karol.pong.view
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.karol.pong.R
-import com.karol.pong.Model.Setting
+import com.karol.pong.model.Setting
 import com.karol.pong.databinding.ActivityMainBinding
 
 /** @Authors
