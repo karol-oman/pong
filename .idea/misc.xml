@@ -32,9 +32,18 @@
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/activity_play.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/activity_settings.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/fragment_game_over.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/fragment_play.xml" value="0.17282051282051283" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/highscore_popup.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_five.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_four.xml" value="0.17282051282051283" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_one.xml" value="0.17282051282051283" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_ball_two.xml" value="0.17282051282051283" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_high_score_pong.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_high_score_shuriken.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_paddel_one.xml" value="0.17282051282051283" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_paddel_three.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/layout_paddel_two.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/sarah/AndroidStudioProjects/pong2/app/src/main/res/layout/list_view_item.xml" value="0.17552083333333332" />
       </map>
     </option>
   </component>
