@@ -13,19 +13,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
-<!--        <FrameLayout-->
-<!--            android:id="@+id/test"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent">-->
-
-<!--        </FrameLayout>-->
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="@dimen/play_height"
         android:background="@drawable/frame_total_score"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,41 +32,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"
+            android:textSize="@dimen/play_text_size"
+            android:layout_marginHorizontal="@dimen/play_margin_horizontal"
             app:layout_constraintEnd_toStartOf="@+id/text_view_high_score"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Current high score:" />
+            tools:text="@string/play_current" />
 
         <TextView
             android:id="@+id/text_view_high_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"
+            android:textSize="@dimen/play_text_size"
+            android:layout_marginHorizontal="@dimen/play_margin_horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="High Score:" />
+            tools:text="@string/play_high_Score" />
 
         <TextView
             android:id="@+id/text_view_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Level:"
-            android:textSize="20sp"
+            tools:text="@string/play_level_number"
+            android:textSize="@dimen/play_text_size"
             android:textColor="@color/black"/>
 
     </LinearLayout>
 
     <ImageView
         android:id="@+id/text_view_lvl"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        tools:text="Level"
+        android:layout_width="@dimen/play_width_image_view"
+        android:layout_height="@dimen/play_height_image_view"
+        tools:text="@string/play_level"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/play_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/frame_play"
         app:layout_constraintEnd_toEndOf="@+id/frame_play"
         app:layout_constraintStart_toStartOf="@+id/frame_play"

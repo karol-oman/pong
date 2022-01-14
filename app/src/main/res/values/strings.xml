@@ -1,12 +1,24 @@
 <resources>
+
+    <!-- Main activity-->
     <string name="app_name">PONG</string>
     <string name="settings">SETTINGS</string>
     <string name="high_score">HIGH SCORE</string>
+    <string name="breakout">BREAKOUT</string>
+
+
     <string name="play">PLAY</string>
     <string name="save">SAVE</string>
     <string name="back">BACK</string>
     <string name="sound">SOUND</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Play-->
+    <string name="play_level">Level</string>
+    <string name="play_level_number">Level:</string>
+    <string name="play_high_Score">High Score::</string>
+    <string name="play_current">Current high score:</string>
+
 
 </resources>
