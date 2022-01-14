@@ -1,4 +1,4 @@
-package com.karol.pong.Model
+package com.karol.pong.model
 
 import android.content.Context
 import java.io.File
@@ -18,12 +18,12 @@ object DataManager {
 
         var path = ""
 
-        when(gameMode){
+        when (gameMode) {
             0 -> path = "highscores_gamemode_0.txt"
             1 -> path = "highscores_gamemode_1.txt"
         }
 
-        val file = File(context.filesDir,path)
+        val file = File(context.filesDir, path)
 
 
         try {
@@ -62,12 +62,12 @@ object DataManager {
 
         var path = ""
 
-        when(gameMode){
+        when (gameMode) {
             0 -> path = "highscores_gamemode_0.txt"
             1 -> path = "highscores_gamemode_1.txt"
         }
 
-        val file = File(context.filesDir,path)
+        val file = File(context.filesDir, path)
 
         val scoreboard = ArrayList<Score>()
         try {

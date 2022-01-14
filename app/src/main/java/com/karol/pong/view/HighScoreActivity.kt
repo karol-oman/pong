@@ -1,4 +1,4 @@
-package com.karol.pong.View
+package com.karol.pong.view
 
 
 import androidx.appcompat.app.AppCompatActivity
@@ -7,10 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivityHighscoreBinding
-import com.karol.pong.Fragment.HighScorePongFragment
-import com.karol.pong.Fragment.HighScoreShurikenFragment
+import com.karol.pong.fragment.HighScorePongFragment
+import com.karol.pong.fragment.HighScoreShurikenFragment
 
-class HighScoreActivity: AppCompatActivity() {
+class HighScoreActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHighscoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ class HighScoreActivity: AppCompatActivity() {
         binding.pageViewerHighScore.adapter = pagerAdapter
     }
 
-    private inner class ViewPagerAdapter(fa: FragmentActivity): FragmentStateAdapter(fa){
+    private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
 

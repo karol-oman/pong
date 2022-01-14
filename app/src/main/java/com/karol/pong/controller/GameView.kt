@@ -1,4 +1,4 @@
-package com.karol.pong.Controller
+package com.karol.pong.controller
 
 
 import android.annotation.SuppressLint
@@ -8,9 +8,9 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import androidx.core.graphics.scale
-import com.karol.pong.Model.*
+import com.karol.pong.model.*
 import com.karol.pong.R
-import com.karol.pong.View.PlayActivity
+import com.karol.pong.view.PlayActivity
 import kotlin.math.abs
 
 
@@ -68,7 +68,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         BitmapFactory.decodeResource(resources, ballArray[Setting.ballID]).scale(110, 110, true)
 
     private var paintedPaddle: Bitmap =
-        BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID]).scale(Setting.paddleWidth.toInt(), Setting.paddleHeight.toInt(), true)
+        BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID])
+            .scale(Setting.paddleWidth.toInt(), Setting.paddleHeight.toInt(), true)
 
 
     init {
@@ -86,7 +87,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var intersectHandler = IntersectHandler(playActivity)
 
+    /**
+     * DrawHandler
+     */
 
+    private var drawHandler = DrawHandler()
 
     private fun generateBricks() {
 
@@ -111,7 +116,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         /**
          * Bricks are generated based on the strings in GameHandler
          */
-
 
 
         when (level) {
@@ -170,12 +174,60 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
                 when (string[i]) {
 
-                    'D' -> GameHandler.allBricks.add(Bricks(xposBrick, total, dragonfruit, 1, Setting.brickHeight))
-                    'G' -> GameHandler.allBricks.add(Bricks(xposBrick, total, greenapple, 1, Setting.brickHeight))
-                    'K' -> GameHandler.allBricks.add(Bricks(xposBrick, total, kiwi, 1, Setting.brickHeight))
-                    'P' -> GameHandler.allBricks.add(Bricks(xposBrick, total, purpleapple, 1, Setting.brickHeight))
-                    'S' -> GameHandler.allBricks.add(Bricks(xposBrick, total, strawberry, 1, Setting.brickHeight))
-                    'W' -> GameHandler.allBricks.add(Bricks(xposBrick, total, watermelon, 1, Setting.brickHeight))
+                    'D' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            dragonfruit,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
+                    'G' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            greenapple,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
+                    'K' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            kiwi,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
+                    'P' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            purpleapple,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
+                    'S' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            strawberry,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
+                    'W' -> GameHandler.allBricks.add(
+                        Bricks(
+                            xposBrick,
+                            total,
+                            watermelon,
+                            1,
+                            Setting.brickHeight
+                        )
+                    )
 
                 }
 
@@ -226,12 +278,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         if (ball.posX > bounds.right) {
             ball.posX -= 10f
-        }
-        else if (ball.posX < bounds.left) {
+        } else if (ball.posX < bounds.left) {
             ball.posX += 10f
         }
-
-        ball.update()
 
         if (Setting.gameMode == 1) {
 
@@ -240,121 +289,110 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                 generateBricks()
             }
 
+        }
+
+    }
+
+    private fun draw() {
+
+        canvas = mHolder!!.lockCanvas()
+
+        //Drawing background to canvas
+        canvas.drawBitmap(background, matrix, null)
+
+        drawHandler.draw(canvas, ball, paddle)
+
+
+        //
+        canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
+        canvas.drawBitmap(paintedPaddle, paddle.paddle.left, paddle.paddle.top, null)
+
+
+
+
+        if (Setting.gameMode == 0) {
+            playActivity.updateScore("Total score: ${Setting.score}")
+        }
+        if (Setting.gameMode == 1) {
+            playActivity.updateScore("Total score: ${Setting.score}")
+        }
+
+        mHolder!!.unlockCanvasAndPost(canvas)
+    }
+
+
+    override fun surfaceCreated(p0: SurfaceHolder) {
+
+    }
+
+    override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
+
+        bounds = Rect(0, 0, p2, p3)
+
+        paddle.posY = Setting.screenHeight - Setting.screenHeight / 6f
+        ball.posY = Setting.screenHeight - Setting.screenHeight / 6f - 50f
+
+        start()
+    }
+
+    override fun surfaceDestroyed(p0: SurfaceHolder) {
+        stop()
+    }
+
+    override fun run() {
+        while (running && !Setting.rageQuit) {
+            draw()
+            intersectHandler.intersects(ball, paddle, bounds)
+            update()
+            intersectHandler.checkBounds(ball, bounds)
+            checkIfDead()
+
+
+        }
+    }
+
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+
+        paddle.posX = event!!.x - paddle.width / 2
+
+        //Sets the position of paddle & ball to right of screen if paddle goes "outside" screen
+        if (paddle.posX + paddle.width > bounds.right) {
+            paddle.posX = bounds.right.toFloat() - paddle.width
+        }
+        if (paddle.posX < bounds.left) {
+            paddle.posX = bounds.left.toFloat()
+        }
+
+        if (!hasStarted) {
+            ball.posX = event.x
+
+            if (event.action == MotionEvent.ACTION_UP) {
+
+                hasStarted = true
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
+                ball.speedX = Setting.ballSpeedX
+                ball.speedY = Setting.ballSpeedY
+                return true
             }
 
-        }
+            if (ball.posX < paddle.posX + paddle.width / 2 || ball.posX > paddle.posX + paddle.width / 2) {
 
-        private fun draw() {
-
-            canvas = mHolder!!.lockCanvas()
-
-            //Drawing background to canvas
-            canvas.drawBitmap(background, matrix, null)
-
-            paddle.draw(canvas)
-
-            ball.draw(canvas)
-
-
-            //
-            canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
-            canvas.drawBitmap(paintedPaddle, paddle.paddle.left, paddle.paddle.top, null)
-
-            if (Setting.gameMode == 1) {
-
-                for (brick in GameHandler.allBricks) {
-                    brick.draw(canvas)
-                    //canvas.drawBitmap(paintedBrick, 1000f, 1000f, null)
-
-                }
-            }
-
-
-            if (Setting.gameMode == 0) {
-                playActivity.updateScore("Total score: ${Setting.score}")
-            }
-            if (Setting.gameMode == 1) {
-                playActivity.updateScore("Total score: ${Setting.score}")
-            }
-
-            mHolder!!.unlockCanvasAndPost(canvas)
-        }
-
-
-
-        override fun surfaceCreated(p0: SurfaceHolder) {
-
-        }
-
-        override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
-
-            bounds = Rect(0, 0, p2, p3)
-
-            paddle.posY = Setting.screenHeight - Setting.screenHeight / 6f
-            ball.posY = Setting.screenHeight - Setting.screenHeight / 6f - 50f
-
-            start()
-        }
-
-        override fun surfaceDestroyed(p0: SurfaceHolder) {
-            stop()
-        }
-
-        override fun run() {
-            while (running && !Setting.rageQuit) {
-                draw()
-                intersectHandler.intersects(ball, paddle, bounds)
-                update()
-                intersectHandler.checkBounds(ball, bounds)
-                checkIfDead()
-
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
 
             }
-        }
 
-
-
-        @SuppressLint("ClickableViewAccessibility")
-        override fun onTouchEvent(event: MotionEvent?): Boolean {
-
-            paddle.posX = event!!.x - paddle.width / 2
-
-            //Sets the position of paddle & ball to right of screen if paddle goes "outside" screen
             if (paddle.posX + paddle.width > bounds.right) {
-                paddle.posX = bounds.right.toFloat() - paddle.width
+                ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
             }
-            if (paddle.posX < bounds.left) {
-                paddle.posX = bounds.left.toFloat()
-            }
-
-            if (!hasStarted) {
-                ball.posX = event.x
-
-                if (event.action == MotionEvent.ACTION_UP) {
-
-                    hasStarted = true
-                    ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-                    ball.speedX = -0f
-                    ball.speedY = -40f
-                    return true
-                }
-
-                if (ball.posX < paddle.posX + paddle.width / 2 || ball.posX > paddle.posX + paddle.width / 2) {
-
-                    ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-
-                }
-
-                if (paddle.posX + paddle.width > bounds.right) {
-                    ball.posX = abs(paddle.posX) + abs(paddle.width) / abs(2)
-                }
-            }
-
-            return true
-
         }
 
-    private fun checkIfDead(){
+        return true
+
+    }
+
+    private fun checkIfDead() {
         if (ball.posY + ball.size > bounds.bottom) {
             running = false
             playActivity.showGameOver(Setting.gameMode)

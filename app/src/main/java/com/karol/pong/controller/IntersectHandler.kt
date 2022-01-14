@@ -1,14 +1,14 @@
-package com.karol.pong.Controller
+package com.karol.pong.controller
 
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.RectF
-import com.karol.pong.Model.Ball
-import com.karol.pong.Model.Paddle
-import com.karol.pong.Model.Setting
-import com.karol.pong.Model.Setting.score
+import com.karol.pong.model.Ball
+import com.karol.pong.model.Paddle
+import com.karol.pong.model.Setting
+import com.karol.pong.model.Setting.score
 import com.karol.pong.R
-import com.karol.pong.View.PlayActivity
+import com.karol.pong.view.PlayActivity
 import kotlin.math.abs
 
 class IntersectHandler(context: Context) {
@@ -17,7 +17,11 @@ class IntersectHandler(context: Context) {
 
     private var playActivity = context as PlayActivity
 
+    var rememberedBallPos = 0f
+
     fun intersects(ball: Ball, paddle: Paddle, bounds: Rect) {
+        update(ball)
+
         val widthPerZone = abs(paddle.width) / abs(6)
         if (!hasScore && ball.posY >= bounds.bottom.toFloat() - Setting.screenHeight / 6f - 100f && ball.speedY < 0 && Setting.gameMode == 0) {
 
@@ -65,7 +69,29 @@ class IntersectHandler(context: Context) {
         if (Setting.gameMode == 1) {
 
             for (brick in GameHandler.allBricks) {
-                brick.update(ball)
+
+                if (ball.posY != rememberedBallPos) {
+                    ball.bounce = false
+                }
+
+                if (!ball.bounce && RectF.intersects(brick.bricks, ball.hitbox)) {
+
+
+                    if (ball.posY < brick.bricks.bottom && ball.posY > brick.bricks.top) {
+                        ball.speedX *= -1
+                        println("SIDE HIT")
+                    } else {
+                        ball.speedY *= -1
+                        println(ball.speedX)
+                        println("TOP/BOT HIT")
+                        println("2")
+                    }
+
+                    brick.destroy = true
+                    rememberedBallPos = ball.posY
+                    ball.bounce = true
+
+                }
             }
             val x = GameHandler.allBricks.toMutableList()
 
@@ -124,18 +150,28 @@ class IntersectHandler(context: Context) {
         }
     }
 
-    fun checkBounds(ball: Ball, bounds: Rect){
+    fun checkBounds(ball: Ball, bounds: Rect) {
 
-        if(ball.posX - ball.size < 0){
+        if (ball.posX - ball.size < 0) {
             ball.speedX *= -1
         }
 
-        if(ball.posX + ball.size > bounds.right){
+        if (ball.posX + ball.size > bounds.right) {
             ball.speedX *= -1
         }
 
-        if(abs(ball.posY) - abs(ball.size) - abs(100) < bounds.top){
+        if (abs(ball.posY) - abs(ball.size) - abs(100) < bounds.top) {
             ball.speedY *= -1
         }
+    }
+
+    private fun update(ball: Ball) {
+        ball.posY += ball.speedY
+        ball.posX += ball.speedX
+        ball.hitbox = RectF(
+            ball.posX - ball.size,
+            ball.posY - ball.size,
+            ball.posX + ball.size,
+            ball.posY + ball.size)
     }
 }

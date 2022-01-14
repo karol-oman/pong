@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pong">
         <activity
-            android:name=".View.HighScoreActivity"
+            android:name=".view.HighScoreActivity"
             android:exported="true" />
         <activity
-            android:name=".View.SettingsActivity"
+            android:name=".view.SettingsActivity"
             android:exported="true" />
         <activity
-            android:name=".View.PlayActivity"
+            android:name=".view.PlayActivity"
             android:exported="true" />
         <activity
-            android:name=".View.MainActivity"
+            android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
