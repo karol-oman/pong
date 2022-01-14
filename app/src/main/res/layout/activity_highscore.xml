@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/high_score_width"
+        android:layout_height="@dimen/high_score_height"
         android:src="@drawable/high_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -124,7 +124,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
         when (level) {
 
-            0 -> GameHandler.labyrinth()
+            0 -> GameHandler.ball()
             1 -> {
                 GameHandler.labyrinth()
                 ball.speedY *= Setting.speedMultiplier
