@@ -26,7 +26,9 @@
 
     <!--List item view-->
     <string name="list_view_hint_1">Bill</string>
+
     <string name="list_view_hint_2">1337</string>
+
 
 
 

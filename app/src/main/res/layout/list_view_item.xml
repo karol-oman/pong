@@ -13,6 +13,7 @@
         android:layout_height="@dimen/list_view_height"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+
         android:layout_margin="@dimen/list_view_margin"
         tools:src="@drawable/ic_baseline_home_24"/>
 

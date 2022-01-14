@@ -19,6 +19,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/page_viewer_high_score"
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,6 +8,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="@dimen/pong_breakout_layout_width"
+
         android:layout_height="@dimen/pong_breakout_highscore_title"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
