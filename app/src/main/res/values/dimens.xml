@@ -2,13 +2,67 @@
 
 
 <resources>
+
+
+    <!--Main activity-->
     <dimen name="button_width">150dp</dimen>
     <dimen name="button_height">70dp</dimen>
     <dimen name="title_size">70sp</dimen>
+    <dimen name="layout_width_pong">60dp</dimen>
+    <dimen name="layout_height_pong">100dp</dimen>
+    <dimen name="margin_top_main">20dp</dimen>
 
-
+    <!--Setting activity-->
     <dimen name="image_ball_width">150dp</dimen>
     <dimen name="image_ball_height">150dp</dimen>
+    <dimen name="layout_width_settings">200dp</dimen>
+    <dimen name="layout_height_settings">150dp</dimen>
+    <dimen name="margin_top_settings">8dp</dimen>
+    <dimen name="image_view_width_settings">70dp</dimen>
+    <dimen name="image_view_height_settings">50dp</dimen>
+    <dimen name="image_view_height_settings_title">100dp</dimen>
+    <dimen name="padding_settings">10dp</dimen>
+    <dimen name="padding_bottom_settings">10dp</dimen>
+    <dimen name="margin_top_frame">30dp</dimen>
+
+    <!--High score PONG/Breakout-->
+    <dimen name="pong_breakout_layout_width">200dp</dimen>
+    <dimen name="pong_breakout_layout_height">80dp</dimen>
+    <dimen name="pong_breakout_highscore_title">70dp</dimen>
+
+    <!--High score-->
+    <dimen name="high_score_width">200dp</dimen>
+    <dimen name="high_score_height">100dp</dimen>
+
+    <!--Play activity-->
+    <dimen name="play_height">30dp</dimen>
+    <dimen name="play_text_size">20sp</dimen>
+    <dimen name="play_margin_horizontal">10sp</dimen>
+    <dimen name="play_width_image_view">150dp</dimen>
+    <dimen name="play_height_image_view">100dp</dimen>
+
+    <!--Game over fragment-->
+    <dimen name="game_over_width">280dp</dimen>
+    <dimen name="game_over_height">190dp</dimen>
+    <dimen name="game_over_margin_top">10dp</dimen>
+    <dimen name="game_over_text_size">20sp</dimen>
+    <dimen name="game_over_edit_name">180dp</dimen>
+    <dimen name="game_over_image_view_width">130dp</dimen>
+    <dimen name="game_over_image_view_height">50dp</dimen>
+    <dimen name="game_over_image_view_margin">10dp</dimen>
+    <dimen name="game_over_constraint_width">270dp</dimen>
+    <dimen name="game_over_constraint_height">350dp</dimen>
+
+    <!--List view item-->
+    <dimen name="list_view_width">30dp</dimen>
+    <dimen name="list_view_height">30dp</dimen>
+    <dimen name="list_view_margin">10dp</dimen>
+    <dimen name="list_view_text_size">25sp</dimen>
+
+
+
+
+
 
 
 

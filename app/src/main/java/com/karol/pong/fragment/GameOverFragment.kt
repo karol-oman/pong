@@ -1,4 +1,4 @@
-package com.karol.pong.Fragment
+package com.karol.pong.fragment
 
 import android.content.Context
 import android.content.Intent
@@ -13,14 +13,14 @@ import com.karol.pong.*
 import kotlinx.android.synthetic.main.fragment_game_over.*
 import kotlinx.android.synthetic.main.fragment_game_over.view.*
 import android.graphics.Color
-import com.karol.pong.Controller.DataController
-import com.karol.pong.Model.Score
-import com.karol.pong.Model.Setting
-import com.karol.pong.View.MainActivity
-import com.karol.pong.View.PlayActivity
+import com.karol.pong.controller.DataController
+import com.karol.pong.model.Score
+import com.karol.pong.model.Setting
+import com.karol.pong.view.MainActivity
+import com.karol.pong.view.PlayActivity
 
 
-class GameOverFragment(context1: Context, private val gameMode : Int): Fragment() {
+class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment() {
 
     private var saved = false
     private var dataController = DataController(context1)
@@ -40,70 +40,81 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
          */
 
         val view: View = inflater.inflate(R.layout.fragment_game_over, container, false)
-        if (dataController.validateScore(Setting.score, Setting.gameMode)){
+        if (dataController.validateScore(Setting.score, Setting.gameMode)) {
             view.textInputLayout.visibility = View.VISIBLE
-            view.button_save.visibility = View.VISIBLE
             view.edit_text_if_highscore.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             view.textInputLayout.visibility = View.INVISIBLE
             view.edit_text_if_highscore.visibility = View.INVISIBLE
-            view.button_save.visibility = View.INVISIBLE
         }
 
         view.game_over_score.text = "Total score: " + Setting.score.toString()
         //Make warning pop up if u save without saving with a blank name
-        view.button_main_menu.setOnClickListener{
+        view.button_main_menu.setOnClickListener {
             areYouSure(1)
         }
 
-        view.button_restart.setOnClickListener{
+        view.button_restart.setOnClickListener {
             areYouSure(2)
-        }
-        view.button_save.setOnClickListener{
-            save()
         }
 
         return view
     }
 
-    private fun restart(){
+    private fun restart() {
         val intent = Intent(activity, PlayActivity::class.java)
         Setting.score = 0
         startActivity(intent)
     }
 
-    private fun goHome(){
+    private fun goHome() {
         val intent = Intent(activity, MainActivity::class.java)
         Setting.score = 0
         startActivity(intent)
     }
 
-    private fun save(){
+    private fun save() {
         if (edit_text_if_highscore.text!!.isNotBlank()) {
-            dataController.saveScore(Score(edit_text_if_highscore.text.toString(), Setting.score), gameMode)
+            dataController.saveScore(
+                Score(edit_text_if_highscore.text.toString(), Setting.score),
+                gameMode
+            )
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
             saved = true
-            view?.button_save?.isEnabled = false
-        }
-
-        else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(context, "Your name cannot be empty", Toast.LENGTH_SHORT).show()
+        } else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(
+            context,
+            "Your name cannot be empty",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
-    private fun areYouSure(where : Int){
+    private fun areYouSure(where: Int) {
 
-        if (!saved && dataController.validateScore(Setting.score, Setting.gameMode)){
+        if (!saved && edit_text_if_highscore.text!!.isBlank() && dataController.validateScore(
+                Setting.score,
+                Setting.gameMode
+            )
+        ) {
 
             val builder = AlertDialog.Builder(context!!, R.style.ThemeOverlay_AppCompat_Dialog)
             builder.setMessage("Do you really want to continue without saving?")
-                .setPositiveButton("Yes"
+                .setPositiveButton(
+                    "Yes"
                 ) { _, _ ->
                     when (where) {
-                        1 -> goHome()
-                        2 -> restart()
+                        1 -> {
+                            Setting.score = 0
+                            goHome()
+                        }
+
+                        2 -> {
+                            Setting.score = 0
+                            restart()
+                        }
                     }
                 }
-                .setNegativeButton("No"
+                .setNegativeButton(
+                    "No"
                 ) { dialog, _ ->
                     dialog.dismiss()
                 }
@@ -112,14 +123,21 @@ class GameOverFragment(context1: Context, private val gameMode : Int): Fragment(
             dialog.show()
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK)
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK)
-        }
-            else {
-                when (where){
-                    1 -> goHome()
-                    2 -> restart()
+        } else {
+            when (where) {
+                1 -> {
+                    if (edit_text_if_highscore.text!!.isNotBlank()) save()
+                    Setting.score = 0
+                    goHome()
+                }
+                2 -> {
+                    if (edit_text_if_highscore.text!!.isNotBlank()) save()
+                    Setting.score = 0
+                    restart()
                 }
             }
-
         }
 
     }
+
+}

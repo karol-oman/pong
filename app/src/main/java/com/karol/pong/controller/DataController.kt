@@ -1,34 +1,34 @@
-package com.karol.pong.Controller
+package com.karol.pong.controller
 
 import android.content.Context
-import com.karol.pong.Model.DataManager
-import com.karol.pong.Model.Score
+import com.karol.pong.model.DataManager
+import com.karol.pong.model.Score
 
 /**
  * The DataController handles all the communication with the DataHandler
  */
 
-class DataController(val context : Context) {
+class DataController(val context: Context) {
 
     /**
      * Getters and setters for the various functions
      */
 
-    fun validateScore(score : Int, gameMode : Int) : Boolean{
+    fun validateScore(score: Int, gameMode: Int): Boolean {
 
         return checkIfTopTen(score, gameMode)
     }
 
-    fun saveScore(score : Score, gameMode : Int){
+    fun saveScore(score: Score, gameMode: Int) {
         setScore(score, gameMode)
     }
 
-    fun highestScore(gameMode : Int) : Score {
+    fun highestScore(gameMode: Int): Score {
 
         return getHighestScore(gameMode)
     }
 
-    fun highscores(gameMode : Int) : ArrayList<Score>{
+    fun highscores(gameMode: Int): ArrayList<Score> {
 
         return getHighScores(gameMode)
     }
@@ -39,16 +39,15 @@ class DataController(val context : Context) {
      * Also returns true if there's less than 10 spots filled in the scoreboard
      */
 
-    private fun checkIfTopTen(scoreToCheck : Int, gameMode : Int) : Boolean{
+    private fun checkIfTopTen(scoreToCheck: Int, gameMode: Int): Boolean {
 
         val scoreboard = DataManager.load(gameMode, context)
 
-        if (scoreboard.size < 10){
+        if (scoreboard.size < 10) {
             return true
-        }
-        else{
-            for (score : Score in scoreboard){
-                if (score.score < scoreToCheck){
+        } else {
+            for (score: Score in scoreboard) {
+                if (score.score < scoreToCheck) {
 
                     return true
                 }
@@ -63,17 +62,17 @@ class DataController(val context : Context) {
      * Otherwise returns a temporary score of 0
      */
 
-    private fun getHighestScore(gameMode : Int) : Score {
+    private fun getHighestScore(gameMode: Int): Score {
 
 
         val scoreboard = DataManager.load(gameMode, context)
 
 
-        return if (scoreboard.isNotEmpty()){
+        return if (scoreboard.isNotEmpty()) {
             scoreboard.sortByDescending { Score -> Score.score }
 
             scoreboard[0]
-        } else{
+        } else {
 
             scoreboard.add(Score("It's empty in here", 0))
             scoreboard[0]
@@ -85,16 +84,16 @@ class DataController(val context : Context) {
      * If there's no highscores returns a temporary score of 0
      */
 
-    private fun getHighScores(gameMode : Int) : ArrayList<Score>{
+    private fun getHighScores(gameMode: Int): ArrayList<Score> {
 
         val scoreboard = DataManager.load(gameMode, context)
 
 
-        return if (scoreboard.isNotEmpty()){
+        return if (scoreboard.isNotEmpty()) {
             scoreboard.sortByDescending { Score -> Score.score }
 
             scoreboard
-        } else{
+        } else {
 
             scoreboard.add(Score("It's empty in here", 0))
             scoreboard
@@ -106,16 +105,16 @@ class DataController(val context : Context) {
      * If the scoreboard has more than 10 spots, we remove the last spot to maintain the scoreboard at 10 spots
      */
 
-    private fun setScore(newScore : Score, gameMode : Int) {
+    private fun setScore(newScore: Score, gameMode: Int) {
 
         val scoreboard = DataManager.load(gameMode, context)
         scoreboard.add(newScore)
         scoreboard.sortByDescending { Score -> Score.score }
 
-        if (scoreboard.size > 10){
+        if (scoreboard.size > 10) {
             scoreboard.removeAt(10)
         }
 
-        DataManager.save(scoreboard,gameMode, context)
+        DataManager.save(scoreboard, gameMode, context)
     }
 }
