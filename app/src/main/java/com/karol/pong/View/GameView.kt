@@ -122,12 +122,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         var random = (0..2).random()
 
 
-
-
-
         when (level) {
 
-            0 -> GameHandler.test()
+            0 -> GameHandler.bill()
             1 -> {
                 GameHandler.test2()
                 ball.speedY *= Setting.speedMultiplier
