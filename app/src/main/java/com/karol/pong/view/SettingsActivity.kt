@@ -28,6 +28,10 @@ class SettingsActivity : AppCompatActivity() {
         binding.viewPagerBall.setCurrentItem(Setting.ballID, false)
         binding.viewPagerPaddle.setCurrentItem(Setting.paddleID, false)
 
+
+        /**
+         * Saves the correct ID from current fragment so correct items are shown in GameView
+         */
         button_save.setOnClickListener {
 
             val intent = Intent(this, MainActivity::class.java)
@@ -39,10 +43,12 @@ class SettingsActivity : AppCompatActivity() {
 
         }
 
+        /**
+         * OnClickListeners for the right and left buttons below the fragments
+         */
         binding.arrowLeftBall.setOnClickListener {
             if (binding.viewPagerBall.currentItem != 0) binding.viewPagerBall.currentItem =
                 binding.viewPagerBall.currentItem - 1
-
         }
 
         binding.arrowRightBall.setOnClickListener {
@@ -62,6 +68,10 @@ class SettingsActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * ViewPager for the different balls
+     */
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 5
 
@@ -91,6 +101,9 @@ class SettingsActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * ViewPager for the different paddles
+     */
     private inner class ViewPagerAdapterTwo(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 3
 

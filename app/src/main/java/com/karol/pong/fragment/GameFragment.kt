@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.karol.pong.controller.GameView
-
+/**
+ * Creates a fragment that returns the GameView
+ */
 class GameFragment() : Fragment() {
-
-
     override fun onCreateView(
 
         inflater: LayoutInflater,

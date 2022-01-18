@@ -3,7 +3,9 @@ package com.karol.pong.model
 
 import android.graphics.*
 
-
+/**
+ * Ball class with all attributes for the game
+ */
 class Ball(
 
     var posX: Float,
@@ -13,6 +15,7 @@ class Ball(
     var speedY: Float,
     var height: Float,
     var bounce: Boolean = false,
+
     var hitbox: RectF = RectF(
 
         posX - size,

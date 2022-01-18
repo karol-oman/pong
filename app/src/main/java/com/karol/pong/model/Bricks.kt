@@ -3,7 +3,9 @@ package com.karol.pong.model
 
 import android.graphics.*
 
-
+/**
+ * Brick class with all attributes for the game
+ */
 class Bricks(
 
     var posX: Float,
