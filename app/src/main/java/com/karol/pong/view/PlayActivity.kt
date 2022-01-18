@@ -21,11 +21,17 @@ class PlayActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        /**
+         * Commits game fragment which then returns GameView
+         */
         supportFragmentManager.commit {
             add(R.id.frame_play, GameFragment())
         }
 
 
+        /**
+         * Creates an instance of DataController to show the highest score
+         */
         val dataController = DataController(this)
 
         val text = "High score: ${dataController.highestScore(Setting.gameMode).score}"
@@ -33,6 +39,9 @@ class PlayActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Overrides the built in back button to create a new intent
+     */
     override fun onBackPressed() {
         super.onBackPressed()
 
@@ -42,7 +51,9 @@ class PlayActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-
+    /**
+     * Shows the game over fragment
+     */
     fun showGameOver(gameMode: Int) {
 
         runOnUiThread(Runnable {
@@ -52,6 +63,9 @@ class PlayActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Creates a thread for updating the score
+     */
     fun updateScore(str: String) {
         runOnUiThread(Runnable {
             binding.textViewCurrentScore.text = str
@@ -60,6 +74,9 @@ class PlayActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Creates a thread for updating the level up image
+     */
     fun updateLevel(id: Int) {
         runOnUiThread(Runnable {
             binding.textViewLvl.setBackgroundResource(id)
@@ -67,6 +84,9 @@ class PlayActivity : AppCompatActivity() {
         })
     }
 
+    /**
+     * Creates a thread for updating the level text
+     */
     fun updateLevelText(str: String) {
         runOnUiThread(Runnable {
             binding.textViewLevel.text = str

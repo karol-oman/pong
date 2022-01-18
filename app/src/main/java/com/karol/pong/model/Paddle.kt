@@ -3,7 +3,10 @@ package com.karol.pong.model
 
 import android.graphics.RectF
 
-
+/**
+ * Paddle class with all attributes for the game
+ * and creates a lateinit for the paddle hitbox
+ */
 class Paddle(
 
     var posX: Float = 0f,

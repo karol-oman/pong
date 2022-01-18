@@ -22,7 +22,7 @@ import com.karol.pong.view.PlayActivity
 
 class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment() {
 
-    private var saved = false
+
     private var dataController = DataController(context1)
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,12 +61,19 @@ class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment(
         return view
     }
 
+    /**
+     * Creates a new intent to PlayActivity so the user gets to play again
+     * and sets the score to zero
+     */
     private fun restart() {
         val intent = Intent(activity, PlayActivity::class.java)
         Setting.score = 0
         startActivity(intent)
     }
 
+    /**
+     * Creates a new intent to MainActivity and sets the score to zero
+     */
     private fun goHome() {
         val intent = Intent(activity, MainActivity::class.java)
         Setting.score = 0
@@ -80,7 +87,7 @@ class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment(
                 gameMode
             )
             Toast.makeText(context, "Your score was successfully saved", Toast.LENGTH_SHORT).show()
-            saved = true
+
         } else if (edit_text_if_highscore.text!!.isBlank()) Toast.makeText(
             context,
             "Your name cannot be empty",
@@ -88,13 +95,14 @@ class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment(
         ).show()
     }
 
+
+    /**
+     * If the EditText is blank and the score is a top 10 score the user gets a prompt to make sure
+     * the user doesn't want to save. Otherwise saves score and goes home/restarts
+     */
     private fun areYouSure(where: Int) {
 
-        if (!saved && edit_text_if_highscore.text!!.isBlank() && dataController.validateScore(
-                Setting.score,
-                Setting.gameMode
-            )
-        ) {
+        if (edit_text_if_highscore.text!!.isBlank() && dataController.validateScore(Setting.score, Setting.gameMode)) {
 
             val builder = AlertDialog.Builder(context!!, R.style.ThemeOverlay_AppCompat_Dialog)
             builder.setMessage("Do you really want to continue without saving?")

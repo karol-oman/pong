@@ -11,8 +11,10 @@ import com.karol.pong.R
 import com.karol.pong.model.Score
 import kotlinx.android.synthetic.main.layout_high_score_shuriken.view.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
-
-class HighScoreShurikenFragment : Fragment() {
+/**
+ * Fragment for PageViewer for Breakout in HighScoreActivity
+ */
+class HighScoreBreakoutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -21,6 +23,9 @@ class HighScoreShurikenFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.layout_high_score_shuriken, container, false)
         val dataController = DataController(activity!!.applicationContext)
 
+        /**
+         * Creates a custom adapter based on our own ListViewItem
+         */
         val adapter = object : ArrayAdapter<Score>(
             activity!!.applicationContext,
             R.layout.list_view_item, R.id.list_item_name,
@@ -31,6 +36,10 @@ class HighScoreShurikenFragment : Fragment() {
 
                 view.list_item_name.text = dataController.highscores(1)[position].name
                 view.list_item_score.text = dataController.highscores(1)[position].score.toString()
+
+                /**
+                 * Top three scores gets a medal to the left of the name
+                 */
 
                 when (position) {
                     0 -> {

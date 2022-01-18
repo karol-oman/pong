@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.karol.pong.databinding.ActivityHighscoreBinding
 import com.karol.pong.fragment.HighScorePongFragment
-import com.karol.pong.fragment.HighScoreShurikenFragment
+import com.karol.pong.fragment.HighScoreBreakoutFragment
 
 class HighScoreActivity : AppCompatActivity() {
 
@@ -24,6 +24,11 @@ class HighScoreActivity : AppCompatActivity() {
         binding.pageViewerHighScore.adapter = pagerAdapter
     }
 
+    /**
+     * View pager adapter initializes the two different high score lists
+     * Pong and Breakout
+     */
+
     private inner class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
         override fun getItemCount(): Int = 2
 
@@ -34,7 +39,7 @@ class HighScoreActivity : AppCompatActivity() {
                     HighScorePongFragment()
                 }
                 1 -> {
-                    HighScoreShurikenFragment()
+                    HighScoreBreakoutFragment()
                 }
                 else -> {
                     HighScorePongFragment()

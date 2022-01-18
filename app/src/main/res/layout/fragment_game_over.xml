@@ -45,6 +45,7 @@
                 android:layout_width="181dp"
                 android:layout_height="wrap_content"
                 android:hint="Name"
+
                 app:endIconMode="clear_text"
                 app:layout_constraintBottom_toTopOf="@+id/button_main_menu"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,19 +57,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:singleLine="true"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <!--            <EditText-->
-            <!--                android:id="@+id/edit_text_if_highscore"-->
-            <!--                android:layout_width="161dp"-->
-            <!--                android:layout_height="49dp"-->
-            <!--                android:layout_marginStart="10dp"-->
-            <!--                android:hint="Name"-->
-            <!--                 />-->
 
             <ImageView
                 android:id="@+id/game_over_pic"

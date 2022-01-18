@@ -29,18 +29,21 @@ class MainActivity : AppCompatActivity() {
         rotateStar()
         generateBackground()
 
+        val toGame = Intent(this, PlayActivity::class.java)
 
-        val intent = Intent(this, PlayActivity::class.java)
+        /**
+         * On click listeners set for all the buttons in the main menu
+         */
 
         binding.buttonPlay.setOnClickListener {
 
             Setting.gameMode = 0
-            startActivity(intent)
+            startActivity(toGame)
         }
         binding.buttonPlay2.setOnClickListener {
 
             Setting.gameMode = 1
-            startActivity(intent)
+            startActivity(toGame)
         }
 
         binding.buttonSettings.setOnClickListener {
@@ -55,6 +58,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Method for rotating the shuriken in Pong
+     */
     private fun rotateStar() {
         val rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_animation)
 
@@ -62,7 +69,9 @@ class MainActivity : AppCompatActivity() {
 
         rotImage.animation = rotate
     }
-
+    /**
+     * Method to generate a random background
+     */
     private fun generateBackground() {
 
         val random = (0..6).random()
