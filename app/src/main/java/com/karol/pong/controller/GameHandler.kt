@@ -9,6 +9,11 @@ object GameHandler {
     var paintArray = ArrayList<String>()
 
     /**
+     * GameHandler holds a list of Bricks.
+     * GameHandler also holds a list of Strings with Level Designs to be drawn by the DrawHandler.
+     *
+     *
+     *
      * . = no brick
      * D = dragon fruit
      * G = green apple
@@ -17,22 +22,9 @@ object GameHandler {
      * S = strawberry
      * W = watermelon
      *
-     * EACH ROW HAS TO BE 12 IN LENGTH.
+     * EACH ROW HAS TO BE 10 IN LENGTH.
      * ANY SIZE VERTICALLY.
      */
-
-
-    fun test() {
-        paintArray.add("........S.")
-    }
-
-    fun test2() {
-        paintArray.add("....S.....")
-    }
-
-    fun test3() {
-        paintArray.add(".S........")
-    }
 
 
     fun bill() {
