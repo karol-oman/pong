@@ -19,6 +19,11 @@
     <string name="play_level_number">Level:</string>
     <string name="play_high_Score">High Score::</string>
     <string name="play_current">Current high score:</string>
+    <string name="play_level1">Level: 1</string>
+    <string name="play_level2">Level: 2</string>
+    <string name="play_level3">Level: 3</string>
+    <string name="play_level4">Level: 4</string>
+    <string name="play_level5">Level: 5</string>
 
     <!-- High score fragment-->
     <string name="game_over_score">YOUR SCORE:</string>
