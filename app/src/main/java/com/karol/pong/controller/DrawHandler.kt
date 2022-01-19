@@ -11,6 +11,7 @@ import com.karol.pong.model.Setting
 /**
  * DrawHandler draws the game objects. The paddle and the ball gets a bitmap in GameView.
  * All the bricks are drawn here based on GameHandler.allBricks.
+ *  @authors Sarah, Gustav, Karol, Calle
  */
 
 class DrawHandler() {

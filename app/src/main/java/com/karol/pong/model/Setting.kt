@@ -1,9 +1,12 @@
 package com.karol.pong.model
 
 import android.content.res.Resources
+
 /**
  * Singleton class for storing game variables
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 object Setting {
 
     //Screen properties

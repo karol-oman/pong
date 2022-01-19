@@ -8,11 +8,8 @@ import com.karol.pong.R
 import com.karol.pong.model.Setting
 import com.karol.pong.databinding.ActivityMainBinding
 
-/** @Authors
- *  Sarah
- *  Gustav
- *  Karol
- *  Calle
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
  */
 
 class MainActivity : AppCompatActivity() {

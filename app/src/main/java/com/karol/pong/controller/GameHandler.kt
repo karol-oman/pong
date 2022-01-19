@@ -2,6 +2,10 @@ package com.karol.pong.controller
 
 import com.karol.pong.model.Bricks
 
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
+
 object GameHandler {
 
     val allBricks = mutableListOf<Bricks>()
@@ -11,7 +15,6 @@ object GameHandler {
     /**
      * GameHandler holds a list of Bricks.
      * GameHandler also holds a list of Strings with Level Designs to be drawn by the DrawHandler.
-     *
      *
      *
      * . = no brick
@@ -108,12 +111,6 @@ object GameHandler {
         paintArray.add("..........")
         paintArray.add("..DDDDDDDD")
         paintArray.add("..GGGGGGGG")
-        paintArray.add("..........")
-        paintArray.add("..........")
-        paintArray.add("DDDDDDDD..")
-        paintArray.add("GGGGGGGG..")
-        paintArray.add(".......D..")
-        paintArray.add(".......D..")
     }
 
     fun apple() {

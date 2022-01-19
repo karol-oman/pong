@@ -11,6 +11,10 @@ import com.karol.pong.databinding.ActivitySettingsBinding
 import com.karol.pong.fragment.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
+
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
