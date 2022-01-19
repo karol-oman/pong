@@ -6,6 +6,7 @@ import com.karol.pong.model.Score
 
 /**
  * The DataController handles all the communication with the DataHandler
+ *  @authors Sarah, Gustav, Karol, Calle
  */
 
 class DataController(val context: Context) {

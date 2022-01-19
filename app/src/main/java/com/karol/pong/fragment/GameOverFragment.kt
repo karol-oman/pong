@@ -19,6 +19,9 @@ import com.karol.pong.model.Setting
 import com.karol.pong.view.MainActivity
 import com.karol.pong.view.PlayActivity
 
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
 
 class GameOverFragment(context1: Context, private val gameMode: Int) : Fragment() {
 

@@ -5,7 +5,9 @@ import android.graphics.*
 
 /**
  * Brick class with all attributes for the game
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 class Bricks(
 
     var posX: Float,

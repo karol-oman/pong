@@ -13,9 +13,16 @@ import com.karol.pong.R
 import com.karol.pong.view.PlayActivity
 import kotlin.math.abs
 
+/**
+ * The GameView displays and handles the visual elements in both of our game-modes
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
 
 class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback, Runnable {
 
+    /**
+     * Variables are initialized for the different game-objects
+     */
     private var thread: Thread? = null
     private lateinit var canvas: Canvas
     private lateinit var ball: Ball
@@ -25,6 +32,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private var brickHeight = 70
 
     private var level = 0
+    private var hasStarted = false
 
     private var playActivity = context as PlayActivity
 
@@ -33,11 +41,19 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     private var mHolder: SurfaceHolder? = holder
 
-    private val randomBackground = (0..6).random()
 
+
+    /**
+     * Creates arrays for our different images as drawables
+     */
     private val imgId = arrayOf(
-        R.drawable.backgroundoneblur, R.drawable.bg2, R.drawable.bg3, R.drawable.bg4,
-        R.drawable.bg5, R.drawable.bg6, R.drawable.bg7
+        R.drawable.backgroundoneblur,
+        R.drawable.bg2,
+        R.drawable.bg3,
+        R.drawable.bg4,
+        R.drawable.bg5,
+        R.drawable.bg6,
+        R.drawable.bg7
     )
 
     private val ballArray = arrayOf(
@@ -48,7 +64,11 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.shuri
     )
 
-    private val paddleArray = arrayOf(R.drawable.bamboo, R.drawable.chopsticks, R.drawable.bowl)
+    private val paddleArray = arrayOf(
+        R.drawable.bamboo,
+        R.drawable.chopsticks,
+        R.drawable.bowl
+    )
 
     private val brickArray = arrayOf(
         R.drawable.paddle_dragon,
@@ -59,7 +79,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         R.drawable.paddle_watermelon
     )
 
-    private var hasStarted = false
+
+    /**
+     * Creates the different bitmaps from our drawable arrays corresponding to the user setting
+     * The bitmap for the background is randomized
+     */
+    private val randomBackground = (0..6).random()
 
     private var background: Bitmap =
         BitmapFactory.decodeResource(resources, imgId[randomBackground])
@@ -71,83 +96,84 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         BitmapFactory.decodeResource(resources, paddleArray[Setting.paddleID])
             .scale(Setting.paddleWidth.toInt(), Setting.paddleHeight.toInt(), true)
 
+    private val dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
+        .scale(totalBrickRowWidth, brickHeight, true)
+    private val greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1])
+        .scale(totalBrickRowWidth, brickHeight, true)
+    private val kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2])
+        .scale(totalBrickRowWidth, brickHeight, true)
+    private val purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3])
+        .scale(totalBrickRowWidth, brickHeight, true)
+    private val strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4])
+        .scale(totalBrickRowWidth, brickHeight, true)
+    private val watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5])
+        .scale(totalBrickRowWidth, brickHeight, true)
 
+    /**
+     * Initializes the surface-holder and calls the setup function
+     */
     init {
 
         if (mHolder != null)
             mHolder?.addCallback(this)
 
-
         setup()
     }
 
     /**
-     * IntersectHandler
+     * Creates an instance of the IntersectHandler
      */
 
     private var intersectHandler = IntersectHandler(playActivity)
 
     /**
-     * DrawHandler
+     * Creates an instance of the DrawHandler
      */
 
     private var drawHandler = DrawHandler()
 
+
     private fun generateBricks() {
 
-        val dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
-            .scale(totalBrickRowWidth, brickHeight, true)
-        val greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1])
-            .scale(totalBrickRowWidth, brickHeight, true)
-        val kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2])
-            .scale(totalBrickRowWidth, brickHeight, true)
-        val purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3])
-            .scale(totalBrickRowWidth, brickHeight, true)
-        val strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4])
-            .scale(totalBrickRowWidth, brickHeight, true)
-        val watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5])
-            .scale(totalBrickRowWidth, brickHeight, true)
-
-
-
-
+        /**
+         * Clears the GameHandler.paintArray
+         */
         GameHandler.paintArray.clear()
 
         /**
-         * Bricks are generated based on the strings in GameHandler
+         *  Generates bricks based on the strings in GameHandler
+         *  When a player clears the board a new level is reached and a new level is created + the speed increases
          */
-
-
         when (level) {
 
             0 -> GameHandler.ball()
             1 -> {
-                GameHandler.labyrinth()
+                GameHandler.bill()
                 ball.speedY *= Setting.speedMultiplier
             }
             2 -> {
-                GameHandler.japan()
+                GameHandler.karolLevel()
                 ball.speedY *= Setting.speedMultiplier
             }
             3 -> {
-                GameHandler.karolLevel()
+                GameHandler.japan()
                 ball.speedY *= Setting.speedMultiplier
             }
 
             4 -> {
-                GameHandler.apple()
+                GameHandler.labyrinth()
                 ball.speedY *= Setting.speedMultiplier
             }
             5 -> {
-                GameHandler.sarahLevel()
+                GameHandler.apple()
                 ball.speedY *= Setting.speedMultiplier
             }
             6 -> {
-                GameHandler.bill()
+                GameHandler.sarahLevel()
                 ball.speedY *= Setting.speedMultiplier
             }
             else -> {
-                GameHandler.sarahLevel()
+                GameHandler.bill()
                 ball.speedY *= 2
             }
 
@@ -155,11 +181,22 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
 
 
-        // Clears the GameHandler.allBricks from any remainders of previous games
+        /**
+         *  Clears the GameHandler.allBricks from any remainders of previous games
+         */
         GameHandler.allBricks.clear()
 
+        /**
+         * Creates the bricks by looping through the paintarray 10 times,
+         * Since we position the bricks from the top to bottom each string in
+         * the paint array is called based on the current index on the loop
+         * If the current string position contains any of the characters that corresponds a brick
+         * the brick is added with the calculated margins.
+         * If there's no recognizable character (e.g. ".") the margin of an "invisible" brick is added
+         *
+         */
         var xposBrick = 0f
-        val yposBrick = 20f
+        val yposTopMargin = 20f
         val margin = 10f
 
         for (i in 0..9) {
@@ -169,8 +206,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             for (string in GameHandler.paintArray) {
 
-                //The height of a brick is 50f
-                val total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposBrick
+                //The height of a brick is 70f
+                val total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposTopMargin
 
                 when (string[i]) {
 
@@ -243,13 +280,22 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     }
 
 
+    /**
+     * Is called when the game is initialized. The score is set to zero
+     * Depending on the game mode a level identifier is displayed or the bricks are generated
+     */
     private fun setup() {
 
         Setting.score = 0
 
-        if (Setting.gameMode == 0) playActivity.updateLevelText("Level: 1")
+        if (Setting.gameMode == 0){
+            playActivity.updateLevelText("Level: 1")
+        }
+
         //Generates bricks in game
-        else if (Setting.gameMode == 1) generateBricks()
+        else if (Setting.gameMode == 1){
+            generateBricks()
+        }
 
 
         //Creates ball and paddle objects
@@ -259,12 +305,18 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     }
 
+    /**
+     * Sets the game flag to "running" and creates a thread for the GameView
+     */
     private fun start() {
         running = true
         thread = Thread(this)
         thread?.start()
     }
 
+    /**
+     * Sets the game "running" flag to false and kills the thread
+     */
     private fun stop() {
         running = false
         try {
@@ -274,6 +326,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
     }
 
+    /**
+     * If the ball happens to get stuck out of the right/left GameView-border we're moving it back by increments
+     * If the game mode is Breakout and the GameHandler.allBricks is empty, we generate new bricks
+     */
     private fun update() {
 
         if (ball.posX > bounds.right) {
@@ -293,6 +349,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     }
 
+    /**
+     * Initializes the canvas with the mHolder, paints the background and calls the DrawHandler to draw the
+     * ball and paddle. Also creates the hitboxes and unlocks the canvas.
+     */
     private fun draw() {
 
         canvas = mHolder!!.lockCanvas()
@@ -303,19 +363,12 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         drawHandler.draw(canvas, ball, paddle)
 
 
-        //
+        //Draws the bitmap for the ball and paddle and uses its hitbox as position
         canvas.drawBitmap(paintedBall, ball.hitbox.left - 23, ball.hitbox.top - 23, null)
         canvas.drawBitmap(paintedPaddle, paddle.paddle.left, paddle.paddle.top, null)
 
 
-
-
-        if (Setting.gameMode == 0) {
-            playActivity.updateScore("Total score: ${Setting.score}")
-        }
-        if (Setting.gameMode == 1) {
-            playActivity.updateScore("Total score: ${Setting.score}")
-        }
+        playActivity.updateScore("Total score: ${Setting.score}")
 
         mHolder!!.unlockCanvasAndPost(canvas)
     }
@@ -325,6 +378,9 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     }
 
+    /**
+     * Sets the bounds for the GameView. Positions the paddle and the ball depending on the screen size.
+     */
     override fun surfaceChanged(p0: SurfaceHolder, p1: Int, p2: Int, p3: Int) {
 
         bounds = Rect(0, 0, p2, p3)
@@ -339,6 +395,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         stop()
     }
 
+    /**
+     * The game-loop. A game is run as long as the "running" flag is true and rageQuit is false
+     * The different functions of the game is called while running
+     */
     override fun run() {
         while (running && !Setting.rageQuit) {
             draw()
@@ -351,7 +411,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
         }
     }
 
-
+    /**
+     * Overrides the onTouch event with a paddle event. The user is able to hold down the finger and move the
+     * paddle to their desired position before releasing, the ACTION_UP event is then called which sets the ball moving
+     */
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
@@ -392,6 +455,10 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
     }
 
+    /**
+     * If the ball is at the bottom the game is lost and the "running" flag is set to false,
+     * Displays the game over fragment
+     */
     private fun checkIfDead() {
         if (ball.posY + ball.size > bounds.bottom) {
             running = false

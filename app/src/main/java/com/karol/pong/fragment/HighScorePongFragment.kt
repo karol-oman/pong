@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.list_view_item.view.*
 
 /**
  * Fragment for PageViewer for Pong in HighScoreActivity
+ *  @authors Sarah, Gustav, Karol, Calle
  */
 
 class HighScorePongFragment : Fragment() {

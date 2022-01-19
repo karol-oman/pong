@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.karol.pong.controller.GameView
+
 /**
  * Creates a fragment that returns the GameView
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 class GameFragment() : Fragment() {
     override fun onCreateView(
 

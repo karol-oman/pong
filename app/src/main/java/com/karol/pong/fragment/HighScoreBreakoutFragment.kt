@@ -11,9 +11,12 @@ import com.karol.pong.R
 import com.karol.pong.model.Score
 import kotlinx.android.synthetic.main.layout_high_score_shuriken.view.*
 import kotlinx.android.synthetic.main.list_view_item.view.*
+
 /**
  * Fragment for PageViewer for Breakout in HighScoreActivity
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 class HighScoreBreakoutFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,

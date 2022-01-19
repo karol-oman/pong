@@ -6,6 +6,7 @@ import java.lang.Exception
 
 /**
  * The DataManager is a static object responsible for all communication with text files (one txt for each gamemode)
+ *  @authors Sarah, Gustav, Karol, Calle
  */
 
 object DataManager {

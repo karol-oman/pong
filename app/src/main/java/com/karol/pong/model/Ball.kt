@@ -5,7 +5,9 @@ import android.graphics.*
 
 /**
  * Ball class with all attributes for the game
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 class Ball(
 
     var posX: Float,

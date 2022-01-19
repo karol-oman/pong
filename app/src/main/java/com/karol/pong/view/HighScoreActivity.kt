@@ -10,6 +10,10 @@ import com.karol.pong.databinding.ActivityHighscoreBinding
 import com.karol.pong.fragment.HighScorePongFragment
 import com.karol.pong.fragment.HighScoreBreakoutFragment
 
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
+
 class HighScoreActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHighscoreBinding

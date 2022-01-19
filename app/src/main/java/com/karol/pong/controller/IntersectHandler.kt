@@ -13,7 +13,9 @@ import kotlin.math.abs
 
 /**
  * IntersectHandler handles all the intersects between the ball, paddle and bounds
+ *  @authors Sarah, Gustav, Karol, Calle
  */
+
 class IntersectHandler(context: Context) {
 
     private var hasScore = true

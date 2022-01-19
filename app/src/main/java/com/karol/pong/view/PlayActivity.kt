@@ -11,6 +11,9 @@ import com.karol.pong.databinding.ActivityPlayBinding
 import com.karol.pong.fragment.GameFragment
 import com.karol.pong.fragment.GameOverFragment
 
+/**
+ *  @authors Sarah, Gustav, Karol, Calle
+ */
 
 class PlayActivity : AppCompatActivity() {
 
