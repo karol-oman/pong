@@ -28,8 +28,8 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     private lateinit var ball: Ball
     private var running = false
 
-    private var totalBrickRowWidth = Setting.screenWidth / 12 + (Setting.screenWidth / 12 * 2) / 10
-    private var brickHeight = 70
+    private var bitmapWidth = Setting.screenWidth / 12 + (Setting.screenWidth / 12 * 2) / 10
+    private var bitmapHeight = 70
 
     private var level = 0
     private var hasStarted = false
@@ -97,17 +97,17 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             .scale(Setting.paddleWidth.toInt(), Setting.paddleHeight.toInt(), true)
 
     private val dragonfruit: Bitmap = BitmapFactory.decodeResource(resources, brickArray[0])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
     private val greenapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[1])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
     private val kiwi: Bitmap = BitmapFactory.decodeResource(resources, brickArray[2])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
     private val purpleapple: Bitmap = BitmapFactory.decodeResource(resources, brickArray[3])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
     private val strawberry: Bitmap = BitmapFactory.decodeResource(resources, brickArray[4])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
     private val watermelon: Bitmap = BitmapFactory.decodeResource(resources, brickArray[5])
-        .scale(totalBrickRowWidth, brickHeight, true)
+        .scale(bitmapWidth, bitmapHeight, true)
 
     /**
      * Initializes the surface-holder and calls the setup function
@@ -197,7 +197,6 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
          */
         var xposBrick = 0f
         val yposTopMargin = 20f
-        val margin = 10f
 
         for (i in 0..9) {
 
@@ -206,15 +205,15 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             for (string in GameHandler.paintArray) {
 
-                //The height of a brick is 70f
-                val total = (70f * multiplyHeight) + (margin * multiplyMargin) + yposTopMargin
+                //The height of a brick is 70f and the margin between each brick is 10f
+                val yposBrick = (Setting.brickHeight * multiplyHeight) + (Setting.marginY * multiplyMargin) + yposTopMargin
 
                 when (string[i]) {
 
                     'D' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             dragonfruit,
                             1,
                             Setting.brickHeight
@@ -223,7 +222,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     'G' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             greenapple,
                             1,
                             Setting.brickHeight
@@ -232,7 +231,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     'K' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             kiwi,
                             1,
                             Setting.brickHeight
@@ -241,7 +240,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     'P' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             purpleapple,
                             1,
                             Setting.brickHeight
@@ -250,7 +249,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     'S' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             strawberry,
                             1,
                             Setting.brickHeight
@@ -259,7 +258,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
                     'W' -> GameHandler.allBricks.add(
                         Bricks(
                             xposBrick,
-                            total,
+                            yposBrick,
                             watermelon,
                             1,
                             Setting.brickHeight
@@ -273,7 +272,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
 
             }
 
-            xposBrick += Setting.brickWidth + Setting.margin
+            xposBrick += Setting.brickWidth + Setting.marginX
 
         }
 

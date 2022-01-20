@@ -41,6 +41,7 @@ object Setting {
     const val brickHeight = 70f
     val brickWidth = screenWidth / 12
 
-    val margin = (screenWidth / 12 * 2) / 10
+    val marginX = (screenWidth / 12 * 2) / 10
+    val marginY = 10f
 
 }
