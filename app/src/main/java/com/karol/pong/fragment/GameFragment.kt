@@ -12,7 +12,7 @@ import com.karol.pong.controller.GameView
  *  @authors Sarah, Gustav, Karol, Calle
  */
 
-class GameFragment() : Fragment() {
+class GameFragment : Fragment() {
     override fun onCreateView(
 
         inflater: LayoutInflater,

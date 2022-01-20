@@ -3,7 +3,9 @@ package com.karol.pong.controller
 import com.karol.pong.model.Bricks
 
 /**
- *  @authors Sarah, Gustav, Karol, Calle
+ * GameHandler holds a list of Bricks.
+ * GameHandler also holds a list of Strings with Level Designs to be drawn by the DrawHandler.
+ * @authors Sarah, Gustav, Karol, Calle
  */
 
 object GameHandler {
@@ -13,10 +15,6 @@ object GameHandler {
     var paintArray = ArrayList<String>()
 
     /**
-     * GameHandler holds a list of Bricks.
-     * GameHandler also holds a list of Strings with Level Designs to be drawn by the DrawHandler.
-     *
-     *
      * . = no brick
      * D = dragon fruit
      * G = green apple

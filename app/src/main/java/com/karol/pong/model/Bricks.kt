@@ -10,8 +10,8 @@ import android.graphics.*
 
 class Bricks(
 
-    var posX: Float,
-    var posY: Float,
+    private var posX: Float,
+    private var posY: Float,
     val paintedBrick: Bitmap,
     var brickScore: Int,
     val height: Float,

@@ -14,7 +14,7 @@ object Setting {
     val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
     //ID for drawables
-    var ballID: Int = 0
+    var ballID = 0
     var paddleID = 0
 
     //Game modes
@@ -34,20 +34,13 @@ object Setting {
     var speedMultiplier = 1.25f
 
     //Paddle properties
-    val paddleHeight = 50f
+    const val paddleHeight = 50f
     var paddleWidth: Float = screenWidth / 2.5f
 
     //Brick properties
-    val brickHeight = 70f
+    const val brickHeight = 70f
     val brickWidth = screenWidth / 12
 
     val margin = (screenWidth / 12 * 2) / 10
-
-
-
-
-
-
-
 
 }

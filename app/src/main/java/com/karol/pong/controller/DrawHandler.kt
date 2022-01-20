@@ -14,11 +14,11 @@ import com.karol.pong.model.Setting
  *  @authors Sarah, Gustav, Karol, Calle
  */
 
-class DrawHandler() {
+class DrawHandler {
 
     fun draw(canvas : Canvas, ball : Ball, paddle : Paddle){
 
-        var paint = Paint()
+        val paint = Paint()
         paint.color = Color.TRANSPARENT
 
         canvas.drawCircle(ball.posX, ball.posY, ball.size, paint)

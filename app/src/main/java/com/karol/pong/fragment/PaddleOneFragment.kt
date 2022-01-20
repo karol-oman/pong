@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.karol.pong.R
-import com.karol.pong.model.Setting
 
 /**
  * Creates the fragment view and returns it

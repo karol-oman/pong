@@ -44,7 +44,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="181dp"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/game_over_hint"
 
                 app:endIconMode="clear_text"
                 app:layout_constraintBottom_toTopOf="@+id/button_main_menu"

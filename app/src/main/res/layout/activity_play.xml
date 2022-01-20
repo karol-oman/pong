@@ -62,7 +62,7 @@
         android:id="@+id/text_view_lvl"
         android:layout_width="@dimen/play_width_image_view"
         android:layout_height="@dimen/play_height_image_view"
-        tools:text="@string/play_level"
+        tools:text="Level"
         android:textColor="@color/black"
         android:textSize="@dimen/play_text_size"
         app:layout_constraintBottom_toBottomOf="@+id/frame_play"

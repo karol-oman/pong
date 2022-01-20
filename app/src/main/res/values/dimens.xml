@@ -3,7 +3,6 @@
 
 <resources>
 
-
     <!--Main activity-->
     <dimen name="button_width">150dp</dimen>
     <dimen name="button_height">70dp</dimen>
@@ -58,13 +57,5 @@
     <dimen name="list_view_height">30dp</dimen>
     <dimen name="list_view_margin">10dp</dimen>
     <dimen name="list_view_text_size">25sp</dimen>
-
-
-
-
-
-
-
-
 
 </resources>

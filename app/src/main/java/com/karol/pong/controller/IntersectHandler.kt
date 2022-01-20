@@ -22,7 +22,7 @@ class IntersectHandler(context: Context) {
 
     private var playActivity = context as PlayActivity
 
-    var rememberedBallPos = 0f
+    private var rememberedBallPos = 0f
 
     fun intersects(ball: Ball, paddle: Paddle, bounds: Rect) {
         update(ball)
@@ -184,7 +184,6 @@ class IntersectHandler(context: Context) {
 
         for (brick in x) {
             if (brick.destroy) {
-                println("destroyed")
                 if (GameHandler.allBricks.contains(brick)) {
                     score += brick.brickScore
                     GameHandler.allBricks.remove(brick)
@@ -200,7 +199,7 @@ class IntersectHandler(context: Context) {
     private fun checkPaddleZone(paddle: Paddle, ball: Ball){
         val widthPerZone = abs(paddle.width) / abs(6)
         if (RectF.intersects(paddle.paddle, ball.hitbox)) {
-            println(ball.posY)
+
             val ballTotalSpeed = abs(ball.speedY) + abs(ball.speedX)
 
             when {

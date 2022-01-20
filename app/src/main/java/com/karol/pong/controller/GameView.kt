@@ -57,7 +57,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
     )
 
     private val ballArray = arrayOf(
-        R.drawable.balll1,
+        R.drawable.ball5,
         R.drawable.ball2,
         R.drawable.ball3,
         R.drawable.ball4,
@@ -464,7 +464,7 @@ class GameView(context: Context?) : SurfaceView(context), SurfaceHolder.Callback
             running = false
             playActivity.showGameOver(Setting.gameMode)
             playActivity.updateLevel(android.R.color.transparent)
-            Setting.score = Setting.score
+            //Setting.score = Setting.score
 
         }
     }

@@ -59,41 +59,41 @@ class PlayActivity : AppCompatActivity() {
      */
     fun showGameOver(gameMode: Int) {
 
-        runOnUiThread(Runnable {
+        runOnUiThread {
             supportFragmentManager.commit {
                 add(R.id.frame_play, GameOverFragment(applicationContext, gameMode))
             }
-        })
+        }
     }
 
     /**
      * Creates a thread for updating the score
      */
     fun updateScore(str: String) {
-        runOnUiThread(Runnable {
+        runOnUiThread {
             binding.textViewCurrentScore.text = str
 
 
-        })
+        }
     }
 
     /**
      * Creates a thread for updating the level up image
      */
     fun updateLevel(id: Int) {
-        runOnUiThread(Runnable {
+        runOnUiThread {
             binding.textViewLvl.setBackgroundResource(id)
 
-        })
+        }
     }
 
     /**
      * Creates a thread for updating the level text
      */
     fun updateLevelText(str: String) {
-        runOnUiThread(Runnable {
+        runOnUiThread {
             binding.textViewLevel.text = str
 
-        })
+        }
     }
 }

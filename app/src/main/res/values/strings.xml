@@ -5,37 +5,18 @@
     <string name="settings">SETTINGS</string>
     <string name="high_score">HIGH SCORE</string>
     <string name="breakout">BREAKOUT</string>
-
-
-    <string name="play">PLAY</string>
-    <string name="save">SAVE</string>
     <string name="back">BACK</string>
-    <string name="sound">SOUND</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Play-->
-    <string name="play_level">Level</string>
     <string name="play_level_number">Level:</string>
-    <string name="play_high_Score">High Score::</string>
+    <string name="play_high_Score">High Score:</string>
     <string name="play_current">Current high score:</string>
-    <string name="play_level1">Level: 1</string>
-    <string name="play_level2">Level: 2</string>
-    <string name="play_level3">Level: 3</string>
-    <string name="play_level4">Level: 4</string>
-    <string name="play_level5">Level: 5</string>
 
     <!-- High score fragment-->
-    <string name="game_over_score">YOUR SCORE:</string>
-    <string name="game_over_hint">Enter name</string>
+    <string name="game_over_hint">Name</string>
 
     <!--List item view-->
     <string name="list_view_hint_1">Bill</string>
-
     <string name="list_view_hint_2">1337</string>
-
-
-
-
 
 </resources>
